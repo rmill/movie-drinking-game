@@ -20,11 +20,11 @@ class ServerThread implements Runnable {
 			return;
 		}    
 		
-	    byte[] receiveData = new byte[1024];             
-	   
 	    while(true)                {                   
-		    DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);                   
-		    try {
+	    	byte[] receiveData = new byte[1024];
+	    	DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);                   
+		    
+	    	try {
 				serverSocket.receive(receivePacket);
 			} catch (IOException e) {
 				MaxObject.post("Error receiving message");
@@ -34,7 +34,7 @@ class ServerThread implements Runnable {
 		    String data = new String(receivePacket.getData());                   
 		    MaxObject.post("RECEIVED: " + data);
 		    
-		    this.server.process(data);
+		    //this.server.process(data);
 	    }
     }
    
