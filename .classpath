@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Program Files/Cycling &apos;74/Max 6.1/Cycling &apos;74/java/lib/max.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
