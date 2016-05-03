@@ -1,0 +1,16 @@
+{
+  "name": "movie-drinking-game",
+  "version": "0.1.0",
+  "description": "ERROR: No README data found!",
+  "author": "Ryan Mueller <rmill865@gmail.com>",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "devDependencies": {}
+}
