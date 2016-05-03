@@ -7,25 +7,26 @@ import com.cycling74.max.MaxObject;
 
 class ServerThread implements Runnable {
     private Server server;
-    private int port = 9876;
+    private Integer port = 9876;
+    private DatagramSocket socket;
+    private Boolean isStopped = true;
    
+    ServerThread(Server server) {
+    	this.server = server;
+    }
+    
     public void run() {
-	    MaxObject.post("Setting up UPD server on port: " + this.port);
-		
-	    DatagramSocket serverSocket;
-		try {
-			serverSocket = new DatagramSocket(this.port);
-		} catch (SocketException e) {
-			MaxObject.post("Error binding socket");
-			return;
-		}    
-		
-	    while(true)                {                   
+		while(true) {  
+			if (isStopped) {
+				socket.close();
+				return;
+			}
+			
 	    	byte[] receiveData = new byte[1024];
 	    	DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);                   
 		    
 	    	try {
-				serverSocket.receive(receivePacket);
+				socket.receive(receivePacket);
 			} catch (IOException e) {
 				MaxObject.post("Error receiving message");
 				return;
@@ -34,12 +35,28 @@ class ServerThread implements Runnable {
 		    String data = new String(receivePacket.getData());                   
 		    MaxObject.post("RECEIVED: " + data);
 		    
-		    //this.server.process(data);
+		    this.server.process(data);
 	    }
     }
    
     public void start() {
-        Thread thread = new Thread (this);
-        thread.start ();
+    	MaxObject.post("Setting up UPD server on port: " + port);
+    	
+		try {
+			socket = new DatagramSocket(port);
+		} catch (SocketException e) {
+			MaxObject.post("Error binding socket");
+			return;
+		}    
+		
+		isStopped = false;
+    	
+        Thread thread = new Thread(this);
+        thread.start();
+    }
+    
+    public void stop() {
+    	MaxObject.post("Stopping UDP server on port: " + port);
+    	isStopped = true;
     }
 }
