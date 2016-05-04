@@ -1,6 +1,7 @@
 var dgram = require('dgram');
 var express = require('express');
 var bodyParser = require('body-parser')
+var randomstring = require("randomstring");
 
 var app = express();
 app.use(bodyParser.json());
@@ -13,8 +14,17 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-  var message = new Buffer(req.body['user_name']);
+  var token = randomstring.generate();
+  var request = {
+    'token': token,
+    'user_name': req.body['user_name'],
+    'action': 'new_user'
+  };
+
+  var message = new Buffer(JSON.stringify(request));
   client.send(message, 0, message.length, 9876, '192.168.0.116');
+
+  res.sendFile('/var/www/movie-drinking-game/app/view/game.html');
 });
 
 app.listen(3000, function () {
