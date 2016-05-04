@@ -5,7 +5,10 @@
   "author": "Ryan Mueller <rmill865@gmail.com>",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
     "express": "^4.13.4",
+    "jquery": "^2.2.3",
+    "js-cookie": "^2.1.1",
     "randomstring": "^1.1.4"
   },
   "license": "MIT",

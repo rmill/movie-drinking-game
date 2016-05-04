@@ -1,11 +1,14 @@
 var dgram = require('dgram');
 var express = require('express');
 var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser');
 var randomstring = require("randomstring");
 
 var app = express();
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true})); 
+app.use(express.static('public'));
 
 var client = dgram.createSocket('udp4');
 
@@ -24,7 +27,35 @@ app.post('/', function (req, res) {
   var message = new Buffer(JSON.stringify(request));
   client.send(message, 0, message.length, 9876, '192.168.0.116');
 
+  res.cookie('name', req.body['user_name'])
+  res.cookie('token', token)
+
+  res.redirect('/game');
+});
+
+app.get('/game', function(req, res) {
+  if (!req.cookies.token) {
+    res.redirect('/');
+  }
+
   res.sendFile('/var/www/movie-drinking-game/app/view/game.html');
+});
+
+app.post('/answer', function(req, res) {
+  if (!req.cookies.token) {
+    res.returnStatus(401);
+  } 
+
+  var request = {
+    'token': token,
+    'answer': req.body['answer_id'],
+    'action': 'answer'
+  };
+
+  var message = new Buffer(JSON.stringify(request));
+  client.send(message, 0, message.length, 9876, '192.168.0.116');
+
+  res.end();
 });
 
 app.listen(3000, function () {

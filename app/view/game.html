@@ -1,0 +1,42 @@
+<html>
+
+<head>
+<script src="js/jquery.min.js"></script>
+<script src="js/js.cookie.js"></script>
+</head>
+
+<body>
+
+Hello, <span id='name'></span>
+<p>
+<button class="answer" data-answer-id=1 id="answer_1">1</button>
+<button class="answer" data-answer-id=2 id="answer_2">2</button>
+<button class="answer" data-answer-id=3 id="answer_3">3</button>
+<button class="answer" data-answer-id=4 id="answer_4">4</button>
+
+</body>
+</html>
+
+<script>
+
+$( document ).ready(function() {
+
+$('#name').html(Cookies.get('name'));
+
+$('.answer').click(function() {
+
+var data = {
+  'answer': $(this).data('answer-id')
+}
+
+$.ajax({
+  'url': '/answer',
+  'method': 'POST',
+  'data': data
+});
+
+});
+
+});
+
+</script>
