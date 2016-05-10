@@ -3,40 +3,33 @@
 <head>
 <script src="js/jquery.min.js"></script>
 <script src="js/js.cookie.js"></script>
+<script src="js/site.js"></script>
+<link rel="stylesheet" type="text/css" href="css/site.css">
 </head>
 
 <body>
 
-Hello, <span id='name'></span>
-<p>
-<button class="answer" data-answer-id=1 id="answer_1">1</button>
-<button class="answer" data-answer-id=2 id="answer_2">2</button>
-<button class="answer" data-answer-id=3 id="answer_3">3</button>
-<button class="answer" data-answer-id=4 id="answer_4">4</button>
+<div class="header">
+	<span class="text" id="name"></span>
+</div>
 
-</body>
-</html>
+<div class="buttons">
+	<table>
+		<tr>
+			<td></td>
+			<td style="vertical-align: bottom"><button data-answer-id=1 class="answer">A</button></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td style="text-align: right"><button data-answer-id=2 class="answer">B</button></td>
+			<td></td>
+			<td style="text-align: left"><button data-answer-id=3 class="answer">C</button></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td style="vertical-align: top"><button data-answer-id=4 class="answer">D</button></td>
+			<td></td>
+		</tr>
+	</table>
+</div>
 
-<script>
-
-$( document ).ready(function() {
-
-$('#name').html(Cookies.get('name'));
-
-$('.answer').click(function() {
-
-var data = {
-  'answer': $(this).data('answer-id')
-}
-
-$.ajax({
-  'url': '/answer',
-  'method': 'POST',
-  'data': data
-});
-
-});
-
-});
-
-</script>

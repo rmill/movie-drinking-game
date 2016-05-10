@@ -47,7 +47,7 @@ app.post('/answer', function(req, res) {
   } 
 
   var request = {
-    'token': token,
+    'token': req.cookies.token,
     'answer': req.body['answer_id'],
     'action': 'answer'
   };
