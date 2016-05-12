@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+window.onload = function() {
 
 	var isHorizontal = null;
 
@@ -44,6 +44,7 @@ $( document ).ready(function() {
         	}
 
         	var height = $('.header').height();
+console.log(height);
         	$('.header').css({
        			'font-size': height / 2 + 'px'
        		});
@@ -65,5 +66,5 @@ $( document ).ready(function() {
 		  'data': data
 		});
 	});
-});
+};
 
