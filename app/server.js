@@ -30,15 +30,15 @@ app.post('/', function (req, res) {
   res.cookie('name', req.body['user_name'])
   res.cookie('token', token)
 
-  res.redirect('/game');
+  res.redirect('/controller');
 });
 
-app.get('/game', function(req, res) {
+app.get('/controller', function(req, res) {
   if (!req.cookies.token) {
     res.redirect('/');
   }
 
-  res.sendFile('/var/www/movie-drinking-game/app/view/game.html');
+  res.sendFile('/var/www/movie-drinking-game/app/view/controller.html');
 });
 
 app.post('/answer', function(req, res) {
@@ -46,9 +46,11 @@ app.post('/answer', function(req, res) {
     res.returnStatus(401);
   } 
 
+console.log(req.body);
+
   var request = {
     'token': req.cookies.token,
-    'answer': req.body['answer_id'],
+    'answer_id': parseInt(req.body['answer_id']),
     'action': 'answer'
   };
 
@@ -60,4 +62,8 @@ app.post('/answer', function(req, res) {
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
+});
+
+app.get('/game' , function(req, res) {
+res.sendFile('/var/www/movie-drinking-game/app/view/game.html');
 });

@@ -7,7 +7,7 @@ window.onload = function() {
         	var windowWidth = $(window).width();
 
 		if (windowHeight > windowWidth) {
-			$('.answer').each(function() {
+			$('.control-buttons').each(function() {
         	        	var width = $(this).outerWidth();
                 		$(this).css({
 					'height':width+'px',
@@ -20,7 +20,7 @@ window.onload = function() {
                         	});
         		});
 		} else {
-			$('.answer').each(function() {
+			$('.control-buttons').each(function() {
                 		var height = $(this).outerHeight();
 	                	$(this).css({
                         		'width':height+'px',
@@ -54,10 +54,10 @@ console.log(height);
 	
 	$('#name').html(Cookies.get('name'));
 
-	$('.answer').click(function(e) {
+	$('.control-buttons').click(function(e) {
 		e.preventDefault();
 		var data = {
-		  'answer': $(this).data('answer-id')
+		  'answer_id': $(this).data('answer-id')
 		}
 
 		$.ajax({
