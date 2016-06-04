@@ -9,9 +9,18 @@ var app = express();
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, 'css')));
-app.use(express.static(path.join(__dirname, 'img')));
-app.use(express.static(path.join(__dirname, 'js')));
+app.use('/css', express.static(path.join(__dirname, 'css')));
+app.use('/img', express.static(path.join(__dirname, 'img')));
+app.use('/js', express.static(path.join(__dirname, 'js')));
+app.use('/lib', express.static(path.join(__dirname, '../node_modules')));
+
+var expressWs = require('express-ws')(app);
+
+app.ws('/echo', function(ws, req) {
+  ws.on('message', function(msg) {
+    ws.send(msg);
+  });
+});
 
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/view/signin.html');

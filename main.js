@@ -5,8 +5,16 @@ const {app} = electron;
 const {BrowserWindow} = electron;
 // Create  constant for the app path
 const APP_PATH = `file://${__dirname}/app`;
-
+// Setup the server
 const server = require('./app/server');
+// Setup the websocket server
+const io = require('socket.io')(80);
+
+io.on('connection', function(socket){
+  socket.on('subscribe', function(topic) {
+    this.join(topic);
+  });
+});
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -18,9 +26,6 @@ function createWindow() {
 
   // and load the index.html of the app.
   win.loadURL(`${APP_PATH}/view/index.html`);
-
-  // Open the DevTools.
-  win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on('closed', () => {
