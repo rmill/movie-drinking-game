@@ -67,6 +67,7 @@ const fs = require("fs");
 var gameJson = fs.readFileSync(`./test.json`);
 var gameData = JSON.parse(gameJson.toString());
 var questions = {};
+var currentQuestion = null;
 
 for (var index in gameData.questions) {
   var question = gameData.questions[index];
@@ -75,9 +76,15 @@ for (var index in gameData.questions) {
 
 ipcMain.on('movie-time', function(event, timestamp) {
   var seconds = Math.floor(timestamp);
-
-  if (questions[seconds]) {
+console.log(seconds);
+  if (currentQuestion) {
+     if (currentQuestion.movie_time + currentQuestion.duration <= seconds) {
+       currentQuestion = null;
+       event.sender.send('hide-question');
+     }
+  } else if (questions[seconds]) {
     console.log('sending');
-    event.sender.send('test', questions[seconds]);
+    currentQuestion = questions[seconds];
+    event.sender.send('show-question', currentQuestion);
   }
 });

@@ -13,12 +13,12 @@
     <p>Your user agent does not support the HTML5 Video element.</p>
   </video>
 
-  <div class="overlay">
+  <div class="overlay" style="display: none;">
     <div id="question">
   		<div class="badge">
   		  <img src="../img/beer.png">
   		</div>
-    	<div id="question-text">This is a really fun cool question?</div>
+    	<div id="question-text"></div>
 	   </div>
 
     <table>
@@ -38,14 +38,20 @@
 
   <script>
     const {ipcRenderer} = require('electron');
+    const $ = require('jquery');
 
     var movie = document.querySelector('.movie')
     movie.addEventListener('timeupdate', function () {
       ipcRenderer.send('movie-time', movie.currentTime);
     })
 
-    ipcRenderer.on('test', function(event, data) {
-      console.log(data);
+    ipcRenderer.on('show-question', function(event, question) {
+      $('#question-text').html(question.text);
+      $('.overlay').show();
+    });
+
+    ipcRenderer.on('hide-question', function(event) {
+      $('.overlay').hide();
     });
   </script>
 
