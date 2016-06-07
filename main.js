@@ -3,6 +3,8 @@ const electron = require('electron');
 const {app} = electron;
 // Module to create native browser window.
 const {BrowserWindow} = electron;
+// Module to communicate with the window process
+const {ipcMain} = require('electron');
 // Create  constant for the app path
 const APP_PATH = `file://${__dirname}/app`;
 // Setup the server
@@ -58,5 +60,24 @@ app.on('activate', () => {
   }
 });
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+/**************************************************
+ * the game
+ */
+const fs = require("fs");
+var gameJson = fs.readFileSync(`./test.json`);
+var gameData = JSON.parse(gameJson.toString());
+var questions = {};
+
+for (var index in gameData.questions) {
+  var question = gameData.questions[index];
+  questions[question.movie_time] = question;
+}
+
+ipcMain.on('movie-time', function(event, timestamp) {
+  var seconds = Math.floor(timestamp);
+
+  if (questions[seconds]) {
+    console.log('sending');
+    event.sender.send('test', questions[seconds]);
+  }
+});

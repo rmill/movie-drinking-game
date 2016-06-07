@@ -17,7 +17,7 @@
     "electron-prebuilt": "^1.2.0"
   },
   "scripts": {
-    "start": "electron .",
+    "start": "electron . --enable-logging",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
