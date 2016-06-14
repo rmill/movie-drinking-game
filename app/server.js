@@ -48,6 +48,8 @@ app.post('/answer', function(req, res) {
     res.returnStatus(401);
   }
 
+  game.answer(req.cookies.token, req,body['answer_id']);
+
   res.end();
 });
 

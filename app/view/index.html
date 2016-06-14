@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href="../css/site.css">
+<link rel="stylesheet" type="text/css" href="../css/app.css">
 </head>
 
 <body>
@@ -13,7 +13,7 @@
     <p>Your user agent does not support the HTML5 Video element.</p>
   </video>
 
-  <div class="overlay" style="display: none;">
+  <div class="overlay" style="/*display: none;*/">
     <div id="question">
   		<div class="badge">
   		  <img src="../img/beer.png">
@@ -24,35 +24,68 @@
     <table>
       </tr>
       <tr>
-        <td class="answer">A) test</td>
-        <td></td>
-        <td class="answer">B) tesgasd</td>
+        <td id="answer-1" class="answer"></td>
+        <td id="answer-2" class="answer"></td>
       </tr>
       <tr>
-        <td class="answer">C) asdfadsf</td>
-        <td></td>
-        <td class="answer">D) vvdsafdsf</td>
+        <td id="answer-3" class="answer"></td>
+        <td id="answer-4" class="answer"></td>
       </tr>
     </table>
+
+    <div class="timer"></div>
   </div>
 
   <script>
     const {ipcRenderer} = require('electron');
     const $ = require('jquery');
 
-    var movie = document.querySelector('.movie')
+    var movie = document.querySelector('.movie');
+    var timer = $('.timer');
+
     movie.addEventListener('timeupdate', function () {
       ipcRenderer.send('movie-time', movie.currentTime);
     })
 
     ipcRenderer.on('show-question', function(event, question) {
       $('#question-text').html(question.text);
+      $('#answer-1').html(question.answers[0]);
+      $('#answer-2').html(question.answers[1]);
+      $('#answer-3').html(question.answers[2]);
+      $('#answer-4').html(question.answers[3]);
       $('.overlay').show();
+    });
+
+    ipcRenderer.on('show-answer', function(event, answer) {
+      $('#answer-' + answer).add.Class('correct');
     });
 
     ipcRenderer.on('hide-question', function(event) {
       $('.overlay').hide();
     });
+
+    ipcRenderer.on('show-question', function(event, question) {
+      $('#question-text').html(question.text);
+      $('.overlay').show();
+    });
+  </script>
+
+  <script>
+
+    var startTime = movie.currentTime;
+    var alottedTime = 10;
+    var answerId = 1;
+
+    var interval = setInterval(function() {
+      var currentTime = movie.currentTime;
+      var timerWidth = 100 - (100 * ((currentTime - startTime) / alottedTime));
+      timer.css('width', timerWidth + '%');
+      if (timerWidth <= 0) {
+        clearInterval(interval);
+
+        $('#answer-' + answerId).addClass('correct');
+      }
+    }, 50);
   </script>
 
 </body>
