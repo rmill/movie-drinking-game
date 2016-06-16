@@ -12,7 +12,7 @@ const server = require('./app/server');
 // Setup the websocket server
 const io = require('socket.io')(80);
 // The gane object
-const game = require('./app/game');
+const Game = require('./app/game');
 
 io.on('connection', function(socket){
   socket.on('subscribe', function(topic) {
@@ -76,16 +76,8 @@ for (var index in gameData.questions) {
   questions[question.movie_time] = question;
 }
 
-ipcMain.on('movie-time', function(event, timestamp) {
-  var seconds = Math.floor(timestamp);
+var game = new Game(win, questions);
 
-  if (currentQuestion) {
-     if (currentQuestion.movie_time + currentQuestion.duration <= seconds) {
-       currentQuestion = null;
-       event.sender.send('hide-question');
-     }
-  } else if (questions[seconds]) {
-    currentQuestion = questions[seconds];
-    event.sender.send('show-question', currentQuestion);
-  }
+ipcMain.on('movie-time', function(event, time) {
+  game.processState(time);
 });
