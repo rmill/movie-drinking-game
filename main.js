@@ -38,12 +38,33 @@ function createWindow() {
     // when you should delete the corresponding element.
     win = null;
   });
+
+  createGame();
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
+
+function createGame() {
+  const fs = require("fs");
+  var gameJson = fs.readFileSync(`./test.json`);
+  var gameData = JSON.parse(gameJson.toString());
+  var questions = {};
+  var currentQuestion = null;
+
+  for (var index in gameData.questions) {
+    var question = gameData.questions[index];
+    questions[question.movie_time] = question;
+  }
+
+  var game = new Game(win, questions);
+
+  ipcMain.on('movie-time', function(event, time) {
+    game.processState(time);
+  });
+}
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -60,24 +81,4 @@ app.on('activate', () => {
   if (win === null) {
     createWindow();
   }
-});
-
-/**************************************************
- * the game
- */
-const fs = require("fs");
-var gameJson = fs.readFileSync(`./test.json`);
-var gameData = JSON.parse(gameJson.toString());
-var questions = {};
-var currentQuestion = null;
-
-for (var index in gameData.questions) {
-  var question = gameData.questions[index];
-  questions[question.movie_time] = question;
-}
-
-var game = new Game(win, questions);
-
-ipcMain.on('movie-time', function(event, time) {
-  game.processState(time);
 });

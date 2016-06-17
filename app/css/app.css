@@ -1,0 +1,143 @@
+  @font-face {
+    font-family: PaytoneOne;
+    src: url(PaytoneOne.ttf);
+  }
+
+.movie {
+	height: 100%;
+	width: 100%;
+}
+
+.overlay {
+  font-family: PaytoneOne;
+  top: 0;
+  position: absolute;
+  z-index: 2147483647;
+}
+
+.badge {
+    -moz-box-shadow: 0 0 32px #fff;
+    -webkit-box-shadow: 0 0 32px #fff;
+    box-shadow: -8px 0px 32px #FFF;
+    position: absolute;
+    margin-top: 17px;
+    background-color: #f4f8fb;
+    border: 15px solid black;
+    width: 220px;
+    height: 220px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.badge img {
+    -ms-transform: rotate(12deg);
+    -webkit-transform: rotate(12deg);
+    transform: rotate(12deg);
+    top: -31px;
+    position: absolute;
+    height: 276px;
+    left: 12px;
+}
+
+#question {
+    position: relative;
+}
+
+#question-text {
+    font-size: 26px;
+    -moz-box-shadow: 0 0 32px #fff;
+    -webkit-box-shadow: 0 0 32px #fff;
+    box-shadow: 0px 0px 32px #FFF;
+    -moz-border-top-right-radius: 43px;
+    -webkit-border-top-right-radius: 43px;
+    border-top-right-radius: 43px;
+    -moz-border-bottom-right-radius: 43px;
+    -webkit-border-bottom-right-radius: 43px;
+    border-bottom-right-radius: 43px;
+    position: relative;
+    border: 10px solid black;
+    border-right: 30px solid black;
+    border-bottom: 7px solid black;
+    top: 87px;
+    left: 215px;
+    padding: 35px 0px;
+    width: 960px;
+    background-color: #f4f8fb;
+    z-index: 9;
+    text-align: center;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+  body {
+    background-color: #0083ce;
+  }
+
+  .header {
+    display: table;
+    height: 10%;
+    width: 100%;
+    position: relative;
+    background-color: #f4f8fb;
+  }
+
+  .header .text {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .content {
+    height: 90%;
+  }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+table {
+  visibility: hidden;
+  border-spacing: 1em;
+  width: 95%;
+  position: relative;
+  top: 100px;
+  left: 254px;
+  color: black;
+  font-size: 20px;
+}
+
+td {
+  border: 3px solid white;
+  -moz-box-shadow: 2px 4px 6px #fff;
+  -webkit-box-shadow: 2px 4px 6px #fff;
+  box-shadow: 2px 4px 6px #FFF;
+  -moz-border-radius: 43px;
+  -webkit-border-radius: 43px;
+  border-radius: 43px;
+  -moz-border-radius: 43px;
+  -webkit-border-radius: 43px;
+  border-radius: 43px;
+  background-color: #f4f8fb;
+  text-align: left;
+  width: 50%;
+  padding: 17px 20px;
+}
+
+td.correct {
+  background-color: #3d3;
+}
+
+.timer {
+  position: relative;
+  height: 10px;
+  width: 100%;
+  background-color: red;
+  top: -114px;
+  left: 176px;
+}

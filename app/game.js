@@ -38,15 +38,17 @@ Game.prototype.processState = function(time) {
    */
   Game.prototype.waiting = function(time) {
     if (this.questions[time]) {
+      console.log('done waiting');
       this.currentQuestion = this.questions[time];
-      this.currentState = Game.SHOW_QUESTION;
+      this.currentState = this.SHOW_QUESTION;
     }
   };
 
   /**
    *  Show the question
    */
-  Game.prototype.startQuestion = function(question) {
+  Game.prototype.showQuestion = function(question) {
+    console.log('show question');
     this.currentAnswers = {};
     this.win.webContents.send('show-question', question);
     this.currentState = this.SHOW_ANSWERS;
@@ -56,9 +58,10 @@ Game.prototype.processState = function(time) {
    * Show the Answers
    */
   Game.prototype.showAnswers = function(time, question) {
-    if (time >= question.movie_time + 3) {
-      this.win.webContents.send('show-question', question.answers);
-      this.currentState = this.WAITNG_FOR_ANSWERES;
+    if (time >= question.movie_time + 5) {
+      console.log('show answers');
+      this.win.webContents.send('show-answers', question.answers, question.duration);
+      this.currentState = this.WAITING_FOR_ANSWERS;
     }
   };
 
@@ -66,24 +69,26 @@ Game.prototype.processState = function(time) {
    * Waiting for the users to answer
    */
   Game.prototype.waitingForAnswers = function(time, question) {
-    if (time >= question.movie_time + question.duration) {
-      this.currentState = this.SHOW_ANSWERS;
+    if (time >= question.movie_time + 5 + question.duration) {
+      this.currentState = this.SHOW_CORRECT_ANSWER;
     }
   };
 
   /**
    * Show the answer
    */
-  Game.prototype.showAnswer = function(question) {
-    this.win.webContents.send('show-answer', question.correct_answers);
-    this.currentSTate = this.HIDE_QUESTION;
+  Game.prototype.showCorrectAnswer = function(question) {
+    console.log('show correct answer');
+    this.win.webContents.send('show-correct-answers', question.correct_answers);
+    this.currentState = this.HIDE_QUESTION;
   };
 
   /**
    * Hide the question
    */
   Game.prototype.hideQuestion = function(time, question) {
-    if (time > question.movie_time + question.duration + 3) {
+    if (time > question.movie_time + question.duration + 5 + 5) {
+      console.log('hide question');
       this.win.webContents.send('hide-question', question);
       this.currentQuestion = null;
       this.currentState = this.WAITING;

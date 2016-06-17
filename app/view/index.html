@@ -24,12 +24,12 @@
     <table>
       </tr>
       <tr>
+        <td id="answer-0" class="answer"></td>
         <td id="answer-1" class="answer"></td>
-        <td id="answer-2" class="answer"></td>
       </tr>
       <tr>
+        <td id="answer-2" class="answer"></td>
         <td id="answer-3" class="answer"></td>
-        <td id="answer-4" class="answer"></td>
       </tr>
     </table>
 
@@ -49,43 +49,50 @@
 
     ipcRenderer.on('show-question', function(event, question) {
       $('#question-text').html(question.text);
-      $('#answer-1').html(question.answers[0]);
-      $('#answer-2').html(question.answers[1]);
-      $('#answer-3').html(question.answers[2]);
-      $('#answer-4').html(question.answers[3]);
       $('.overlay').show();
     });
 
-    ipcRenderer.on('show-answer', function(event, answer) {
-      $('#answer-' + answer).add.Class('correct');
+    ipcRenderer.on('show-answers', function(event, answers, duration) {
+      $('#answer-0').html(answers[0]);
+      $('#answer-1').html(answers[1]);
+      $('#answer-2').html(answers[2]);
+      $('#answer-3').html(answers[3]);
+      $('table').css('visibility', 'visible');
+
+      startTimer(duration);
+    });
+
+    ipcRenderer.on('show-correct-answers', function(event, answers) {
+      for (var i=0; i<answers.length; i++) {
+        stopTimer();
+        $('#answer-' + answers[i]).addClass('correct');
+      }
     });
 
     ipcRenderer.on('hide-question', function(event) {
       $('.overlay').hide();
-    });
-
-    ipcRenderer.on('show-question', function(event, question) {
-      $('#question-text').html(question.text);
-      $('.overlay').show();
+      $('table').css('visibility', 'visible');
+      $('.correct').removeClass('correct');
     });
   </script>
 
   <script>
+    let interval;
 
-    var startTime = movie.currentTime;
-    var alottedTime = 10;
-    var answerId = 1;
+    function startTimer(duration) {
+      var startTime = movie.currentTime;
 
-    var interval = setInterval(function() {
-      var currentTime = movie.currentTime;
-      var timerWidth = 100 - (100 * ((currentTime - startTime) / alottedTime));
-      timer.css('width', timerWidth + '%');
-      if (timerWidth <= 0) {
-        clearInterval(interval);
+      interval = setInterval(function() {
+        var currentTime = movie.currentTime;
+        var timerWidth = 95.7 - (95.7 * ((currentTime - startTime) / duration));
+        timer.css('width', timerWidth + '%');
 
-        $('#answer-' + answerId).addClass('correct');
-      }
-    }, 50);
+      }, 50);
+    }
+
+    function stopTimer() {
+      clearInterval(interval);
+    }
   </script>
 
 </body>
