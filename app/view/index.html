@@ -45,7 +45,7 @@
     var timer = $('.timer');
 
     movie.addEventListener('timeupdate', function () {
-    //  ipcRenderer.send('movie-time', movie.currentTime);
+     ipcRenderer.send('movie-time', movie.currentTime);
     })
 
     ipcRenderer.on('show-question', function(event, question) {
@@ -55,10 +55,10 @@
     });
 
     ipcRenderer.on('show-answers', function(event, answers, duration) {
-      $('#answer-0').html(answers[0]);
-      $('#answer-1').html(answers[1]);
-      $('#answer-2').html(answers[2]);
-      $('#answer-3').html(answers[3]);
+      $('#answer-0').html('A) ' + answers[0]);
+      $('#answer-1').html('B) ' + answers[1]);
+      $('#answer-2').html('C) ' + answers[2]);
+      $('#answer-3').html('D) ' + answers[3]);
       $('table').css('visibility', 'visible');
 
       startTimer(duration);
