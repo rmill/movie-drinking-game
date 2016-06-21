@@ -1,7 +1,8 @@
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href="../css/app.css">
+  <link rel="stylesheet" type="text/css" href="../css/app.css">
+  <link rel="stylesheet" type="text/css" href="../css/animate.css">
 </head>
 
 <body>
@@ -13,7 +14,7 @@
     <p>Your user agent does not support the HTML5 Video element.</p>
   </video>
 
-  <div class="overlay" style="display: none;">
+  <div class="overlay animated" style="display: none;">
     <div id="question">
   		<div class="badge">
   		  <img src="../img/beer.png">
@@ -44,12 +45,12 @@
     var timer = $('.timer');
 
     movie.addEventListener('timeupdate', function () {
-      ipcRenderer.send('movie-time', movie.currentTime);
+    //  ipcRenderer.send('movie-time', movie.currentTime);
     })
 
     ipcRenderer.on('show-question', function(event, question) {
       $('#question-text').html(question.text);
-      $('.overlay').show();
+      showQuestion();
     });
 
     ipcRenderer.on('show-answers', function(event, answers, duration) {
@@ -70,8 +71,8 @@
     });
 
     ipcRenderer.on('hide-question', function(event) {
-      $('.overlay').hide();
-      $('table').css('visibility', 'visible');
+      hideQuestion();
+      $('table').css('visibility', 'hidden');
       $('.correct').removeClass('correct');
     });
   </script>
@@ -92,6 +93,38 @@
 
     function stopTimer() {
       clearInterval(interval);
+    }
+
+    function showQuestion() {
+      var renderFunctions = [
+        'bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp',
+        'fadeIn', 'fadeInDown', 'fadeInDownBig', 'fadeInLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig',
+        'flipInX', 'flipInY',
+        'lightSpeedIn',
+        'rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'rotateInUpLeft', 'rotateInUpRight',
+        'rollIn',
+        'zoomIn', 'zoomInDown', 'zoomInLeft', 'zoomInRight', 'zoomInUp',
+        'slideInDown', 'slideInLeft', 'slideInRight', 'slideInUp'
+      ];
+
+      var index = Math.round(Math.random() * renderFunctions.length - 1);
+      $('.overlay').attr('class', 'overlay animated').addClass(renderFunctions[index]).show();
+    }
+
+    function hideQuestion() {
+      var renderFunctions = [
+        'bounceOut', 'bounceOutDown', 'bounceOutLeft', 'bounceOutRight', 'bounceOutUp',
+        'fadeOut', 'fadeOutDown',  'fadeOutDownBig', 'fadeOutLeft',  'fadeOutLeftBig',  'fadeOutRight', 'fadeOutRightBig',  'fadeOutUp', 'fadeOutUpBig',
+        'flipOutX', 'flipOutY',
+        'lightSpeedOut',
+        'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight',
+        'rollOut',
+        'zoomOut', 'zoomOutDown', 'zoomOutLeft', 'zoomOutRight', 'zoomOutUp',
+        'slideOutDown', 'slideOutLeft', 'slideOutRight', 'slideOutUp'
+      ];
+
+      var index = Math.round(Math.random() * renderFunctions.length - 1);
+      $('.overlay').attr('class', 'overlay animated').addClass(renderFunctions[index]);
     }
   </script>
 

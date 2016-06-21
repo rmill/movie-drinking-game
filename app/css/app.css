@@ -10,7 +10,8 @@
 
 .overlay {
   font-family: PaytoneOne;
-  top: 0;
+  top: 61%;
+  left: 16%;
   position: absolute;
   z-index: 2147483647;
 }
@@ -73,6 +74,7 @@
 
   body {
     background-color: #0083ce;
+    overflow: hidden;
   }
 
   .header {
