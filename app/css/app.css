@@ -32,7 +32,8 @@
     z-index: 10;
 }
 
-.badge img {
+.badge .beer {
+    content:url("../img/beer.png");
     -ms-transform: rotate(12deg);
     -webkit-transform: rotate(12deg);
     transform: rotate(12deg);
@@ -40,6 +41,81 @@
     position: absolute;
     height: 276px;
     left: 12px;
+}
+
+.badge .arnold {
+  content:url("../img/arnold.png");
+  top: -48px;
+  position: absolute;
+  height: 317px;
+  left: 33px;
+}
+
+.badge .cassette {
+  content:url("../img/cassette.png");
+  top: 2px;
+  position: absolute;
+  height: 219px;
+  left: -43px;
+}
+
+.badge .champagne {
+  content:url("../img/champagne.png");
+  top: -93px;
+  position: absolute;
+  height: 353px;
+  left: -33px;
+}
+
+.badge .confused {
+  content:url("../img/confused.png");
+  top: -81px;
+  position: absolute;
+  height: 317px;
+  left: -24px;
+}
+
+.badge .guitar {
+  content:url("../img/guitar.png");
+  top: -54px;
+  position: absolute;
+  height: 317px;
+  left: -39px;
+}
+
+.badge .martini {
+  content:url("../img/martini.png");
+  -ms-transform: rotate(12deg);
+  -webkit-transform: rotate(12deg);
+  transform: rotate(12deg);
+  top: -37px;
+  position: absolute;
+  height: 294px;
+  left: -9px;
+}
+
+.badge .shoes {
+  content: url("../img/shoes.png");
+  top: -22px;
+  position: absolute;
+  height: 257px;
+  left: -42px;
+}
+
+.badge .vandamme {
+  content:url("../img/vandamme.png");
+  top: -92px;
+  position: absolute;
+  height: 337px;
+  left: -54px;
+}
+
+.badge .wine {
+  content:url("../img/wine.png");
+  top: -37px;
+  position: absolute;
+  height: 288px;
+  left: -37px;
 }
 
 #question {

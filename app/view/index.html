@@ -17,7 +17,7 @@
   <div class="overlay animated" style="display: none;">
     <div id="question">
   		<div class="badge">
-  		  <img src="../img/beer.png">
+  		  <img class="beer">
   		</div>
     	<div id="question-text"></div>
 	   </div>
@@ -50,6 +50,7 @@
 
     ipcRenderer.on('show-question', function(event, question) {
       $('#question-text').html(question.text);
+
       showQuestion();
     });
 
@@ -96,6 +97,11 @@
     }
 
     function showQuestion() {
+      var images = ['arnold', 'beer', 'cassette', 'champagne', 'confused', 'guitar', 'martini', 'shoes', 'vandamme', 'wine'];
+      var index = Math.round(Math.random() * (images.length - 1));
+
+      $('.badge img').attr('class', images[index]);
+
       var renderFunctions = [
         'bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp',
         'fadeIn', 'fadeInDown', 'fadeInDownBig', 'fadeInLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig',
@@ -107,7 +113,7 @@
         'slideInDown', 'slideInLeft', 'slideInRight', 'slideInUp'
       ];
 
-      var index = Math.round(Math.random() * renderFunctions.length - 1);
+      var index = Math.round(Math.random() * (renderFunctions.length - 1));
       $('.overlay').attr('class', 'overlay animated').addClass(renderFunctions[index]).show();
     }
 
@@ -123,7 +129,7 @@
         'slideOutDown', 'slideOutLeft', 'slideOutRight', 'slideOutUp'
       ];
 
-      var index = Math.round(Math.random() * renderFunctions.length - 1);
+      var index = Math.round(Math.random() * (renderFunctions.length - 1));
       $('.overlay').attr('class', 'overlay animated').addClass(renderFunctions[index]);
     }
   </script>
