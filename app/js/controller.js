@@ -1,3 +1,5 @@
+hasQuestion = false;
+
 window.onload = function() {
   var isHorizontal = null;
 
@@ -65,7 +67,9 @@ window.onload = function() {
 
     // Only allow one answer per question
     var hasAnswer = $('.pressed').length > 0;
-    if (hasAnswer) {
+    if (!hasQuestion ||
+        hasAnswer)
+    {
       return;
     }
 
