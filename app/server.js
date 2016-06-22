@@ -1,4 +1,3 @@
-const dgram = require('dgram');
 const express = require('express');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
@@ -19,20 +18,34 @@ function Server (game) {
   this.game = game;
 
   app.get('/', function (req, res) {
+    // If a player has already registered, redirect to controller
+    if (req.cookies.token &&
+        req.cookies.name &&
+        req.cookies.game_id == self.game.id)
+    {
+      res.redirect('/controller');
+    }
+
     res.sendFile(__dirname + '/view/signin.html');
   });
 
   app.post('/', function (req, res) {
     var token = randomstring.generate();
+    var name = req.body['user_name'];
 
-    res.cookie('name', req.body['user_name'])
-    res.cookie('token', token)
+    res.cookie('name', name);
+    res.cookie('token', token);
+    res.cookie('game_id', self.game.id);
+
+    self.game.player(token, name);
 
     res.redirect('/controller');
   });
 
   app.get('/controller', function(req, res) {
-    if (!req.cookies.token) {
+    if (!req.cookies.token ||
+        req.cookies.game_id != self.game.id)
+    {
       res.redirect('/');
     }
 
@@ -40,7 +53,9 @@ function Server (game) {
   });
 
   app.post('/answer', function(req, res) {
-    if (!req.cookies.token) {
+    if (!req.cookies.token ||
+        req.cookies.game_id != self.game.id)
+    {
       res.returnStatus(401);
     }
 

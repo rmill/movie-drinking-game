@@ -1,3 +1,5 @@
+const randomstring = require("randomstring");
+
 function Game(win, websockets, questions) {
   this.WAITING = 'waiting';
   this.SHOW_QUESTION = 'show_question';
@@ -6,6 +8,7 @@ function Game(win, websockets, questions) {
   this.SHOW_CORRECT_ANSWER = 'show_correct_answer';
   this.HIDE_QUESTION = 'hide_question';
 
+  this.id = randomstring.generate();
   this.win = win;
   this.websockets = websockets;
   this.questions = questions;
@@ -40,6 +43,12 @@ Game.prototype.processState = function(time) {
   Game.prototype.waiting = function(time) {
     if (this.questions[time]) {
       console.log('done waiting');
+
+      if (this.currentQuestion) {
+        console.log('Already a current question');
+        return;
+      }
+
       this.currentQuestion = this.questions[time];
       this.currentState = this.SHOW_QUESTION;
     }
@@ -103,6 +112,7 @@ Game.prototype.processState = function(time) {
    */
   Game.prototype.answer = function(player, answer) {
     if (!this.currentQuestion ||
+        !this.players[player] ||
         this.currentAnswers[player])
     {
       return;
@@ -110,6 +120,13 @@ Game.prototype.processState = function(time) {
 
     console.log('Answer: ' + player + ' ' + answer);
     this.currentAnswers[player] = answer;
+  };
+
+  /**
+   * Create or update a player
+   */
+  Game.prototype.player = function(token, name) {
+    this.players[token] = name;
   };
 
   module.exports = Game;
