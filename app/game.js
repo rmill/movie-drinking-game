@@ -95,4 +95,18 @@ Game.prototype.processState = function(time) {
     }
   };
 
+  /**
+   * Set a player's answer
+   */
+  Game.prototype.answer = function(player, answer) {
+    if (!this.currentQuestion ||
+        this.currentAnswers[player])
+    {
+      return;
+    }
+
+    console.log('Answer: ' + player + ' ' + answer);
+    this.currentAnswers[player] = answer;
+  };
+
   module.exports = Game;

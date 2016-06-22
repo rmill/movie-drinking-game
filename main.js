@@ -8,7 +8,7 @@ const {ipcMain} = require('electron');
 // Create  constant for the app path
 const APP_PATH = `file://${__dirname}/app`;
 // Setup the server
-const server = require('./app/server');
+const Server = require('./app/server');
 // Setup the websocket server
 const io = require('socket.io')(80);
 // The gane object
@@ -23,6 +23,8 @@ io.on('connection', function(socket){
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
+let game;
+let server;
 
 function createWindow() {
   // Create the browser window.
@@ -40,6 +42,7 @@ function createWindow() {
   });
 
   createGame();
+  createServer();
 }
 
 // This method will be called when Electron has finished
@@ -59,11 +62,15 @@ function createGame() {
     questions[question.movie_time] = question;
   }
 
-  var game = new Game(win, questions);
+  game = new Game(win, questions);
 
   ipcMain.on('movie-time', function(event, time) {
     game.processState(time);
   });
+}
+
+function createServer() {
+  server = new Server(game);
 }
 
 // Quit when all windows are closed.
