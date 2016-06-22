@@ -1,9 +1,9 @@
-var dgram = require('dgram');
-var express = require('express');
-var bodyParser = require('body-parser')
-var cookieParser = require('cookie-parser');
-var randomstring = require("randomstring");
-var path = require("path");
+const dgram = require('dgram');
+const express = require('express');
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser');
+const randomstring = require("randomstring");
+const path = require("path");
 
 var app = express();
 app.use(cookieParser());
@@ -14,17 +14,9 @@ app.use('/img', express.static(path.join(__dirname, 'img')));
 app.use('/js', express.static(path.join(__dirname, 'js')));
 app.use('/lib', express.static(path.join(__dirname, '../node_modules')));
 
-var expressWs = require('express-ws')(app);
-
 function Server (game) {
   let self = this;
   this.game = game;
-
-  app.ws('/echo', function(ws, req) {
-    ws.on('message', function(msg) {
-      ws.send(msg);
-    });
-  });
 
   app.get('/', function (req, res) {
     res.sendFile(__dirname + '/view/signin.html');

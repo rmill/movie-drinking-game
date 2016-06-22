@@ -89,8 +89,14 @@ window.onload = function() {
   var connection = io('127.0.0.1');
 
   connection.emit('subscribe', 'clear_question');
+  connection.emit('subscribe', 'new_question');
 
   connection.on('clear_question', function () {
+    hasQuestion = false;
     $('.pressed').removeClass('pressed');
+  });
+
+  connection.on('new_question', function () {
+    hasQuestion = true;
   });
 }

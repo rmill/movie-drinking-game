@@ -9,16 +9,10 @@ const {ipcMain} = require('electron');
 const APP_PATH = `file://${__dirname}/app`;
 // Setup the server
 const Server = require('./app/server');
-// Setup the websocket server
+// The websocket server
 const io = require('socket.io')(80);
 // The gane object
 const Game = require('./app/game');
-
-io.on('connection', function(socket){
-  socket.on('subscribe', function(topic) {
-    this.join(topic);
-  });
-});
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -62,7 +56,13 @@ function createGame() {
     questions[question.movie_time] = question;
   }
 
-  game = new Game(win, questions);
+  io.on('connection', function(socket){
+    socket.on('subscribe', function(topic) {
+      this.join(topic);
+    });
+  });
+
+  game = new Game(win, io, questions);
 
   ipcMain.on('movie-time', function(event, time) {
     game.processState(time);

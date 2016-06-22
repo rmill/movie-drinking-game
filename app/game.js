@@ -1,4 +1,4 @@
-function Game(win, questions) {
+function Game(win, websockets, questions) {
   this.WAITING = 'waiting';
   this.SHOW_QUESTION = 'show_question';
   this.SHOW_ANSWERS = 'show_answers';
@@ -7,6 +7,7 @@ function Game(win, questions) {
   this.HIDE_QUESTION = 'hide_question';
 
   this.win = win;
+  this.websockets = websockets;
   this.questions = questions;
   this.players = {};
   this.currentQuestion = null;
@@ -62,6 +63,7 @@ Game.prototype.processState = function(time) {
       console.log('show answers');
       this.win.webContents.send('show-answers', question.answers, question.duration);
       this.currentState = this.WAITING_FOR_ANSWERS;
+      this.websockets.emit('new_question');
     }
   };
 
@@ -92,6 +94,7 @@ Game.prototype.processState = function(time) {
       this.win.webContents.send('hide-question', question);
       this.currentQuestion = null;
       this.currentState = this.WAITING;
+      this.websockets.emit('clear_question');
     }
   };
 
