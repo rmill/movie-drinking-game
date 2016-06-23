@@ -43,12 +43,6 @@ Game.prototype.processState = function(time) {
   Game.prototype.waiting = function(time) {
     if (this.questions[time]) {
       console.log('done waiting');
-
-      if (this.currentQuestion) {
-        console.log('Already a current question');
-        return;
-      }
-
       this.currentQuestion = this.questions[time];
       this.currentState = this.SHOW_QUESTION;
     }

@@ -11,7 +11,7 @@
     {
       "id":2,
       "text":"Is this a fun movie?",
-      "movie_time":20,
+      "movie_time":30,
       "duration":10,
       "answers":["yes","no","maybe","FU"],
       "correct_answers":[0]

@@ -143,9 +143,9 @@
 .controller-button:active:not(.pressed) {
 	position:relative;
 	top:1px;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;
-        box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 	border: 6px solid grey;
 }
 
@@ -184,16 +184,15 @@ form {
 }
 
 input {
-border: none;
-background: #FFF;
-width: 80%;
-height: 90px;
- -moz-border-radius:30px;
-        -webkit-border-radius:30px;
-        border-radius:30px;
-font-size: 30px;
-padding: 30px;
-
+  border: none;
+  background: #FFF;
+  width: 80%;
+  height: 90px;
+  -moz-border-radius:30px;
+  -webkit-border-radius:30px;
+  border-radius:30px;
+  font-size: 30px;
+  padding: 30px;
 }
 
 ::-webkit-input-placeholder {
@@ -217,7 +216,7 @@ padding: 30px;
     border-radius: 30px;
     height: 90px;
     background-color: blue;
-    color: white;
+    color: #f4f8fb;
     border: none;
     font-size: 30px;
     margin-top: 55px;

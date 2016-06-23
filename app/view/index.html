@@ -6,6 +6,14 @@
 </head>
 
 <body>
+  <div id="intro">
+    <div class="logo animated fadeIn">
+      <div class="title animated lightSpeedIn">MOVIE DRINKING GAME</div>
+      <img class="beer animated rotateIn">
+      <div class="ip animated slideInRight"></div>
+      <button class="start animated bounceInUp">Start</button>
+    </div>
+  </div>
 
   <video id="movie" class="movie" controls>
     <source id='avi'
@@ -38,8 +46,19 @@
   </div>
 
   <script>
-    const {ipcRenderer} = require('electron');
     const $ = require('jquery');
+    const os = require('os');
+    const interfaces = os.networkInterfaces();
+
+    $('.ip').html(interfaces['Wi-Fi'][1].address + ':3001');
+
+    $('.start').click(function () {
+      $('#intro').fadeOut();
+    })
+  </script>
+
+  <script>
+    const {ipcRenderer} = require('electron');
 
     var movie = document.querySelector('.movie');
     var timer = $('.timer');
@@ -88,7 +107,6 @@
         var currentTime = movie.currentTime;
         var timerWidth = 95.7 - (95.7 * ((currentTime - startTime) / duration));
         timer.css('width', timerWidth + '%');
-
       }, 50);
     }
 
