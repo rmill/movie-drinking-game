@@ -9,6 +9,7 @@
 }
 
 #intro {
+  /*background: radial-gradient(ellipse at top left, #334455 0%, #112233 100%);*/
   background-color: #0083ce;
   height:100%;
 }
@@ -292,4 +293,67 @@ td.correct {
   background-color: red;
   top: -114px;
   left: 176px;
+}
+
+.credits {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 400px;
+  margin-left: -200px;
+  font: 300 30px/1 'Open Sans Condensed', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.credits.animate {
+  animation: 60s credits linear infinite;
+}
+
+.credits .movie-title {
+  margin-bottom: 50px;
+  font-size: 50px;
+}
+
+.credits .title {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.credits .name {
+  margin-bottom: 50px;
+  font-size: 35px;
+}
+
+@keyframes credits {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -500%;
+  }
+}
+
+.players.left {
+  width: 33%;
+  height: 78%;
+  top: 18%;
+  left: 1%;
+  position: absolute;
+}
+
+.players.right {
+  width: 33%;
+  height: 78%;
+  top: 18%;
+  position: absolute;
+  left: 67%;
+}
+
+.players .player {
+  position: relative;
+  font-size: 37px;
+  color: white;
+  font-family: PaytoneOne;
 }

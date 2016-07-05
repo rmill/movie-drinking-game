@@ -64,7 +64,11 @@ function createGame() {
     });
   });
 
-  game = new Game(win, io, questions);
+  game = new Game(win, io, questions, gameData.end_time);
+
+  ipcMain.on('start-game', function(event) {
+    game.start();
+  });
 
   ipcMain.on('movie-time', function(event, time) {
     game.processState(time);

@@ -7,6 +7,9 @@
 
 <body>
   <div id="intro">
+    <div class="players left"></div>
+    <div class="players right"></div>
+
     <div class="logo animated fadeIn">
       <div class="title animated lightSpeedIn">MOVIE DRINKING GAME</div>
       <img class="beer animated rotateIn">
@@ -45,7 +48,24 @@
     <div class="timer"></div>
   </div>
 
+  <div class="credits">
+    <div class="movie-title">PREDATOR</div>
+    <div class="title">Best Duder</div>
+    <div class="name most-correct"></div>
+    <div class="title">Worst Duder</div>
+    <div class="name most-wrong"></div>
+    <div class="title">Where was this Duder</div>
+    <div class="name most-missed"></div>
+    <div class="title">Drunkest Duder</div>
+    <div class="name most-drinks"></div>
+    <div class="title">Quickest Duder</div>
+    <div class="name quickest-answers"></div>
+    <div class="title">Longest Streak Duder</div>
+    <div class="name best-streak"></div>
+  </div>
+
   <script>
+    const {ipcRenderer} = require('electron');
     const $ = require('jquery');
     const os = require('os');
     const interfaces = os.networkInterfaces();
@@ -53,20 +73,31 @@
     $('.ip').html(interfaces['Wi-Fi'][1].address + ':3001');
 
     $('.start').click(function () {
+      ipcRenderer.send('start-game');
       $('#intro').fadeOut();
       $('#movie').get(0).play();
     })
   </script>
 
   <script>
-    const {ipcRenderer} = require('electron');
-
     var movie = document.querySelector('.movie');
     var timer = $('.timer');
 
     movie.addEventListener('timeupdate', function () {
      ipcRenderer.send('movie-time', movie.currentTime);
     })
+
+    ipcRenderer.on('new-player', function(event, name, state) {
+      var div = '<div class="player animated pulse infinite">' + name +'</div>';
+      var playersDiv = (Math.random() >= 0.5) ? $('.players.left') : $('.players.right');
+      var top = Math.random() * parseInt(playersDiv.css('height'), 10);
+      var left = Math.random() * parseInt(playersDiv.css('width'), 10);
+
+      var playerEl = $(div).appendTo(playersDiv).css({
+        top: top + 'px',
+        left: left + 'px'
+      });
+    });
 
     ipcRenderer.on('show-question', function(event, question) {
       $('#question-text').html(question.text);
@@ -95,6 +126,21 @@
       hideQuestion();
       $('table').css('visibility', 'hidden');
       $('.correct').removeClass('correct');
+    });
+
+    ipcRenderer.on('end-game', function(event, statsJson) {
+      var statistics = JSON.parse(statsJson);
+
+      $('.movie').fadeOut(1000, function() {
+        $('.most-correct').html(statistics.mostCorrectAnswers.name);
+        $('.most-wrong').html(statistics.mostWrongAnswers.name);
+        $('.most-missed').html(statistics.mostMissedAnswers.name);
+        $('.best-streak').html(statistics.bestStreak.name);
+        $('.most-drinks').html(statistics.mostDrinks.name);
+        $('.quickest-answers').html(statistics.bestAnswerSpeed.name);
+
+        $('.credits').addClass('animate');
+      });
     });
   </script>
 
