@@ -38,6 +38,8 @@ Game.prototype.processState = function(time) {
         this.waitingForAnswers(seconds, this.currentQuestion); break;
       case this.SHOW_CORRECT_ANSWER:
         this.showCorrectAnswer(this.currentQuestion); break;
+      case this.SHOW_DRINKS:
+        this.showDrinks(); break;
       case this.HIDE_QUESTION:
         this.hideQuestion(seconds, this.currentQuestion);break;
     }
@@ -72,6 +74,13 @@ Game.prototype.waiting = function(time) {
  */
 Game.prototype.showQuestion = function(question) {
   console.log('show question');
+  
+  var slope = Math.pow(Math.random(), 2.2);
+  var maxMultiplyer = 3;
+  var multipler = slope * maxMultiplyer;
+  var roundedMultipler = Math.round(multipler * 10) / 10;
+
+  question.drink_multiplyer = roundedMultipler
   this.currentAnswers = {};
   this.win.webContents.send('show-question', question);
   this.currentState = this.SHOW_ANSWERS;
@@ -106,7 +115,14 @@ Game.prototype.showCorrectAnswer = function(question) {
   console.log('show correct answer');
   this.win.webContents.send('show-correct-answers', question.correct_answers);
   this.currentState = this.HIDE_QUESTION;
-  this.statistics.process(this.currentQuestion, this.currentAnswers, this.players);
+  this.websockets.emit('show_answers', question.correct_answers);
+};
+
+/**
+ * Show the drinks
+ */
+Game.prototype.showDrinks = function(question) {
+
 };
 
 /**
@@ -119,6 +135,7 @@ Game.prototype.hideQuestion = function(time, question) {
     this.currentQuestion = null;
     this.currentState = this.WAITING;
     this.websockets.emit('clear_question');
+    this.statistics.process(this.currentQuestion, this.currentAnswers, this.players);
   }
 };
 
@@ -171,9 +188,12 @@ function Statistics () {
   this.bestStreak = {};
   this.mostDrinks = {};
   this.bestAnswerSpeed = {};
+  this.currentWrongPlayers = [];
 };
 
 Statistics.prototype.process = function (question, answers, players) {
+  this.currentWrongPlayers = [];
+
   for (playerToken in players) {
     if (!this.players[playerToken]) {
       this.players[playerToken] = this.newPlayer(playerToken);
@@ -182,15 +202,12 @@ Statistics.prototype.process = function (question, answers, players) {
     var player = this.players[playerToken];
     var answer = answers[playerToken];
 
-    // Increment the correct answer count
     this.updateAnswerCount(question, answer, player);
-
-    // Update the streak
     this.updateStreak(question, answer, player);
-
-    // Update the answer speed
     this.updateAnswerSpeed(answer, player);
   }
+
+  this.updateDrinks();
 };
 
 Statistics.prototype.updateAnswerCount = function (question, answer, player) {
@@ -200,10 +217,12 @@ Statistics.prototype.updateAnswerCount = function (question, answer, player) {
       player.correctAnswers++;
     } else {
       player.wrongAnswers++;
+      this.currentWrongPlayers.push(player);
     }
   } else {
     // Add the missed answers
     player.missedAnswers++;
+    this.currentWrongPlayers.push(player);
   }
 };
 
@@ -226,6 +245,15 @@ Statistics.prototype.updateAnswerSpeed = function (answer, player) {
   var answerSpeed = (answer) ? answer.speed : 10;
 
   player.answerSpeed = player.answerSpeed + ((answerSpeed - player.answerSpeed) / numQuestions);
+};
+
+Statistics.prototype.updateDrinks = function (question, allPlayers, wrongPlayers) {
+  var drinks = allPlayers.length * question.drink_multiplyer / wrongPlayers.length;
+
+  for (index in wrongPlayers) {
+    var player = wrongPlayers[index];
+    player.drinks += drinks;
+  }
 };
 
 Statistics.prototype.compile = function (gamePlayers) {
@@ -278,8 +306,18 @@ Statistics.prototype.compile = function (gamePlayers) {
       case (this.bestAnswerSpeed.answerSpeed === undefined):
         this.bestAnswerSpeed = player;
     }
+
+    switch (true) {
+      case (player.drinks === this.mostDrinks.drinks):
+        if (player.answerSpeed > this.mostDrinks.answerSpeed) {
+          break;
+        }
+      case this.mostDrinks.drinks === undefined:
+      case (player.drinks > this.mostDrinks.drinks):
+        this.mostDrinks = player;
+    }
   }
-}
+};
 
 Statistics.prototype.newPlayer = function (playerToken) {
   return {
@@ -289,7 +327,8 @@ Statistics.prototype.newPlayer = function (playerToken) {
     missedAnswers: 0,
     answerSpeed: 0.0,
     bestStreak: 0,
-    currentStreak : 0
+    currentStreak : 0,
+    drinks: 0
   };
 }
 
