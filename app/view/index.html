@@ -122,6 +122,10 @@
       }
     });
 
+    ipcRenderer.on('show-drinks', function(event, drinks) {
+      console.log(drinks);
+    });
+
     ipcRenderer.on('hide-question', function(event) {
       hideQuestion();
       $('table').css('visibility', 'hidden');

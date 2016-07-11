@@ -7,6 +7,7 @@ function Game(win, websockets, questions, endTime) {
   this.SHOW_ANSWERS = 'show_answers';
   this.WAITING_FOR_ANSWERS = 'waiting_for_answers';
   this.SHOW_CORRECT_ANSWER = 'show_correct_answer';
+  this.SHOW_DRINKS = 'show_drinks';
   this.HIDE_QUESTION = 'hide_question';
   this.END_GAME = 'end_game';
 
@@ -39,7 +40,7 @@ Game.prototype.processState = function(time) {
       case this.SHOW_CORRECT_ANSWER:
         this.showCorrectAnswer(this.currentQuestion); break;
       case this.SHOW_DRINKS:
-        this.showDrinks(); break;
+        this.showDrinks(seconds, this.currentQuestion, this.statistics.currentDrinks); break;
       case this.HIDE_QUESTION:
         this.hideQuestion(seconds, this.currentQuestion);break;
     }
@@ -74,11 +75,14 @@ Game.prototype.waiting = function(time) {
  */
 Game.prototype.showQuestion = function(question) {
   console.log('show question');
-  
+
   var slope = Math.pow(Math.random(), 2.2);
+  var minMultiplyer = 1;
   var maxMultiplyer = 3;
-  var multipler = slope * maxMultiplyer;
+  var multipler = (slope * (maxMultiplyer - minMultiplyer)) + minMultiplyer;
   var roundedMultipler = Math.round(multipler * 10) / 10;
+
+  console.log('multiplyer: ' + roundedMultipler);
 
   question.drink_multiplyer = roundedMultipler
   this.currentAnswers = {};
@@ -114,28 +118,33 @@ Game.prototype.waitingForAnswers = function(time, question) {
 Game.prototype.showCorrectAnswer = function(question) {
   console.log('show correct answer');
   this.win.webContents.send('show-correct-answers', question.correct_answers);
-  this.currentState = this.HIDE_QUESTION;
   this.websockets.emit('show_answers', question.correct_answers);
+  this.statistics.process(this.currentQuestion, this.currentAnswers, this.players);
+  console.log(this.statistics.currentDrinks);
+  this.currentState = this.SHOW_DRINKS;
 };
 
 /**
  * Show the drinks
  */
-Game.prototype.showDrinks = function(question) {
-
+Game.prototype.showDrinks = function(time, question, drinks) {
+  if (time > question.movie_time + question.duration + 5 + 5) {
+    this.win.webContents.send('show-drinks', drinks);
+    this.websockets.emit('show_drinks', drinks);
+    this.currentState = this.HIDE_QUESTION;
+  }
 };
 
 /**
  * Hide the question
  */
 Game.prototype.hideQuestion = function(time, question) {
-  if (time > question.movie_time + question.duration + 5 + 5) {
+  if (time > question.movie_time + question.duration + 5 + 5 + 5) {
     console.log('hide question');
     this.win.webContents.send('hide-question', question);
     this.currentQuestion = null;
     this.currentState = this.WAITING;
     this.websockets.emit('clear_question');
-    this.statistics.process(this.currentQuestion, this.currentAnswers, this.players);
   }
 };
 
@@ -189,10 +198,12 @@ function Statistics () {
   this.mostDrinks = {};
   this.bestAnswerSpeed = {};
   this.currentWrongPlayers = [];
+  this.currentDrinks = {};
 };
 
 Statistics.prototype.process = function (question, answers, players) {
   this.currentWrongPlayers = [];
+  this.currentDrinks = {};
 
   for (playerToken in players) {
     if (!this.players[playerToken]) {
@@ -207,7 +218,7 @@ Statistics.prototype.process = function (question, answers, players) {
     this.updateAnswerSpeed(answer, player);
   }
 
-  this.updateDrinks();
+  this.updateDrinks(question, players, this.currentWrongPlayers);
 };
 
 Statistics.prototype.updateAnswerCount = function (question, answer, player) {
@@ -248,12 +259,20 @@ Statistics.prototype.updateAnswerSpeed = function (answer, player) {
 };
 
 Statistics.prototype.updateDrinks = function (question, allPlayers, wrongPlayers) {
-  var drinks = allPlayers.length * question.drink_multiplyer / wrongPlayers.length;
+  var numPlayers = 0;
+  for(var i in allPlayers) numPlayers++;
+
+  var drinks = Math.ceil(numPlayers * question.drink_multiplyer / wrongPlayers.length);
+
+console.log(wrongPlayers);
 
   for (index in wrongPlayers) {
     var player = wrongPlayers[index];
     player.drinks += drinks;
+    this.currentDrinks[player.id] = drinks;
   }
+
+  console.log(this.currentDrinks  );
 };
 
 Statistics.prototype.compile = function (gamePlayers) {
