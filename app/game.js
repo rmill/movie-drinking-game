@@ -259,20 +259,25 @@ Statistics.prototype.updateAnswerSpeed = function (answer, player) {
 };
 
 Statistics.prototype.updateDrinks = function (question, allPlayers, wrongPlayers) {
+  var drinkingPlayers;
+  var drinks;
   var numPlayers = 0;
   for(var i in allPlayers) numPlayers++;
 
-  var drinks = Math.ceil(numPlayers * question.drink_multiplyer / wrongPlayers.length);
-
-console.log(wrongPlayers);
-
-  for (index in wrongPlayers) {
-    var player = wrongPlayers[index];
-    player.drinks += drinks;
-    this.currentDrinks[player.id] = drinks;
+  if (wrongPlayers.length == 0) {
+    // SOCIALBES!
+    drinkingPlayers = allPlayers;
+    drinks = 1;
+  }  else {
+    drinkingPlayers = wrongPlayers.length;
+    drinks = Math.ceil(numPlayers * question.drink_multiplyer / wrongPlayers.length);
   }
 
-  console.log(this.currentDrinks  );
+  for (index in drinkingPlayers) {
+    var player = drinkingPlayers[index];
+    this.players[player.id].drinks += drinks;
+    this.currentDrinks[player.id] = drinks;
+  }
 };
 
 Statistics.prototype.compile = function (gamePlayers) {
