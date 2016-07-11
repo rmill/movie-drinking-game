@@ -120,7 +120,6 @@ Game.prototype.showCorrectAnswer = function(question) {
   this.win.webContents.send('show-correct-answers', question.correct_answers);
   this.websockets.emit('show_answers', question.correct_answers);
   this.statistics.process(this.currentQuestion, this.currentAnswers, this.players);
-  console.log(this.statistics.currentDrinks);
   this.currentState = this.SHOW_DRINKS;
 };
 
@@ -129,6 +128,7 @@ Game.prototype.showCorrectAnswer = function(question) {
  */
 Game.prototype.showDrinks = function(time, question, drinks) {
   if (time > question.movie_time + question.duration + 5 + 5) {
+    console.log('show drinks');
     this.win.webContents.send('show-drinks', drinks);
     this.websockets.emit('show_drinks', drinks);
     this.currentState = this.HIDE_QUESTION;
@@ -260,23 +260,26 @@ Statistics.prototype.updateAnswerSpeed = function (answer, player) {
 
 Statistics.prototype.updateDrinks = function (question, allPlayers, wrongPlayers) {
   var drinkingPlayers;
+  var allPlayerIds = [];
+  var wrongPlayerIds = [];
   var drinks;
-  var numPlayers = 0;
-  for(var i in allPlayers) numPlayers++;
+
+  for(var playerToken in allPlayers) allPlayerIds.push(playerToken);
+  for(var index in wrongPlayers) wrongPlayerIds.push(wrongPlayers[index].id);
 
   if (wrongPlayers.length == 0) {
-    // SOCIALBES!
-    drinkingPlayers = allPlayers;
+    console.log('SOCIALBES!');
+    drinkingPlayers = allPlayerIds;
     drinks = 1;
   }  else {
-    drinkingPlayers = wrongPlayers.length;
-    drinks = Math.ceil(numPlayers * question.drink_multiplyer / wrongPlayers.length);
+    drinkingPlayers = wrongPlayerIds;
+    drinks = Math.ceil(allPlayerIds.length * question.drink_multiplyer / wrongPlayers.length);
   }
 
   for (index in drinkingPlayers) {
-    var player = drinkingPlayers[index];
-    this.players[player.id].drinks += drinks;
-    this.currentDrinks[player.id] = drinks;
+    var playerToken = drinkingPlayers[index];
+    this.players[playerToken].drinks += drinks;
+    this.currentDrinks[playerToken] = drinks;
   }
 };
 
