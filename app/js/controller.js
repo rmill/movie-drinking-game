@@ -62,8 +62,15 @@ window.onload = function() {
   /**
    * Handle the button click
    */
-  $('.controller-button').click(function(e) {
+  $('.controller-button').on('click tap', function(e) {
     e.preventDefault();
+
+    // enable vibration support
+    navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+    if (navigator.vibrate) {
+      navigator.vibrate(50);
+    }
 
     // Only allow one answer per question
     var hasAnswer = $('.pressed').length > 0;
@@ -86,7 +93,7 @@ window.onload = function() {
   /**
    * Add the websocket connection
    */
-  var connection = io('127.0.0.1');
+  var connection = io('192.168.0.116');
 
   connection.emit('subscribe', 'clear_question');
   connection.emit('subscribe', 'new_question');

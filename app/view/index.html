@@ -48,6 +48,12 @@
     <div class="timer"></div>
   </div>
 
+  <div class="drinks-overlay animated fadeIn bounceOutRight" style="display: none;">
+    <div class="drinks-overlay-container">
+      <p id="numDrinks"></p>
+    </div>
+  </div>
+
   <div class="credits">
     <div class="movie-title">PREDATOR</div>
     <div class="title">Best Duder</div>
@@ -123,11 +129,75 @@
     });
 
     ipcRenderer.on('show-drinks', function(event, drinks) {
-      console.log(drinks);
+      drinks = {
+       'elBeardo': 10,
+      //  'Stinky Mgoo': 1,
+       'Pug Salad': 1,
+       'Titslroo': 1,
+       'XXBLAX420': 1,
+       'Steph': 1,
+       'Caelon': 1,
+       'NagaSeaWitch': 1,
+       'Cool <p Dee': 1,
+       'test10': 1,
+       '23232323': 1
+      }
+
+      $('.drinks-player').remove();
+
+      var drinksEl = $('.drinks-overlay-container');
+      $('.drinks-overlay').show();
+      var offset = drinksEl.offset();
+      var width = drinksEl.width();
+      var radius = width / 2;
+      var numDrinkers = 0;
+      for(var i in drinks) numDrinkers++;
+      var fontSize = 20 + 35 / numDrinkers;
+
+      // Two looks WAY too far apart
+      if (numDrinkers == 2) {
+        numDrinkers = 6;
+      }
+
+      // Add the names of the players who got drinks
+      var slope = 0;
+      var i = 0;
+      for (name in drinks) {
+         var playerEl = $('<div class="drinks-player"></div>').appendTo('.drinks-overlay');
+
+         // Escape the name to prevent rendering html
+         playerEl.text(name);
+
+         var degrees;
+
+         if (i == numDrinkers - 1 && !(i % 2)) {
+           degrees = 0;
+         } else {
+           if (!(i % 2)) {
+             slope += 100.0 / numDrinkers;
+             degrees = slope;
+           } else {
+             degrees = -slope;
+           }
+         }
+
+         playerEl.offset({
+           top: offset.top + radius + (Math.sin(degrees * (Math.PI / 180)) * (radius + 30 + slope * 0.3)),
+           left: offset.left + radius + (Math.cos(degrees * (Math.PI/ 180)) * (radius + 30 + slope * 0.3))
+         }).css({
+           'font-size' : fontSize + 'px'
+         });
+
+         // Go to the next position
+         i++;
+
+         drinksEl.find('p').html(drinks[name]);
+      }
     });
 
     ipcRenderer.on('hide-question', function(event) {
       hideQuestion();
+      $('.drinks-overlay').hide();
       $('table').css('visibility', 'hidden');
       $('.correct').removeClass('correct');
     });
