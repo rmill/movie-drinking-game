@@ -1,7 +1,17 @@
-  @font-face {
-    font-family: PaytoneOne;
-    src: url(PaytoneOne.ttf);
-  }
+@font-face {
+  font-family: PaytoneOne;
+  src: url(PaytoneOne.ttf);
+}
+
+@font-face {
+  font-family: AgentOrange;
+  src: url(AgentOrange.ttf);
+}
+
+@font-face {
+  font-family: OrangeJuice;
+  src: url(orange-juice.ttf);
+}
 
 .movie {
 	height: 100%;
@@ -266,7 +276,7 @@ table {
 }
 
 td {
-  border: 3px solid white;
+  border: 3px solid #f4f8fb;
   -moz-box-shadow: 2px 4px 6px #fff;
   -webkit-box-shadow: 2px 4px 6px #fff;
   box-shadow: 2px 4px 6px #FFF;
@@ -354,7 +364,7 @@ td.correct {
 .players .player {
   position: relative;
   font-size: 37px;
-  color: white;
+  color: #f4f8fb;
   font-family: PaytoneOne;
 }
 
@@ -368,10 +378,17 @@ td.correct {
 
 .drinks-overlay-container {
   display: flex;
-  width: 350px;
-  height: 350px;
   margin: auto;
   position: relative;
+  color: #f4f8fb;
+  font-size: 16em;
+  font-family: Cheri;
+  top: 16%;
+}
+
+.drinks-overlay-container.circle {
+  width: 350px;
+  height: 350px;
   -moz-box-shadow: 0 0 32px #fff;
   -webkit-box-shadow: 0 0 32px #fff;
   box-shadow: 0px 0px 32px #FFF;
@@ -379,11 +396,15 @@ td.correct {
   -webkit-border-radius:50%;
   border-radius:50%;
   border: 6px solid #f4f8fb;
-  color: #f4f8fb;
   font-size: 16em;
-  font-family: Cheri;
-  top: 16%;
   background-color: #0083ce;
+}
+
+.drinks-overlay-container.sociables {
+  font-family: AgentOrange;
+  color: #f4f8fb;
+  text-shadow: -3px 0px 19px #f4f8fb;
+  font-size: 13em;
 }
 
 .drinks-overlay-container p {
@@ -392,7 +413,7 @@ td.correct {
 
 .drinks-overlay .drinks-player {
   font-size: 60px;
-  color: white;
+  color: #f4f8fb;
   position: absolute;
   line-height: 0;
 }

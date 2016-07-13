@@ -48,9 +48,12 @@
     <div class="timer"></div>
   </div>
 
-  <div class="drinks-overlay animated fadeIn bounceOutRight" style="display: none;">
-    <div class="drinks-overlay-container">
+  <div class="drinks-overlay animated" style="display: none;">
+    <div class="drinks-overlay-container circle" style="display: none;">
       <p id="numDrinks"></p>
+    </div>
+    <div class="drinks-overlay-container sociables animated flash infinite" style="display: none;">
+      <p>SOCIABLES!</p>
     </div>
   </div>
 
@@ -129,29 +132,22 @@
     });
 
     ipcRenderer.on('show-drinks', function(event, drinks) {
-      drinks = {
-       'elBeardo': 10,
-      //  'Stinky Mgoo': 1,
-       'Pug Salad': 1,
-       'Titslroo': 1,
-       'XXBLAX420': 1,
-       'Steph': 1,
-       'Caelon': 1,
-       'NagaSeaWitch': 1,
-       'Cool <p Dee': 1,
-       'test10': 1,
-       '23232323': 1
+      $('.drinks-player').remove();
+      $('.drinks-overlay').show();
+
+      var numDrinkers = drinks.length;
+      var drinksEl = $('.drinks-overlay-container.circle');
+
+      if (numDrinkers == 0) {
+        $('.drinks-overlay-container.sociables').show();
+        return;
+      } else {
+        drinksEl.show();
       }
 
-      $('.drinks-player').remove();
-
-      var drinksEl = $('.drinks-overlay-container');
-      $('.drinks-overlay').show();
       var offset = drinksEl.offset();
       var width = drinksEl.width();
       var radius = width / 2;
-      var numDrinkers = 0;
-      for(var i in drinks) numDrinkers++;
       var fontSize = 20 + 35 / numDrinkers;
 
       // Two looks WAY too far apart
@@ -159,15 +155,17 @@
         numDrinkers = 6;
       }
 
+      console.log(offset);
+      console.log(width);
+      console.log(radius);
+
+      // All the players have the same drinks
+      drinksEl.find('p').html(drinks[0].drinks);
+
       // Add the names of the players who got drinks
       var slope = 0;
       var i = 0;
-      for (name in drinks) {
-         var playerEl = $('<div class="drinks-player"></div>').appendTo('.drinks-overlay');
-
-         // Escape the name to prevent rendering html
-         playerEl.text(name);
-
+      for (player in drinks) {
          var degrees;
 
          if (i == numDrinkers - 1 && !(i % 2)) {
@@ -181,23 +179,28 @@
            }
          }
 
+         var playerEl = $('<div class="drinks-player animated"></div>').appendTo('.drinks-overlay');
+
          playerEl.offset({
            top: offset.top + radius + (Math.sin(degrees * (Math.PI / 180)) * (radius + 30 + slope * 0.3)),
            left: offset.left + radius + (Math.cos(degrees * (Math.PI/ 180)) * (radius + 30 + slope * 0.3))
-         }).css({
+         })
+         .text(drinks[player].name)
+         .addClass(getRandomShowClass())
+         .css({
            'font-size' : fontSize + 'px'
-         });
+         })
+         .show();
 
          // Go to the next position
          i++;
-
-         drinksEl.find('p').html(drinks[name]);
       }
     });
 
     ipcRenderer.on('hide-question', function(event) {
       hideQuestion();
       $('.drinks-overlay').hide();
+      $('.drinks-overlay-container').hide();
       $('table').css('visibility', 'hidden');
       $('.correct').removeClass('correct');
     });
@@ -238,9 +241,15 @@
     function showQuestion() {
       var images = ['arnold', 'beer', 'cassette', 'champagne', 'confused', 'guitar', 'martini', 'shoes', 'vandamme', 'wine'];
       var index = Math.round(Math.random() * (images.length - 1));
-
       $('.badge img').attr('class', images[index]);
+      $('.overlay').attr('class', 'overlay animated').addClass(this.getRandomShowClass()).show();
+    }
 
+    function hideQuestion() {
+      $('.overlay').attr('class', 'overlay animated').addClass(getRandomHideClass());
+    }
+
+    function getRandomShowClass() {
       var renderFunctions = [
         'bounceIn', 'bounceInDown', 'bounceInLeft', 'bounceInRight', 'bounceInUp',
         'fadeIn', 'fadeInDown', 'fadeInDownBig', 'fadeInLeft', 'fadeInLeftBig', 'fadeInRight', 'fadeInRightBig', 'fadeInUp', 'fadeInUpBig',
@@ -253,10 +262,11 @@
       ];
 
       var index = Math.round(Math.random() * (renderFunctions.length - 1));
-      $('.overlay').attr('class', 'overlay animated').addClass(renderFunctions[index]).show();
+
+      return renderFunctions[index];
     }
 
-    function hideQuestion() {
+    function getRandomHideClass() {
       var renderFunctions = [
         'bounceOut', 'bounceOutDown', 'bounceOutLeft', 'bounceOutRight', 'bounceOutUp',
         'fadeOut', 'fadeOutDown',  'fadeOutDownBig', 'fadeOutLeft',  'fadeOutLeftBig',  'fadeOutRight', 'fadeOutRightBig',  'fadeOutUp', 'fadeOutUpBig',
@@ -269,7 +279,8 @@
       ];
 
       var index = Math.round(Math.random() * (renderFunctions.length - 1));
-      $('.overlay').attr('class', 'overlay animated').addClass(renderFunctions[index]);
+
+      return renderFunctions[index];
     }
   </script>
 

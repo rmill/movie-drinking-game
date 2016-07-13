@@ -70,13 +70,11 @@ function createGame() {
 
   ipcMain.on('start-game', function(event) {
     game.start();
-    // win.webContents.send('show-drinks', {});
   });
 
   ipcMain.on('movie-time', function(event, time) {
     game.processState(time);
   });
-
 }
 
 function createServer() {

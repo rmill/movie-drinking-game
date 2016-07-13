@@ -198,12 +198,12 @@ function Statistics () {
   this.mostDrinks = {};
   this.bestAnswerSpeed = {};
   this.currentWrongPlayers = [];
-  this.currentDrinks = {};
+  this.currentDrinks = [];
 };
 
 Statistics.prototype.process = function (question, answers, players) {
   this.currentWrongPlayers = [];
-  this.currentDrinks = {};
+  this.currentDrinks = [];
 
   for (playerToken in players) {
     if (!this.players[playerToken]) {
@@ -268,9 +268,8 @@ Statistics.prototype.updateDrinks = function (question, allPlayers, wrongPlayers
   for(var index in wrongPlayers) wrongPlayerIds.push(wrongPlayers[index].id);
 
   if (wrongPlayers.length == 0) {
-    console.log('SOCIALBES!');
-    drinkingPlayers = allPlayerIds;
-    drinks = 1;
+    console.log('SOCIABLES!');
+    return;
   }  else {
     drinkingPlayers = wrongPlayerIds;
     drinks = Math.ceil(allPlayerIds.length * question.drink_multiplyer / wrongPlayers.length);
@@ -279,7 +278,10 @@ Statistics.prototype.updateDrinks = function (question, allPlayers, wrongPlayers
   for (index in drinkingPlayers) {
     var playerToken = drinkingPlayers[index];
     this.players[playerToken].drinks += drinks;
-    this.currentDrinks[playerToken] = drinks;
+    this.currentDrinks.push({
+      drinks: drinks,
+      name: allPlayers[playerToken]
+    });
   }
 };
 
