@@ -52,6 +52,16 @@ function Server (game) {
     res.sendFile(__dirname + '/view/controller.html');
   });
 
+  app.get('/game', function(req, res) {
+    var json = {
+      rules: self.game.rules,
+      name: self.game.name
+    };
+
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(json));
+  });
+
   app.post('/answer', function(req, res) {
     if (!req.cookies.token ||
         req.cookies.game_id != self.game.id)

@@ -90,6 +90,33 @@ window.onload = function() {
     });
   });
 
+  $('.switch').click(function() {
+    if ($('.rules').is(':visible')) {
+      $('.rules').hide();
+      $('table').show();
+      $(this).removeClass('fa-close').addClass('fa-question-circle-o');
+    } else {
+      $('table').hide();
+      $('.rules').show();
+      $(this).removeClass('fa-question-circle-o').addClass('fa-close');
+    }
+  })
+
+  $.ajax({
+    'url': '/game',
+    'method': 'GET',
+    'success': function(game) {
+      console.log(game);
+      $('.rules .movie-title').text(game.name);
+
+      var rulesEl = $('.rules ul');
+      for (var i in game.rules) {
+        var rule = $('<li></li>').appendTo(rulesEl);
+        rule.text(game.rules[i]); // Use text() to prevent rendering of HTML
+      }
+    }
+  });
+
   /**
    * Add the websocket connection
    */

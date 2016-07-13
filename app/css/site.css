@@ -13,6 +13,11 @@
     src: url(Rocko-Bold.ttf);
   }
 
+  @font-face {
+    font-family: PaytoneOne;
+    src: url(PaytoneOne.ttf);
+  }
+
 .movie {
 	height: 100%;
 	width: 100%;
@@ -221,4 +226,25 @@ input {
     border: none;
     font-size: 30px;
     margin-top: 55px;
+}
+
+.switch {
+  position: absolute;
+  top: 23%;
+  right: 5%;
+  cursor: pointer;
+}
+
+.rules {
+  font-family: PaytoneOne;
+  color: ghostwhite;
+  padding: 27px;
+}
+
+.rules .movie-title {
+  font-size: 41px;
+}
+
+.rules ul {
+  font-size: 1.5em;
 }

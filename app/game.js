@@ -1,6 +1,6 @@
 const randomstring = require("randomstring");
 
-function Game(win, websockets, questions, endTime) {
+function Game(win, websockets, questions, endTime, rules, name) {
   this.NEW_GANE = 'new_game';
   this.WAITING = 'waiting';
   this.SHOW_QUESTION = 'show_question';
@@ -13,6 +13,8 @@ function Game(win, websockets, questions, endTime) {
 
   this.id = randomstring.generate();
   this.win = win;
+  this.name = name;
+  this.rules = rules;
   this.websockets = websockets;
   this.questions = questions;
   this.players = {};

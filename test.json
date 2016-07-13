@@ -1,5 +1,6 @@
 {
   "file_path": "",
+  "name": "Total Recall",
   "end_time": 60,
   "questions":[
     {
@@ -18,5 +19,14 @@
       "answers":["yes","no","maybe","FU"],
       "correct_answers":[0]
     }
+  ],
+  "rules": [
+    "Every time a dude dies",
+    "When the main character's name is said",
+    "Every one liner",
+    "blank looks hot",
+    "THREEE BOOOOBS",
+    "someone complains",
+    "fake technology"
   ]
 }
