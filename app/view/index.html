@@ -11,8 +11,7 @@
     <div class="players right"></div>
 
     <div class="logo animated fadeIn">
-      <div class="title animated lightSpeedIn">MOVIE DRINKING GAME</div>
-      <img class="beer animated rotateIn">
+      <img class="animated rotateIn">
       <div class="ip animated slideInRight"></div>
       <button class="start animated bounceInUp">Start</button>
     </div>
@@ -25,36 +24,50 @@
     <p>Your user agent does not support the HTML5 Video element.</p>
   </video>
 
-  <div class="overlay animated" style="display: none;">
+  <div id="question-overlay" class="overlay animated" style="display: none;">
     <div id="question">
   		<div class="badge">
-  		  <img class="beer">
+  		  <img class="question">
   		</div>
-    	<div id="question-text"></div>
+    	<div id="question-container">
+        <div class="question-text"></div>
+        <div class="timer timer-background"></div>
+        <div class="timer timer-foreground"></div>
+      </div>
 	   </div>
 
     <table>
+      <tr>
+        <td class="answer">
+          <div class="answer-letter">A.</div><div id="answer-0"></div>
+        </td>
+        <td class="answer">
+          <div class="answer-letter">B.</div><div id="answer-1"></div>
+        </td>
       </tr>
       <tr>
-        <td id="answer-0" class="answer"></td>
-        <td id="answer-1" class="answer"></td>
-      </tr>
-      <tr>
-        <td id="answer-2" class="answer"></td>
-        <td id="answer-3" class="answer"></td>
+        <td class="answer">
+          <div class="answer-letter">C.</div><div id="answer-2"></div>
+        </td>
+        <td class="answer">
+          <div class="answer-letter">D.</div><div id="answer-3"></div>
+        </td>
       </tr>
     </table>
-
-    <div class="timer"></div>
   </div>
 
-  <div class="drinks-overlay animated" style="display: none;">
-    <div class="drinks-overlay-container circle" style="display: none;">
-      <p id="numDrinks"></p>
+  <div id="drinks-overlay" class="overlay animated" style="display: none;">
+    <div class="drinkers" style="display: none;">
+      <img class="badge">
+
+      <table>
+        <tbody></tbody>
+      </table>
     </div>
-    <div class="drinks-overlay-container sociables animated flash infinite" style="display: none;">
-      <p>SOCIABLES!</p>
-    </div>
+  </div>
+
+  <div id="sociables-overlay" class="drinks-overlay-container sociables animated flash infinite" style="display: none;">
+    <p>SOCIABLES!</p>
   </div>
 
   <div class="credits">
@@ -90,7 +103,7 @@
 
   <script>
     var movie = document.querySelector('.movie');
-    var timer = $('.timer');
+    var timer = $('.timer-foreground');
 
     movie.addEventListener('timeupdate', function () {
      ipcRenderer.send('movie-time', movie.currentTime);
@@ -109,16 +122,15 @@
     });
 
     ipcRenderer.on('show-question', function(event, question) {
-      $('#question-text').html(question.text);
-
+      $('.question-text').html(question.text);
       showQuestion();
     });
 
     ipcRenderer.on('show-answers', function(event, answers, duration) {
-      $('#answer-0').html('A) ' + answers[0]);
-      $('#answer-1').html('B) ' + answers[1]);
-      $('#answer-2').html('C) ' + answers[2]);
-      $('#answer-3').html('D) ' + answers[3]);
+      $('#answer-0').html(answers[0]);
+      $('#answer-1').html(answers[1]);
+      $('#answer-2').html(answers[2]);
+      $('#answer-3').html(answers[3]);
       $('table').css('visibility', 'visible');
 
       startTimer(duration);
@@ -127,82 +139,50 @@
     ipcRenderer.on('show-correct-answers', function(event, answers) {
       for (var i=0; i<answers.length; i++) {
         stopTimer();
-        $('#answer-' + answers[i]).addClass('correct');
+        $('#answer-' + answers[i]).closest('.answer').addClass('correct');
       }
     });
 
     ipcRenderer.on('show-drinks', function(event, drinks) {
-      $('.drinks-player').remove();
-      $('.drinks-overlay').show();
+      hideQuestion();
+
+      $('#drinks-overlay').show
 
       var numDrinkers = drinks.length;
-      var drinksEl = $('.drinks-overlay-container.circle');
 
       if (numDrinkers == 0) {
-        $('.drinks-overlay-container.sociables').show();
+        $('#sociables-overlay').show();
         return;
-      } else {
-        drinksEl.show();
       }
 
-      var offset = drinksEl.offset();
-      var width = drinksEl.width();
-      var radius = width / 2;
-      var fontSize = 20 + 35 / numDrinkers;
+      // Add the drinkers' names
+      var drinkersElement = "";
+      for (var i=0; i < drinks.length; i++) {
+        var rowItem = i % 4;
 
-      // Two looks WAY too far apart
-      if (numDrinkers == 2) {
-        numDrinkers = 6;
+        if (rowItem === 0) {
+          drinkersElement += "<tr>";
+        }
+
+        drinkersElement += "<td>" + drinks[i].name + "</td>";
+
+        if (rowItem === 3) {
+          drinkersElement += "</tr>";
+        }
       }
 
-      console.log(offset);
-      console.log(width);
-      console.log(radius);
-
-      // All the players have the same drinks
-      drinksEl.find('p').html(drinks[0].drinks);
-
-      // Add the names of the players who got drinks
-      var slope = 0;
-      var i = 0;
-      for (player in drinks) {
-         var degrees;
-
-         if (i == numDrinkers - 1 && !(i % 2)) {
-           degrees = 0;
-         } else {
-           if (!(i % 2)) {
-             slope += 100.0 / numDrinkers;
-             degrees = slope;
-           } else {
-             degrees = -slope;
-           }
-         }
-
-         var playerEl = $('<div class="drinks-player animated"></div>').appendTo('.drinks-overlay');
-
-         playerEl.offset({
-           top: offset.top + radius + (Math.sin(degrees * (Math.PI / 180)) * (radius + 30 + slope * 0.3)),
-           left: offset.left + radius + (Math.cos(degrees * (Math.PI/ 180)) * (radius + 30 + slope * 0.3))
-         })
-         .text(drinks[player].name)
-         .addClass(getRandomShowClass())
-         .css({
-           'font-size' : fontSize + 'px'
-         })
-         .show();
-
-         // Go to the next position
-         i++;
-      }
+      var numDrinks = Math.min(drinks[0].drinks, 10);
+      $('#drinks-overlay .badge').attr('src', '../img/drinks-' + numDrinks + '.png');
+      $('#drinks-overlay table tbody').html(drinkersElement);
+      $('#drinks-overlay .drinkers').show();
     });
 
     ipcRenderer.on('hide-question', function(event) {
-      hideQuestion();
-      $('.drinks-overlay').hide();
-      $('.drinks-overlay-container').hide();
-      $('table').css('visibility', 'hidden');
+      $('#drinks-overlay').hide();
+      $('#sociables-overlay').hide();
+      $('#question-overlay table').css('visibility', 'hidden');
       $('.correct').removeClass('correct');
+      $('#question-overlay .timer-foreground').width("100%");
     });
 
     ipcRenderer.on('end-game', function(event, statsJson) {
@@ -236,17 +216,15 @@
 
     function stopTimer() {
       clearInterval(interval);
+      timer.css('width', '0%');
     }
 
     function showQuestion() {
-      var images = ['arnold', 'beer', 'cassette', 'champagne', 'confused', 'guitar', 'martini', 'shoes', 'vandamme', 'wine'];
-      var index = Math.round(Math.random() * (images.length - 1));
-      $('.badge img').attr('class', images[index]);
-      $('.overlay').attr('class', 'overlay animated').addClass(this.getRandomShowClass()).show();
+      $('#question-overlay').attr('class', 'overlay animated').addClass(this.getRandomShowClass()).show();
     }
 
     function hideQuestion() {
-      $('.overlay').attr('class', 'overlay animated').addClass(getRandomHideClass());
+      $('#question-overlay').attr('class', 'overlay animated').addClass(getRandomHideClass());
     }
 
     function getRandomShowClass() {
