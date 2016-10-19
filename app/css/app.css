@@ -13,6 +13,11 @@
   src: url(orange-juice.ttf);
 }
 
+@font-face {
+  font-family: AsCute;
+  src: url(as_cute.ttf);
+}
+
 .movie {
 	height: 100%;
 	width: 100%;
@@ -289,27 +294,11 @@ td.correct {
   }
 }
 
-.players.left {
-  width: 33%;
-  height: 78%;
-  top: 18%;
-  left: 1%;
+.player {
   position: absolute;
-}
-
-.players.right {
-  width: 33%;
-  height: 78%;
-  top: 18%;
-  position: absolute;
-  left: 67%;
-}
-
-.players .player {
-  position: relative;
   font-size: 37px;
-  color: #f4f8fb;
-  font-family: PaytoneOne;
+  color: black;
+  font-family: AsCute;
 }
 
 .drinks-overlay {

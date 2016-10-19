@@ -7,10 +7,7 @@
 
 <body>
   <div id="intro">
-    <div class="players left"></div>
-    <div class="players right"></div>
-
-    <div class="logo animated fadeIn">
+      <div class="logo animated fadeIn">
       <img class="animated rotateIn">
       <div class="ip animated slideInRight"></div>
       <button class="start animated bounceInUp">Start</button>
@@ -110,12 +107,37 @@
     })
 
     ipcRenderer.on('new-player', function(event, name, state) {
-      var div = '<div class="player animated pulse infinite">' + name +'</div>';
-      var playersDiv = (Math.random() >= 0.5) ? $('.players.left') : $('.players.right');
-      var top = Math.random() * parseInt(playersDiv.css('height'), 10);
-      var left = Math.random() * parseInt(playersDiv.css('width'), 10);
+      var positions = [
+        {top: 89, left: 200},
+        {top: 800, left: 1500},
+        {top: 610, left: 39},
+        {top: 212, left: 1300},
+        {top: 319, left: 299},
+        {top: 500, left: 1450},
+        {top: 900, left: 300},
+        {top: 58, left: 1500},
+        {top: 481, left: 110},
+        {top: 621, left: 1400},
+        {top: 700, left: 200},
+        {top: 400, left: 1400},
+        {top: 174, left: 114},
+        {top: 900, left: 1600},
+        {top: 800, left: 76}
+      ];
 
-      var playerEl = $(div).appendTo(playersDiv).css({
+      var el = $('#intro');
+      var div = '<div class="player animated pulse infinite">' + name +'</div>';
+
+      var numPlayers = $('.player').length;
+      if (numPlayers >= positions.length) {
+        var top = Math.random() * parseInt(el.css('height'), 10);
+        var left = Math.random() * parseInt(el.css('width'), 10);
+      } else {
+        var top = positions[numPlayers].top
+        var left = positions[numPlayers].left
+      }
+
+      var playerEl = $(div).appendTo(el).css({
         top: top + 'px',
         left: left + 'px'
       });
