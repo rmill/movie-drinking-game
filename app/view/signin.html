@@ -2,21 +2,31 @@
 
 <head>
 <link rel="stylesheet" type="text/css" href="css/site.css">
+<link href="https://fonts.googleapis.com/css?family=Raleway:black" rel="stylesheet">
 <script src="lib/jquery/dist/jquery.min.js"></script>
 <script src="lib/js-cookie/src/js.cookie.js"></script>
 <script src="js/signin.js"></script>
 </head>
 
-<body>
+<body class="sign-in">
 
-	<div class="header"><span class="text">Movie Drinking App</span></div>
+	<div class="header">
+		<div class="header-container">
+			<div class="header-logo">
+				<img class="logo">
+			</div>
+		</div>
+	</div>
 
 	<div class="content">
+		<div class="content-text">SIGN IN</div>
+
 		<form method="POST">
-	        	<input id="name" name="user_name" type="text" placeholder="your funny name">
+    	<input id="name" name="user_name" type="text" placeholder="USER NAME">
 			<br />
-        		<button type="submit" class="submit">Submit</button>
+  		<button type="submit" class="submit">SUBMIT</button>
 		</form>
 	</div>
+
 </body>
 </html>

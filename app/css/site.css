@@ -107,6 +107,7 @@
 
   .content {
     height: 90%;
+    font-family: Raleway;
   }
 
   .controller-button {
@@ -185,20 +186,21 @@ tr, td {
 
 form {
 	position: relative;
-	top: 35%;
 	text-align: center;
 }
 
 input {
+  font-family: Raleway;
   border: none;
   background: #FFF;
   width: 80%;
-  height: 90px;
-  -moz-border-radius:30px;
-  -webkit-border-radius:30px;
-  border-radius:30px;
-  font-size: 30px;
-  padding: 30px;
+  height: 194px;
+  -moz-border-radius: 30px;
+  -webkit-border-radius: 30px;
+  border-radius: 30px;
+  font-size: 56px;
+  padding: 64px;
+  color: #065d7b;
 }
 
 ::-webkit-input-placeholder {
@@ -218,14 +220,16 @@ input {
 }
 
 .submit {
-    width: 80%;
-    border-radius: 30px;
-    height: 90px;
-    background-color: blue;
-    color: #f4f8fb;
-    border: none;
-    font-size: 30px;
-    margin-top: 55px;
+  font-family: Raleway;
+  width: 80%;
+  height: 194px;
+  border: none;
+  font-size: 56px;
+  margin-top: 55px;
+  border-radius: 19px;
+  background-color: #065d7b;
+  color: #f5f8fe;
+  border-bottom: 17px solid #04495e;
 }
 
 .switch {
@@ -247,4 +251,33 @@ input {
 
 .rules ul {
   font-size: 1.5em;
+}
+
+.sign-in {
+  background-image: url(../img/background.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.sign-in .header-container {
+  width: 80%;
+  margin: auto;
+}
+
+.sign-in .header-logo {
+  width: 50%;
+  height: 100%;
+}
+
+.logo {
+  content: url(../img/Logo.svg);
+  height: 100%;
+  width: 100%;
+}
+
+.sign-in .content .content-text {
+  text-align: center;
+  padding: 90px 0px;
+  color: #065d7b;
+  font-size: 111px;
 }

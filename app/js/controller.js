@@ -106,7 +106,6 @@ window.onload = function() {
     'url': '/game',
     'method': 'GET',
     'success': function(game) {
-      console.log(game);
       $('.rules .movie-title').text(game.name);
 
       var rulesEl = $('.rules ul');
