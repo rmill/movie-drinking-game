@@ -86,17 +86,15 @@
     display: inline-block;
 }
 
-  body {
-    font-family: AsCute;
-    background-color: #0083ce;
-  }
-
   .header {
     display: table;
     height: 10%;
     width: 100%;
     position: relative;
     background-color: #f4f8fb;
+    -webkit-box-shadow: 0px 7px 17px -5px rgba(0,0,0,0.43);
+    -moz-box-shadow: 0px 7px 17px -5px rgba(0,0,0,0.43);
+    box-shadow: 0px 7px 17px -5px rgba(0,0,0,0.43);
   }
 
   .header .text {
@@ -108,52 +106,35 @@
   .content {
     height: 90%;
     font-family: Raleway;
+    margin: auto;
+    width: 80%;
   }
 
   .controller-button {
     width: 100%;
     height: 100%;
-  	-moz-box-shadow: 3px 4px 0px 0px #899599;
-  	-webkit-box-shadow: 3px 4px 0px 0px #899599;
-  	box-shadow: 3px 4px 0px 0px #899599;
-  	-moz-border-radius:50%;
-  	-webkit-border-radius:50%;
-  	border-radius:50%;
-  	border:6px solid #f4f8fb;
   	display:inline-block;
-  	cursor:pointer;
-  	color:#f4f8fb;
   	font-size:70px;
-    font-family: Cheri;
-  	padding:7px 25px;
   	text-decoration:none;
-  	text-shadow:0px 1px 0px #e1e2ed;
-    background-color: #000000;
+    font-weight: 700;
+    font-family: Raleway;
     outline: none;
+    border-radius: 19px;
+    background-color: #065d7b;
+    color: #f5f8fe;
+    border-bottom: 13px solid #04495e;
   }
 
 .pressed {
-  top:1px;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  background-color: yellow;
-  border-color: black;
-  color: black;
-  -moz-box-shadow: 0 0 32px #fff;
-  -webkit-box-shadow: 0 0 32px #fff;
-  box-shadow: 0px 0px 32px #FFF;
+  top: 3px;
+  background-color: #f25424;
+  border-color: #f25424;
 }
-
 
 .controller-button:active:not(.pressed) {
 	position:relative;
-	top:1px;
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  box-shadow: none;
-  color: grey;
-	border: 6px solid grey;
+	top: 3px;
+  background-color: #04495e;
 }
 
 html, body {
@@ -165,17 +146,13 @@ body {
 }
 
 table {
-  height: 100%;
+  height: 35%;
   width: 100%;
-}
-
-tr {
-  height: 33%;
+  margin: auto;
 }
 
 td {
   text-align: center;
-  width: 33%;
 }
 
 tr, td {
@@ -193,8 +170,8 @@ input {
   font-family: Raleway;
   border: none;
   background: #FFF;
-  width: 80%;
   height: 194px;
+  width: 100%;
   -moz-border-radius: 30px;
   -webkit-border-radius: 30px;
   border-radius: 30px;
@@ -221,7 +198,7 @@ input {
 
 .submit {
   font-family: Raleway;
-  width: 80%;
+  width: 100%;
   height: 194px;
   border: none;
   font-size: 56px;
@@ -232,16 +209,17 @@ input {
   border-bottom: 17px solid #04495e;
 }
 
-.switch {
+.header-container .switch {
+  top: 22%;
+  right: 10%;
   position: absolute;
-  top: 23%;
-  right: 5%;
-  cursor: pointer;
+  font-size: 5vh;
+  color: #065d7b;
 }
 
 .rules {
-  font-family: PaytoneOne;
-  color: ghostwhite;
+  font-family: Raleway;
+  color: #065d7b;
   padding: 27px;
 }
 
@@ -249,22 +227,24 @@ input {
   font-size: 41px;
 }
 
-.rules ul {
-  font-size: 1.5em;
+.rules li {
+  padding-bottom: 40px;
+  font-size: 2.5em;
 }
 
-.sign-in {
+
+.controller {
   background-image: url(../img/background.png);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
 }
 
-.sign-in .header-container {
+.controller .header-container {
   width: 80%;
   margin: auto;
 }
 
-.sign-in .header-logo {
+.controller .header-logo {
   width: 50%;
   height: 100%;
 }
@@ -275,9 +255,29 @@ input {
   width: 100%;
 }
 
-.sign-in .content .content-text {
+.controller .content .content-text {
   text-align: center;
   padding: 90px 0px;
   color: #065d7b;
   font-size: 111px;
+  font-weight: 700;
+}
+
+.controller .content .content-buttons {
+  overflow: hidden;
+}
+
+.controller .content .content-name {
+  text-align: center;
+  display: table;
+  height: 50%;
+  width: 100%;
+  color: #065d7b;
+  font-size: 98px;
+  font-weight: 700;
+}
+
+.controller .content .content-name span {
+  display: table-cell;
+  vertical-align: middle;
 }

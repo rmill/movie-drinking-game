@@ -1,59 +1,6 @@
 hasQuestion = false;
 
 window.onload = function() {
-  var isHorizontal = null;
-
-  /**
-   * Resize the buttons when the winsow changes
-   */
-  $(window).on('resize', function() {
-    var windowHeight = $(window).height();
-    var windowWidth = $(window).width();
-
-    if (windowHeight > windowWidth) {
-      $('.controller-button').each(function() {
-        var width = $(this).outerWidth();
-        $(this).css({
-          'height':width+'px',
-          'width': '100%'
-        });
-
-        $(this).css({
-          'height':width+'px',
-          'width': '100%'
-        });
-      });
-    } else {
-      $('.controller-button').each(function() {
-        var height = $(this).outerHeight();
-        $(this).css({
-          'width':height+'px',
-          'height': '100%'
-        });
-
-        $(this).css({
-          'width':height+'px',
-          'height': '100%'
-        });
-      });
-    }
-
-    var newIsHorizontal = windowWidth > windowHeight;
-    if (isHorizontal === null ||
-        isHorizontal !== newIsHorizontal)
-    {
-      isHorizontal = newIsHorizontal;
-      $(window).trigger('resize');
-    }
-
-    var height = $('.header').height();
-    $('.header').css({
-      'font-size': height / 2 + 'px'
-    });
-  });
-
-  $(window).trigger('resize');
-
   /**
    * Add the name from the cookie
    */
@@ -93,12 +40,12 @@ window.onload = function() {
   $('.switch').click(function() {
     if ($('.rules').is(':visible')) {
       $('.rules').hide();
-      $('table').show();
-      $(this).removeClass('fa-close').addClass('fa-question-circle-o');
+      $('.content-buttons').show();
+      $(this).removeClass('fa-close').addClass('fa-question-circle');
     } else {
-      $('table').hide();
+      $('.content-buttons').hide();
       $('.rules').show();
-      $(this).removeClass('fa-question-circle-o').addClass('fa-close');
+      $(this).removeClass('fa-question-circle').addClass('fa-close');
     }
   })
 
@@ -106,8 +53,6 @@ window.onload = function() {
     'url': '/game',
     'method': 'GET',
     'success': function(game) {
-      $('.rules .movie-title').text(game.name);
-
       var rulesEl = $('.rules ul');
       for (var i in game.rules) {
         var rule = $('<li></li>').appendTo(rulesEl);

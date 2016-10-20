@@ -54,7 +54,7 @@
   </div>
 
   <div id="drinks-overlay" class="overlay animated" style="display: none;">
-    <div class="drinkers" style="display: none;">
+    <div class="drinkers">
       <img class="badge">
 
       <table>
@@ -168,8 +168,6 @@
     ipcRenderer.on('show-drinks', function(event, drinks) {
       hideQuestion();
 
-      $('#drinks-overlay').show
-
       var numDrinkers = drinks.length;
 
       if (numDrinkers == 0) {
@@ -196,7 +194,7 @@
       var numDrinks = Math.min(drinks[0].drinks, 10);
       $('#drinks-overlay .badge').attr('src', '../img/drinks-' + numDrinks + '.png');
       $('#drinks-overlay table tbody').html(drinkersElement);
-      $('#drinks-overlay .drinkers').show();
+      $('#drinks-overlay').show();
     });
 
     ipcRenderer.on('hide-question', function(event) {

@@ -33,6 +33,10 @@ function Server (game) {
     var token = randomstring.generate();
     var name = req.body['user_name'];
 
+    if (!name) {
+      res.redirect('/');
+    }
+
     res.cookie('name', name);
     res.cookie('token', token);
     res.cookie('game_id', self.game.id);
