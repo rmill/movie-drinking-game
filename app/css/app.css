@@ -254,13 +254,11 @@ td.correct {
   margin: auto;
 }
 
-.credits {
+.credits { 
   position: absolute;
-  top: 100%;
-  left: 50%;
-  width: 400px;
-  margin-left: -200px;
-  font: 300 30px/1 'Open Sans Condensed', sans-serif;
+  width: 100%;
+  font-family: Raleway
+  font-weight: 700;
   text-align: center;
   text-transform: uppercase;
   color: #fff;
@@ -271,17 +269,18 @@ td.correct {
 }
 
 .credits .movie-title {
-  margin-bottom: 50px;
-  font-size: 50px;
+  margin-bottom: 145px;
+  font-size: 108px;
 }
 
 .credits .title {
-  margin-bottom: 5px;
-  font-size: 18px;
+  margin-bottom: 13px;
+  font-size: 46px;
 }
 
 .credits .name {
-  margin-bottom: 50px;
+  font-weight: 100;
+  margin-bottom: 170px;
   font-size: 35px;
 }
 

@@ -88,8 +88,18 @@
     const $ = require('jquery');
     const os = require('os');
     const interfaces = os.networkInterfaces();
+    var ip = null;
 
-    $('.ip').html(interfaces['Wi-Fi'][1].address + ':3001');
+console.log(interfaces);
+    $.each(interfaces, function(index, interface) {
+      $.each(interface, function(index2, socket) {
+        if (!socket.internal && socket.family === 'IPv4') {
+          ip = socket.address;
+        }
+      }); 
+    });
+
+    $('.ip').html(ip + ':3001');
 
     $('.start').click(function () {
       ipcRenderer.send('start-game');

@@ -64,7 +64,8 @@ window.onload = function() {
   /**
    * Add the websocket connection
    */
-  var connection = io('192.168.0.116');
+console.log(window.location.hostname );
+  var connection = io(window.location.hostname);
 
   connection.emit('subscribe', 'clear_question');
   connection.emit('subscribe', 'new_question');
