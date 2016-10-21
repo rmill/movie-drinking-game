@@ -218,6 +218,8 @@ console.log(interfaces);
     ipcRenderer.on('end-game', function(event, statsJson) {
       var statistics = JSON.parse(statsJson);
 
+      $('.credits .title').html(statsJson.title);
+
       $('.movie').fadeOut(1000, function() {
         $('.most-correct').html(statistics.mostCorrectAnswers.name);
         $('.most-wrong').html(statistics.mostWrongAnswers.name);
