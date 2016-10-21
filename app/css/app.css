@@ -257,7 +257,7 @@ td.correct {
 .credits { 
   position: absolute;
   width: 100%;
-  font-family: Raleway
+  font-family: Raleway;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
