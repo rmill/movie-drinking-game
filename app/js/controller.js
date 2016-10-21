@@ -65,7 +65,7 @@ window.onload = function() {
    * Add the websocket connection
    */
 console.log(window.location.hostname );
-  var connection = io(window.location.hostname);
+  var connection = io(window.location.hostname + ':3232');
 
   connection.emit('subscribe', 'clear_question');
   connection.emit('subscribe', 'new_question');

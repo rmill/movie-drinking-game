@@ -10,7 +10,7 @@ const APP_PATH = `file://${__dirname}/app`;
 // Setup the server
 const Server = require('./app/server');
 // The websocket server
-const io = require('socket.io')(80);
+const io = require('socket.io')(3232);
 // The gane object
 const Game = require('./app/game');
 
