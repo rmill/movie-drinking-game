@@ -1,0 +1,122 @@
+{
+  "file_path": "",
+  "name": "Scream",
+  "end_time": 6212,
+  "questions":[
+    {
+      "id":1,
+      "text":"Welcome to the drinkinf game! Who is the best?",
+      "movie_time":10,
+      "duration":10,
+      "answers":["Arnie","Stallone","Van DAmme","Care Bears"],
+      "correct_answers":[0]
+    },
+    {
+      "id":2,
+      "text":"Name the killer in Halloween?",
+      "movie_time":399,
+      "duration":18,
+      "answers":["Freddie Krueger","Jason Voorhees","Bryce Julian","Michael Myers"],
+      "correct_answers":[3]
+    },
+    {
+      "id":3,
+      "text":"Name the killer in Friday the 13th?",
+      "movie_time":437,
+      "duration":10,
+      "answers":["Freddie Krueger","Jason Voorhees","Mrs. Voorhees","Michael Myers"],
+      "correct_answers":[2]
+    },
+    {
+      "id":4,
+      "text":"What cover is playing in the background?",
+      "movie_time":941,
+      "duration":10,
+      "answers":["My Guitar Gently Weeps","Purple Rain","Hello Darkness","Don't Fear the Reaper"],
+      "correct_answers":[3]
+    },
+    {
+      "id":5,
+      "text":"How many gallons of blood were used in this move?",
+      "movie_time":1698,
+      "duration":10,
+      "answers":["50","A months worth","30","5"],
+      "correct_answers":[0]
+    },
+    {
+      "id":6,
+      "text":"What is the name of the killer's costume?",
+      "movie_time":2099,
+      "duration":10,
+      "answers":["Stabbie Stab Man","Father of Death","The Ghost","Scream"],
+      "correct_answers":[1]
+    },
+    {
+      "id":7,
+      "text":"What is the original name of the movie?",
+      "movie_time":2563,
+      "duration":10,
+      "answers":["Slasher High","Bad Decisions","Cliffhanger","Scary Movie"],
+      "correct_answers":[3]
+    },
+    {
+      "id":8,
+      "text":"SICK STUNT COMING UP",
+      "movie_time":2875,
+      "duration":10,
+      "answers":["Power Slide","Groin Kick","Front Flip","Superman Dive"],
+      "correct_answers":[0]
+    },
+    {
+      "id":9,
+      "text":"How many people are wearing purple in the next scene?",
+      "movie_time":3009,
+      "duration":10,
+      "answers":["0","10","6","2"],
+      "correct_answers":[2]
+    },
+    {
+      "id":10,
+      "text":"Hot cameo coming in, who is it?",
+      "movie_time":3120,
+      "duration":10,
+      "answers":["Corey Feldman as a vampire","A metal broom","John Carpenter as a ghost","Wes Craven as Freddy"],
+      "correct_answers":[3]
+    },
+    {
+      "id":10,
+      "text":"What will Dewy be holding?",
+      "movie_time":3561,
+      "duration":10,
+      "answers":["A mask","An ice cream cone","A knife","A telephone"],
+      "correct_answers":[1]
+    },
+    {
+      "id":11,
+      "text":"How does Riley die?",
+      "movie_time":4009,
+      "duration":20,
+      "answers":["Slips on oil","Crushed by door","Stabbed from behind","Of old age"],
+      "correct_answers":[1]
+    },
+    {
+      "id":12,
+      "text":"Which of these is not a rule of horror movies?",
+      "movie_time":4377,
+      "duration":20,
+      "answers":["Say I'll be right back","You cannot drink","Run up the stairs","You cannot have sex"],
+      "correct_answers":[2]
+    }
+  ],
+  "rules": [
+    "Every death",
+    "State a horror movie rule",
+    "Break a horror movie rule",
+    "Knife miss",
+    "They dicuss the killings",
+    "Ghost Face is sneakily in the background",
+    "Horror movie reference",
+    "Ghost Face gets nailed",
+    "Someone talks on a phone"
+  ]
+}

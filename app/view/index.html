@@ -90,13 +90,12 @@
     const interfaces = os.networkInterfaces();
     var ip = null;
 
-console.log(interfaces);
     $.each(interfaces, function(index, interface) {
       $.each(interface, function(index2, socket) {
         if (!socket.internal && socket.family === 'IPv4') {
           ip = socket.address;
         }
-      }); 
+      });
     });
 
     $('.ip').html(ip + ':3001');
@@ -113,7 +112,7 @@ console.log(interfaces);
     var timer = $('.timer-foreground');
 
     movie.addEventListener('timeupdate', function () {
-     ipcRenderer.send('movie-time', movie.currentTime);
+      ipcRenderer.send('movie-time', movie.currentTime);
     })
 
     ipcRenderer.on('new-player', function(event, name, state) {
