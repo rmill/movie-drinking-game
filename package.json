@@ -19,7 +19,8 @@
   },
   "scripts": {
     "start": "electron app/main.js --enable-logging",
-    "build": "babel app -d build --copy-files"
+    "build": "babel app -d build --copy-files",
+    "serve.prod": "node build/index.js"
   },
   "repository": {
     "type": "git",
