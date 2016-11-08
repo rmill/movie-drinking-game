@@ -6,7 +6,7 @@ const path = require("path");
 
 const appDir = path.dirname(require.main.filename);
 
-function DiscoveryServer () {
+function DiscoveryServer (port) {
   var app = express();
   app.use('/lib', express.static(path.join(appDir, '../node_modules')));
 
@@ -15,7 +15,7 @@ function DiscoveryServer () {
     res.sendFile(path.join(appDir, 'view/discover.html'));
   });
 
-  app.listen(3002);
+  app.listen(port);
 }
 
 function GameServer (game) {
