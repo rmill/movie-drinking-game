@@ -10,7 +10,7 @@
 			const ip = 'http://192.168.0.' + i + ':3001'
 			$.ajax({
 				'url': ip,
-				'timeout': 3000,
+				'timeout': 10000,
 				'success': function() {
 					window.location.replace(ip);
 				},
