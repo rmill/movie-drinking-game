@@ -14,6 +14,9 @@
 				'timeout': 500,
 				'success': function() {
 					window.location.replace(ip);
+				},
+				'error': function () {
+					$('body').append(" " + ip);
 				}
 			});
 		}
