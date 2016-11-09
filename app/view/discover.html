@@ -6,15 +6,11 @@
 
 <script>
 	window.onload = function() {
-	// for(var i=0;i<255;i++){
-		// 	const ip = 'http://192.168.0.' + i + ':3001'
-		//
-
-			var ip = 'http://192.168.0.116:3001';
-
+	for(var i=0;i<255;i++){
+			const ip = 'http://192.168.0.' + i + ':3001'
 			$.ajax({
 				'url': ip,
-				'timeout': 1500,
+				'timeout': 3000,
 				'success': function() {
 					window.location.replace(ip);
 				},
@@ -22,7 +18,7 @@
 					$('body').append(" " + ip);
 				}
 			});
-		// }
+		}
 	}
 </script>
 
