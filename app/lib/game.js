@@ -1,7 +1,7 @@
 const randomstring = require("randomstring");
 
 function Game(win, websockets, questions, endTime, rules, name) {
-  this.NEW_GANE = 'new_game';
+  this.NEW_GAME = 'new_game';
   this.WAITING = 'waiting';
   this.SHOW_QUESTION = 'show_question';
   this.SHOW_ANSWERS = 'show_answers';
@@ -87,7 +87,6 @@ Game.prototype.showQuestion = function(question) {
   console.log('multiplyer: ' + roundedMultipler);
 
   question.drink_multiplyer = roundedMultipler
-  this.currentAnswers = {};
   this.win.webContents.send('show-question', question);
   this.currentState = this.SHOW_ANSWERS;
 };
@@ -146,6 +145,7 @@ Game.prototype.hideQuestion = function(time, question) {
     this.win.webContents.send('hide-question', question);
     this.currentQuestion = null;
     this.currentState = this.WAITING;
+    this.currentAnswers = {};
     this.websockets.emit('clear_question');
   }
 };
@@ -177,6 +177,20 @@ Game.prototype.answer = function(playerToken, answer) {
     'answer': parseInt(answer),
     'speed': new Date().getTime() - this.currentQuestion.start_time
   };
+};
+
+/**
+ * Get the current state of the game
+ */
+Game.prototype.getCurrentState = function() {
+  return this.currentState;
+};
+
+/**
+ * Get the current state for a player
+ */
+Game.prototype.getCurrentAnswer = function(playerToken) {
+  return this.currentAnswers[playerToken];
 };
 
 /**

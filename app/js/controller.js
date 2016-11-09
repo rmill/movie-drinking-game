@@ -7,6 +7,61 @@ window.onload = function() {
   $('#name').html(Cookies.get('name'));
 
   /**
+   * Handle visibility change
+   */
+   // Set the name of the hidden property and the change event for visibility
+  var hidden, visibilityChange;
+  if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support
+    hidden = "hidden";
+    visibilityChange = "visibilitychange";
+  } else if (typeof document.msHidden !== "undefined") {
+    hidden = "msHidden";
+    visibilityChange = "msvisibilitychange";
+  } else if (typeof document.webkitHidden !== "undefined") {
+    hidden = "webkitHidden";
+    visibilityChange = "webkitvisibilitychange";
+  }
+
+  function handleVisibilityChange() {
+    if (!document[hidden]) {
+      $.ajax({
+          'url': '/state',
+          'success': function (response) {
+            switch(response.state) {
+              case 'new_game':
+              case 'waiting':
+              case 'show_question':
+              case 'hide_question':
+              case 'end_game':
+              default:
+                clearState();
+                break;
+              case 'show_correct_answer':
+              case 'show_drinks':
+              case 'show_answers':
+              case 'waiting_for_answers':
+                hasQuestion = true;
+
+                if (!response.answer) {
+                  $('.pressed').removeClass('pressed');
+                }
+
+                break;
+            };
+          }
+      });
+    }
+  }
+
+  // Warn if the browser doesn't support addEventListener or the Page Visibility API
+  if (typeof document.addEventListener === "undefined" || typeof document[hidden] === "undefined") {
+    console.log("This demo requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.");
+  } else {
+    // Handle page visibility change
+    document.addEventListener(visibilityChange, handleVisibilityChange, false);
+  }
+
+  /**
    * Handle the button click
    */
   $('.controller-button').on('click tap', function(e) {
@@ -61,20 +116,20 @@ window.onload = function() {
     }
   });
 
+  function clearState() {
+    hasQuestion = false;
+    $('.pressed').removeClass('pressed');
+  }
+
   /**
    * Add the websocket connection
    */
-console.log(window.location.hostname );
   var connection = io(window.location.hostname + ':3232');
 
   connection.emit('subscribe', 'clear_question');
   connection.emit('subscribe', 'new_question');
 
-  connection.on('clear_question', function () {
-    hasQuestion = false;
-    $('.pressed').removeClass('pressed');
-  });
-
+  connection.on('clear_question', clearState);
   connection.on('new_question', function () {
     hasQuestion = true;
   });

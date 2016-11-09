@@ -82,6 +82,22 @@ function GameServer (game) {
     res.send(JSON.stringify(json));
   });
 
+  app.get('/state', function(req, res) {
+    if (!req.cookies.token ||
+        req.cookies.game_id != self.game.id)
+    {
+      res.returnStatus(401);
+    }
+
+    var json = {
+      state: self.game.getCurrentState() || null,
+      answer: self.game.getCurrentAnswer(req.cookies.token) || null
+    };
+
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(json));
+  });
+
   app.post('/answer', function(req, res) {
     if (!req.cookies.token ||
         req.cookies.game_id != self.game.id)
