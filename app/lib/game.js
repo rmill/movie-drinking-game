@@ -2,12 +2,15 @@ const randomstring = require("randomstring");
 
 function Game(win, websockets, questions, endTime, rules, name) {
   this.NEW_GAME = 'new_game';
-  this.WAITING = 'waiting';
+  this.IDLE = 'idle';
   this.SHOW_QUESTION = 'show_question';
+  this.WAITING_FOR_QUESTION = 'waiting_for_question';
   this.SHOW_ANSWERS = 'show_answers';
   this.WAITING_FOR_ANSWERS = 'waiting_for_answers';
   this.SHOW_CORRECT_ANSWER = 'show_correct_answer';
+  this.WAITING_FOR_CORRECT_ANSWER = 'waiting_for_correct_answer';
   this.SHOW_DRINKS = 'show_drinks';
+  this.WAITING_FOR_DRINKS = 'waiting_for_drinks';
   this.HIDE_QUESTION = 'hide_question';
   this.END_GAME = 'end_game';
 
@@ -31,18 +34,28 @@ Game.prototype.processState = function(time) {
     switch(this.currentState) {
       case this.NEW_GAME:
         break;
-      case this.WAITING:
-        this.waiting(seconds); break;
+      case this.IDLE:
+        this.idle(seconds); break;
       case this.SHOW_QUESTION:
         this.showQuestion(this.currentQuestion); break;
+      case this.WAITING_FOR_QUESTION:
+        var endTime = this.currentQuestion.movie_time + 5
+        this.waiting(seconds, endTime, this.SHOW_ANSWERS); break;
       case this.SHOW_ANSWERS:
         this.showAnswers(seconds, this.currentQuestion); break;
       case this.WAITING_FOR_ANSWERS:
-        this.waitingForAnswers(seconds, this.currentQuestion); break;
+        var endTime = this.currentQuestion.movie_time + this.currentQuestion.duration + 5;
+        this.waiting(seconds, endTime, this.SHOW_CORRECT_ANSWER); break;
       case this.SHOW_CORRECT_ANSWER:
         this.showCorrectAnswer(this.currentQuestion); break;
+      case this.WAITING_FOR_CORRECT_ANSWER:
+        var endTime = this.currentQuestion.movie_time + this.currentQuestion.duration + 5 + 5;
+        this.waiting(seconds, endTime, this.SHOW_DRINKS); break;
       case this.SHOW_DRINKS:
         this.showDrinks(seconds, this.currentQuestion, this.statistics.currentDrinks); break;
+      case this.WAITING_FOR_DRINKS:
+        var endTime = this.currentQuestion.movie_time + this.currentQuestion.duration + 5 + 5 + 5;
+        this.waiting(seconds, endTime, this.HIDE_QUESTION); break;
       case this.HIDE_QUESTION:
         this.hideQuestion(seconds, this.currentQuestion);break;
     }
@@ -52,13 +65,13 @@ Game.prototype.processState = function(time) {
  * Start the game
  */
 Game.prototype.start = function() {
-  this.currentState = this.WAITING;
+  this.currentState = this.IDLE;
 }
 
 /**
  * The Game is currently waiting for a qestion
  */
-Game.prototype.waiting = function(time) {
+Game.prototype.idle = function(time) {
   if (this.questions[time]) {
     console.log('done waiting');
     this.currentQuestion = this.questions[time];
@@ -86,30 +99,28 @@ Game.prototype.showQuestion = function(question) {
 
   console.log('multiplyer: ' + roundedMultipler);
 
-  question.drink_multiplyer = roundedMultipler
+  question.drink_multiplyer = roundedMultipler;
   this.win.webContents.send('show-question', question);
-  this.currentState = this.SHOW_ANSWERS;
+  this.currentState = this.WAITING_FOR_QUESTION;
 };
 
 /**
  * Show the Answers
  */
 Game.prototype.showAnswers = function(time, question) {
-  if (time >= question.movie_time + 5) {
     console.log('show answers');
     question.start_time = new Date().getTime();
     this.win.webContents.send('show-answers', question.answers, question.duration);
     this.currentState = this.WAITING_FOR_ANSWERS;
     this.websockets.emit('new_question');
-  }
 };
 
 /**
- * Waiting for the users to answer
+ * Waiting for a state transition
  */
-Game.prototype.waitingForAnswers = function(time, question) {
-  if (time >= question.movie_time + 5 + question.duration) {
-    this.currentState = this.SHOW_CORRECT_ANSWER;
+Game.prototype.waiting = function (currentTime, endTime, nextState) {
+  if (currentTime >= endTime) {
+    this.currentState = nextState;
   }
 };
 
@@ -121,33 +132,29 @@ Game.prototype.showCorrectAnswer = function(question) {
   this.win.webContents.send('show-correct-answers', question.correct_answers);
   this.websockets.emit('show_answers', question.correct_answers);
   this.statistics.process(this.currentQuestion, this.currentAnswers, this.players);
-  this.currentState = this.SHOW_DRINKS;
+  this.currentState = this.WAITING_FOR_CORRECT_ANSWER;
 };
 
 /**
  * Show the drinks
  */
 Game.prototype.showDrinks = function(time, question, drinks) {
-  if (time > question.movie_time + question.duration + 5 + 5) {
-    console.log('show drinks');
-    this.win.webContents.send('show-drinks', drinks);
-    this.websockets.emit('show_drinks', drinks);
-    this.currentState = this.HIDE_QUESTION;
-  }
+  console.log('show drinks');
+  this.win.webContents.send('show-drinks', drinks);
+  this.websockets.emit('show_drinks', drinks);
+  this.currentState = this.WAITING_FOR_DRINKS;
 };
 
 /**
  * Hide the question
  */
 Game.prototype.hideQuestion = function(time, question) {
-  if (time > question.movie_time + question.duration + 5 + 5 + 5) {
-    console.log('hide question');
-    this.win.webContents.send('hide-question', question);
-    this.currentQuestion = null;
-    this.currentState = this.WAITING;
-    this.currentAnswers = {};
-    this.websockets.emit('clear_question');
-  }
+  console.log('hide question');
+  this.win.webContents.send('hide-question', question);
+  this.currentQuestion = null;
+  this.currentState = this.IDLE;
+  this.currentAnswers = {};
+  this.websockets.emit('clear_question');
 };
 
 /**

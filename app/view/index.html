@@ -7,17 +7,14 @@
 
 <body>
   <div id="intro">
-      <div class="logo animated fadeIn">
+    <div class="logo animated fadeIn">
       <img class="animated rotateIn">
-      <div class="ip animated slideInRight"></div>
       <button class="start animated bounceInUp">Start</button>
     </div>
   </div>
 
   <video id="movie" class="movie" controls>
-    <source id='avi'
-    src="/home/rmiller/beetlejuice.mp4"
-    type='video/mp4'>
+    <source id='avi' src="C:\Users\Ryan Mueller\Downloads\Beetlejuice.1988.1080p.BluRay.x264.anoXmous\Beetlejuice.1988.1080p.BluRay.x264.anoXmous_.mp4" type='video/mp4'>
     <p>Your user agent does not support the HTML5 Video element.</p>
   </video>
 
@@ -88,17 +85,14 @@
     const $ = require('jquery');
     const os = require('os');
     const interfaces = os.networkInterfaces();
-    var ip = null;
 
     $.each(interfaces, function(index, interface) {
       $.each(interface, function(index2, socket) {
         if (!socket.internal && socket.family === 'IPv4') {
-          ip = socket.address;
+          console.log('IP: ' + socket.address);
         }
       });
     });
-
-    $('.ip').html(ip + ':3001');
 
     $('.start').click(function () {
       ipcRenderer.send('start-game');
@@ -240,7 +234,7 @@
 
       interval = setInterval(function() {
         var currentTime = movie.currentTime;
-        var timerWidth = 95.7 - (95.7 * ((currentTime - startTime) / duration));
+        var timerWidth = 100.0 - (100.0 * ((currentTime - startTime) / duration));
         timer.css('width', timerWidth + '%');
       }, 50);
     }

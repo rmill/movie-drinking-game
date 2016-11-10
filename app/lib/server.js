@@ -86,7 +86,7 @@ function GameServer (game) {
     if (!req.cookies.token ||
         req.cookies.game_id != self.game.id)
     {
-      res.returnStatus(401);
+      res.status(401).send('Unauthorized');
     }
 
     var json = {
@@ -102,7 +102,7 @@ function GameServer (game) {
     if (!req.cookies.token ||
         req.cookies.game_id != self.game.id)
     {
-      res.returnStatus(401);
+      res.status(401).send('Unauthorized');
     }
 
     self.game.answer(req.cookies.token, req.body['answer_id']);

@@ -27,27 +27,17 @@ window.onload = function() {
       $.ajax({
           'url': '/state',
           'success': function (response) {
-            switch(response.state) {
-              case 'new_game':
-              case 'waiting':
-              case 'show_question':
-              case 'hide_question':
-              case 'end_game':
-              default:
-                clearState();
-                break;
-              case 'show_correct_answer':
-              case 'show_drinks':
-              case 'show_answers':
-              case 'waiting_for_answers':
-                hasQuestion = true;
+            if (['new_game', 'idle', 'show_question', 'waiting_for_question', 'hide_question', 'end_game'].indexOf(response.state) >= 0) {
+              hasQuestion = false;
+              $('.pressed').removeClass('pressed');
+            }
 
-                if (!response.answer) {
-                  $('.pressed').removeClass('pressed');
-                }
-
-                break;
-            };
+            if (['show_answers', 'waiting_for_answers', 'show_correct_answer', 'waiting_for_correct_answer', 'show_drinks', 'waiting_for_drinks'].indexOf(response.state) >= 0) {
+              hasQuestion = true;
+              if (!response.answer) {
+                $('.pressed').removeClass('pressed');
+              }
+            }
           }
       });
     }
