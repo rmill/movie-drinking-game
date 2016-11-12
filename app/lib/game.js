@@ -162,7 +162,13 @@ Game.prototype.hideQuestion = function(time, question) {
  */
 Game.prototype.endGame = function() {
   this.statistics.compile(this.players);
-  this.win.webContents.send('end-game', JSON.stringify(this.statistics));
+
+  var ending = {
+    title: this.name,
+    stats: this.statistics
+  };
+
+  this.win.webContents.send('end-game', JSON.stringify(ending));
 };
 
 /**
