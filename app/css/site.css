@@ -273,7 +273,7 @@ input {
   height: 50%;
   width: 100%;
   color: #065d7b;
-  font-size: 98px;
+  font-size: 11vw;
   font-weight: 700;
 }
 
@@ -297,4 +297,19 @@ input {
 
 .loading-container .loading-cell {
   font-size: 72px;
+}
+
+.content-score {
+  text-align: center;
+  margin-top: 15px;
+  color: #065d7b;
+}
+
+.content-score .content-score-icon {
+  font-size: 3vh;
+  margin: 15px;
+}
+
+.content-score .content-score-icon i {
+  margin-right: 5px;
 }
