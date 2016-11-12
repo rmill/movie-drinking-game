@@ -281,3 +281,20 @@ input {
   display: table-cell;
   vertical-align: middle;
 }
+
+.loading-container {
+  height: 100%;
+  text-align: center;
+  color: #065d7b;
+  display: table;
+  width: 100%;
+}
+
+.loading-container .loading-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.loading-container .loading-cell {
+  font-size: 72px;
+}
