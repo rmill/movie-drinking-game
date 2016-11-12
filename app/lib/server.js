@@ -12,6 +12,7 @@ function DiscoveryServer (port) {
 
   app.use('/lib', express.static(path.join(appDir, '../node_modules')));
   app.use('/css', express.static(path.join(appDir, 'css')));
+  app.use('/img', express.static(path.join(appDir, 'img')));
 
   console.log(`running on port ${port}`);
 

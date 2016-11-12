@@ -1,26 +1,42 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/font-awesome-4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/site.css">
 	<script src="lib/jquery/dist/jquery.min.js"></script>
 </head>
-<body>
 
-	<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-	<span class="sr-only">Loading...</span>
+<body class="controller">
 
-<script>
-	window.onload = function() {
-	for(var i=0;i<255;i++){
-			const ip = 'http://192.168.0.' + i + ':3001'
-			$.ajax({
-				'url': ip,
-				'timeout': 10000,
-				'success': function() {
-					window.location.replace(ip);
-				}
-			});
+	<div class="header">
+		<div class="header-container">
+			<div class="header-logo">
+				<img class="logo">
+			</div>
+		</div>
+	</div>
+
+	<div class="content">
+		<div class="loading-container">
+			<div class="loading-cell">
+				<i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+				<span class="sr-only">Loading...</span>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		window.onload = function() {
+		for(var i=0;i<255;i++){
+				const ip = 'http://192.168.0.' + i + ':3001'
+				$.ajax({
+					'url': ip,
+					'timeout': 10000,
+					'success': function() {
+						window.location.replace(ip);
+					}
+				});
+			}
 		}
-	}
-</script>
+	</script>
 
 </body>
