@@ -8,7 +8,12 @@ const appDir = path.dirname(require.main.filename);
 
 function DiscoveryServer (port) {
   var app = express();
+  var port = port || 6768;
+
   app.use('/lib', express.static(path.join(appDir, '../node_modules')));
+  app.use('/css', express.static(path.join(appDir, 'css')));
+
+  console.log(`running on port ${port}`);
 
   app.get('/', function (req, res) {
     res.set('Access-Control-Allow-Origin', '*');
