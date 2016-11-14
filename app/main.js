@@ -13,6 +13,10 @@ const {GameServer} = require('./lib/server');
 const io = require('socket.io')(3232);
 // The gane object
 const Game = require('./lib/game');
+// The request library
+const request = require('request');
+// The network info library
+const network = require('network');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -62,6 +66,35 @@ function createGame() {
     socket.on('subscribe', function(topic) {
       this.join(topic);
     });
+  });
+
+  // Register the game with the server
+  network.get_active_interface(function(err, networkInterface) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    if (!networkInterface) {
+      console.log('No private IP');
+      return;
+    }
+
+    var privateIp = networkInterface.ip_address;
+
+    request.post(
+      {
+        url: 'http://192.168.0.116:6768/register',
+        form: { private_ip: `${ privateIp }:3001` }
+      },
+      function(err, httpResponse, body) {
+        if (err) {
+          console.log(err);
+        }
+      }
+    );
+
+    console.log(`IP: ${ privateIp }`)
   });
 
   game = new Game(win, io, questions, gameData.end_time, gameData.rules, gameData.name);

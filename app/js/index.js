@@ -1,17 +1,7 @@
 const {ipcRenderer} = require('electron');
 const $ = require('jquery');
-const os = require('os');
-const networkInterfaces = os.networkInterfaces();
 
 window.onload = function() {
-  $.each(networkInterfaces, function(index, networkInterface) {
-    $.each(networkInterface, function(index2, socket) {
-      if (!socket.internal && socket.family === 'IPv4') {
-        console.log('IP: ' + socket.address);
-      }
-    });
-  });
-
   $('.start').click(function () {
     ipcRenderer.send('start-game');
     $('#intro').fadeOut();
