@@ -84,7 +84,7 @@ function createGame() {
 
     request.post(
       {
-        url: 'http://192.168.0.116:6768/register',
+        url: 'http://drinkupcinema.com/register',
         form: { private_ip: `${ privateIp }:3001` }
       },
       function(err, httpResponse, body) {

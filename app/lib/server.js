@@ -19,8 +19,6 @@ function DiscoveryServer (port) {
   console.log(`running on port ${port}`);
 
   app.get('/', function (req, res) {
-    console.log(games);
-    console.log(games[req.connection.remoteAddress]);
     if (!games[req.connection.remoteAddress]) {
       res.send('Could not find game. Refresh the page to try again.');
       return;
