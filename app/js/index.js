@@ -114,18 +114,18 @@ window.onload = function() {
     $('#question-overlay .timer-foreground').width("100%");
   });
 
-  ipcRenderer.on('end-game', function(event, ending) {
-    var stats = JSON.parse(ending.stats);
+  ipcRenderer.on('end-game', function(event, endingJson) {
+    const ending = JSON.parse(endingJson);
 
     $('.credits .movie-title').html(ending.title);
 
     $('.movie').fadeOut(1000, function() {
-      $('.most-correct').html(stats.mostCorrectAnswers.name);
-      $('.most-wrong').html(stats.mostWrongAnswers.name);
-      $('.most-missed').html(stats.mostMissedAnswers.name);
-      $('.best-streak').html(stats.bestStreak.name);
-      $('.most-drinks').html(stats.mostDrinks.name);
-      $('.quickest-answers').html(stats.bestAnswerSpeed.name);
+      $('.most-correct').html(ending.stats.mostCorrectAnswers.name);
+      $('.most-wrong').html(ending.stats.mostWrongAnswers.name);
+      $('.most-missed').html(ending.stats.mostMissedAnswers.name);
+      $('.best-streak').html(ending.stats.bestStreak.name);
+      $('.most-drinks').html(ending.stats.mostDrinks.name);
+      $('.quickest-answers').html(ending.stats.bestAnswerSpeed.name);
 
       $('.credits').addClass('animate');
     });

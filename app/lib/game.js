@@ -129,10 +129,16 @@ Game.prototype.waiting = function (currentTime, endTime, nextState) {
  */
 Game.prototype.showCorrectAnswer = function(question) {
   console.log('show correct answer');
-  this.win.webContents.send('show-correct-answers', question.correct_answers);
-  this.websockets.emit('show_answers', question.correct_answers);
+
+  var showCorrectAnswer = {
+    answers: question.correct_answers,
+    stats: this.statistics.players
+  };
+
   this.statistics.process(this.currentQuestion, this.currentAnswers, this.players);
   this.currentState = this.WAITING_FOR_CORRECT_ANSWER;
+  this.win.webContents.send('show-correct-answers', question.correct_answers);
+  this.websockets.emit('show_correct_answers', showCorrectAnswer);
 };
 
 /**
@@ -150,7 +156,8 @@ Game.prototype.showDrinks = function(time, question, drinks) {
  */
 Game.prototype.hideQuestion = function(time, question) {
   console.log('hide question');
-  this.win.webContents.send('hide-question', question);
+
+  this.win.webContents.send('hide-question');
   this.currentQuestion = null;
   this.currentState = this.IDLE;
   this.currentAnswers = {};
@@ -200,10 +207,17 @@ Game.prototype.getCurrentState = function() {
 };
 
 /**
- * Get the current state for a player
+ * Get the current answer for a player
  */
 Game.prototype.getCurrentAnswer = function(playerToken) {
   return this.currentAnswers[playerToken];
+};
+
+/**
+ * Get the current stats for a player
+ */
+Game.prototype.getCurrentStats = function(playerToken) {
+  return this.statistics.getStats(playerToken);
 };
 
 /**
@@ -228,6 +242,10 @@ function Statistics () {
   this.bestAnswerSpeed = {};
   this.currentWrongPlayers = [];
   this.currentDrinks = [];
+};
+
+Statistics.prototype.getStats = function(playerToken) {
+  return this.players[playerToken];
 };
 
 Statistics.prototype.process = function (question, answers, players) {

@@ -121,8 +121,9 @@ function GameServer (game) {
     }
 
     var json = {
-      state: self.game.getCurrentState() || null,
-      answer: self.game.getCurrentAnswer(req.cookies.token) || null
+      state: self.game.getCurrentState(req.cookies) || null,
+      answer: self.game.getCurrentAnswer(req.cookies.token) || null,
+      stats: self.game.getCurrentStats(req.cookies.token) || null
     };
 
     res.setHeader('Content-Type', 'application/json');

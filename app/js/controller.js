@@ -38,6 +38,8 @@ window.onload = function() {
                 $('.pressed').removeClass('pressed');
               }
             }
+
+            updateStats(response.stats);
           }
       });
     }
@@ -111,6 +113,17 @@ window.onload = function() {
     $('.pressed').removeClass('pressed');
   }
 
+  function updateStats(stats) {
+    if (!stats) {
+      return;
+    }
+
+    $('.score-correct span').html(stats.correctAnswers);
+    $('.score-incorrect span').html(stats.wrongAnswers);
+    $('.score-missed span').html(stats.missedAnswers);
+    $('.score-drinks span').html(stats.drinks);
+  }
+
   /**
    * Add the websocket connection
    */
@@ -118,9 +131,13 @@ window.onload = function() {
 
   connection.emit('subscribe', 'clear_question');
   connection.emit('subscribe', 'new_question');
+  connection.emit('subscribe', 'show_correct_answers');
 
   connection.on('clear_question', clearState);
   connection.on('new_question', function () {
     hasQuestion = true;
+  });
+  connection.on('show_correct_answers', function(showCorrectAnswers) {
+    updateStats(showCorrectAnswers.stats[Cookies.get('token')]);
   });
 }
