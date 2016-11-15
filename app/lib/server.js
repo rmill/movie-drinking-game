@@ -19,6 +19,7 @@ function DiscoveryServer (port) {
   console.log(`running on port ${port}`);
 
   app.get('/', function (req, res) {
+    console.log(req);
     console.log(req.headers['x-forward-for']);
     console.log(req.headers['X-Forward-For']);
 
