@@ -24,11 +24,15 @@ function DiscoveryServer (port) {
       return;
     }
 
-    res.redirect(`http://${ games[req.connection.remoteAddress] }`);
+    const redirect = `http://${ games[req.connection.remoteAddress] }`;
+
+    console.log(`${ req.connection.remoteAddress }: Redirecting to ${ redirect }`)
+
+    res.redirect(redirect);
   });
 
   app.post('/register', function (req, res) {
-    console.log(`Connection: ${ req.connection.remoteAddress } ${ req.body['private_ip'] }`);
+    console.log(`New Game: ${ req.connection.remoteAddress } ${ req.body['private_ip'] }`);
     games[req.connection.remoteAddress] = req.body['private_ip'];
     res.end();
   });
