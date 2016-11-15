@@ -20,10 +20,11 @@ function DiscoveryServer (port) {
 
   app.get('/', function (req, res) {
     console.log(req);
-    console.log(req.headers['x-forward-for']);
-    console.log(req.headers['X-Forward-For']);
+    console.log(req.get('x-forwarded-for'))''
+    console.log(req.headers['x-forwarded-for']);
+    console.log(req.headers['X-Forwarded-For']);
 
-    const requestingIp = req.headers['x-forward-for'];
+    const requestingIp = req.headers['x-forwarded-for'];
 
     if (!games[requestingIp]) {
       res.send('Could not find game. Refresh the page to try again.');
