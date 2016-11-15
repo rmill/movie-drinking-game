@@ -108,13 +108,14 @@
     font-family: Raleway;
     margin: auto;
     width: 80%;
+    overflow-x: hidden;
   }
 
   .controller-button {
     width: 100%;
     height: 100%;
-  	display:inline-block;
-  	font-size:70px;
+  	display: inline-block;
+  	font-size: 12vw;
   	text-decoration:none;
     font-weight: 700;
     font-family: Raleway;
@@ -122,7 +123,8 @@
     border-radius: 19px;
     background-color: #065d7b;
     color: #f5f8fe;
-    border-bottom: 13px solid #04495e;
+    border: 0;
+    border-bottom: 5px solid #04495e;
   }
 
 .pressed {
@@ -220,18 +222,20 @@ input {
 .rules {
   font-family: Raleway;
   color: #065d7b;
-  padding: 27px;
 }
 
-.rules .movie-title {
-  font-size: 41px;
+.rules ul {
+  margin: 0;
 }
 
 .rules li {
-  padding-bottom: 40px;
-  font-size: 2.5em;
+  padding-bottom: 4vh;
+  font-size: 6vw;
 }
 
+.controller .content .rules .content-text {
+  padding: 32px 0px;
+}
 
 .controller {
   background-image: url(../img/background.png);
@@ -259,12 +263,8 @@ input {
   text-align: center;
   padding: 90px 0px;
   color: #065d7b;
-  font-size: 111px;
+  font-size: 18vw;
   font-weight: 700;
-}
-
-.controller .content .content-buttons {
-  overflow: hidden;
 }
 
 .controller .content .content-name {
@@ -300,13 +300,13 @@ input {
 }
 
 .content-score {
+  height: 15%;
   text-align: center;
-  margin-top: 15px;
   color: #065d7b;
 }
 
 .content-score .content-score-icon {
-  font-size: 3vh;
+  font-size: 6vw;
   margin: 15px;
 }
 
