@@ -35,8 +35,10 @@ function DiscoveryServer (port) {
   });
 
   app.post('/register', function (req, res) {
-    console.log(`New Game: ${ req.connection.remoteAddress } ${ req.body['private_ip'] }`);
-    games[req.connection.remoteAddress] = req.body['private_ip'];
+    const requestingIp = req.get('x-forwarded-for');
+
+    console.log(`New Game: ${ requestingIp } -> ${ req.body['private_ip'] }`);
+    games[requestingIp] = req.body['private_ip'];
     res.end();
   });
 
