@@ -67,6 +67,7 @@ function GameServer (game) {
         req.cookies.game_id == self.game.id)
     {
       res.redirect('/controller');
+      return;
     }
 
     res.sendFile(path.join(appDir, 'view/signin.html'));
@@ -78,6 +79,7 @@ function GameServer (game) {
 
     if (!name) {
       res.redirect('/');
+      return;
     }
 
     res.cookie('name', name);
@@ -94,6 +96,7 @@ function GameServer (game) {
         req.cookies.game_id != self.game.id)
     {
       res.redirect('/');
+      return;
     }
 
     res.sendFile(path.join(appDir, 'view/controller.html'));
@@ -114,6 +117,7 @@ function GameServer (game) {
         req.cookies.game_id != self.game.id)
     {
       res.status(401).send('Unauthorized');
+      return;
     }
 
     var json = {
@@ -130,6 +134,7 @@ function GameServer (game) {
         req.cookies.game_id != self.game.id)
     {
       res.status(401).send('Unauthorized');
+      return;
     }
 
     self.game.answer(req.cookies.token, req.body['answer_id']);
