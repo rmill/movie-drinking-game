@@ -18,6 +18,11 @@
   src: url(as_cute.ttf);
 }
 
+@font-face {
+  font-family: FillMeWithColor;
+  src: url(FillMeWithColor.ttf);
+}
+
 .movie {
 	height: 100%;
 	width: 100%;
@@ -254,7 +259,7 @@ td.correct {
   margin: auto;
 }
 
-.credits { 
+.credits {
   position: absolute;
   width: 100%;
   font-family: Raleway;
@@ -297,7 +302,7 @@ td.correct {
   position: absolute;
   font-size: 37px;
   color: black;
-  font-family: AsCute;
+  font-family: FillMeWithColor;
 }
 
 .drinks-overlay {
