@@ -19,17 +19,20 @@ function DiscoveryServer (port) {
   console.log(`running on port ${port}`);
 
   app.get('/', function (req, res) {
-    console.log(req);
+    console.log(req.get('x-forward-for'));
+    console.log(req.get('X-Forward-For'));
 
-    if (!games[req.connection.remoteAddress]) {
+    const requestingIp = req.get('x-forward-for');
+
+    if (!games[requestingIp]) {
       res.send('Could not find game. Refresh the page to try again.');
-      console.log(`${ req.connection.remoteAddress }: No game found.`);
+      console.log(`${ requestingIp }: No game found.`);
       return;
     }
 
-    const redirect = `http://${ games[req.connection.remoteAddress] }`;
+    const redirect = `http://${ games[requestingIp] }`;
 
-    console.log(`${ req.connection.remoteAddress }: Redirecting to ${ redirect }`)
+    console.log(`${ requestingIp }: Redirecting to ${ redirect }`)
 
     res.redirect(redirect);
   });
