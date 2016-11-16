@@ -237,6 +237,10 @@ input {
   padding: 32px 0px;
 }
 
+.controller .content .content-text.content-notfound {
+  font-size: 10vw;
+}
+
 .controller {
   background-image: url(../img/background.png);
   background-repeat: no-repeat;

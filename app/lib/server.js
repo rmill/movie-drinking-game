@@ -22,7 +22,7 @@ function DiscoveryServer (port) {
     const requestingIp = req.get('x-forwarded-for');
 
     if (!games[requestingIp]) {
-      res.send('Could not find game. Refresh the page to try again.');
+      res.sendFile(path.join(appDir, 'view/notfound.html'));
       console.log(`${ requestingIp }: No game found.`);
       return;
     }
