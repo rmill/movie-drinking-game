@@ -6,6 +6,12 @@ window.onload = function() {
    */
   $('#name').html(Cookies.get('name'));
 
+  // Fit the name into the screen width
+  while ($('.content-name').innerWidth() > $('.content-buttons').innerWidth()) {
+    var fontSize = parseFloat($('#name').css('font-size'));
+    $('#name').css('font-size', fontSize - 1);
+  }
+
   /**
    * Handle visibility change
    */
