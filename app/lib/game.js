@@ -89,18 +89,26 @@ Game.prototype.idle = function(time) {
  *  Show the question
  */
 Game.prototype.showQuestion = function(question) {
-  console.log('show question');
+  console.log('show question:', question.text);
 
   var slope = Math.pow(Math.random(), 2.2);
   var minMultiplyer = 1;
   var maxMultiplyer = 3;
   var multipler = (slope * (maxMultiplyer - minMultiplyer)) + minMultiplyer;
   var roundedMultipler = Math.round(multipler * 10) / 10;
+  question.drink_multiplyer = roundedMultipler;
 
   console.log('multiplyer: ' + roundedMultipler);
 
-  question.drink_multiplyer = roundedMultipler;
+  const showQuestion = {
+    text: question.text,
+    multiplyer: question.drink_multiplyer,
+    answers: question.answers
+  }
+
+
   this.win.webContents.send('show-question', question);
+  this.websockets.emit('show_question', showQuestion);
   this.currentState = this.WAITING_FOR_QUESTION;
 };
 
@@ -112,7 +120,7 @@ Game.prototype.showAnswers = function(time, question) {
     question.start_time = new Date().getTime();
     this.win.webContents.send('show-answers', question.answers, question.duration);
     this.currentState = this.WAITING_FOR_ANSWERS;
-    this.websockets.emit('new_question');
+    this.websockets.emit('show_answers');
 };
 
 /**

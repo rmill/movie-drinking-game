@@ -117,6 +117,7 @@ window.onload = function() {
   function clearState() {
     hasQuestion = false;
     $('.pressed').removeClass('pressed');
+    $('#name').html(Cookies.get('name'));
   }
 
   function updateStats(stats) {
@@ -136,11 +137,15 @@ window.onload = function() {
   var connection = io(window.location.hostname + ':3232');
 
   connection.emit('subscribe', 'clear_question');
-  connection.emit('subscribe', 'new_question');
+  connection.emit('subscribe', 'show_question');
+  connection.emit('subscribe', 'show_answers');
   connection.emit('subscribe', 'show_correct_answers');
 
   connection.on('clear_question', clearState);
-  connection.on('new_question', function () {
+  connection.on('show_question', function (showQuestion) {
+    $('#name').html(showQuestion.text);
+  });
+  connection.on('show_answers', function () {
     hasQuestion = true;
   });
   connection.on('show_correct_answers', function(showCorrectAnswers) {
