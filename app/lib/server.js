@@ -75,7 +75,7 @@ function GameServer (game) {
 
   app.post('/', function (req, res) {
     var token = randomstring.generate();
-    var name = req.body['user_name'];
+    var name = req.body['user_name'].trim();
 
     if (!name) {
       res.redirect('/');
