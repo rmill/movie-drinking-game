@@ -144,7 +144,7 @@ window.onload = function() {
   connection.emit('subscribe', 'show_answers');
   connection.emit('subscribe', 'show_correct_answers');
 
-  connection.on('hide_question ', clearState);
+  connection.on('hide_question', clearState);
   connection.on('show_question', function (showQuestion) {
     $('#name').html(showQuestion.text);
   });

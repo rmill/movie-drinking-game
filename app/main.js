@@ -28,7 +28,7 @@ function createWindow() {
   // Create the browser window.
   win = new BrowserWindow();
   win.setFullScreen(true);
-  // win.setMenu(null);
+  win.setMenu(null);
 
   // and load the index.html of the app.
   win.loadURL(`${APP_PATH}/view/index.html`);
