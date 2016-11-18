@@ -33,16 +33,10 @@ window.onload = function() {
       $.ajax({
           'url': '/state',
           'success': function (response) {
-            if (['new_game', 'idle', 'show_question', 'waiting_for_question', 'hide_question', 'end_game'].indexOf(response.state) >= 0) {
-              hasQuestion = false;
-              $('.pressed').removeClass('pressed');
-            }
+            hasQuestion = ['show_answers', 'waiting_for_answers'].indexOf(response.state) >= 0;
 
-            if (['show_answers', 'waiting_for_answers', 'show_correct_answer', 'waiting_for_correct_answer', 'show_drinks', 'waiting_for_drinks'].indexOf(response.state) >= 0) {
-              hasQuestion = true;
-              if (!response.answer) {
-                $('.pressed').removeClass('pressed');
-              }
+            if (!response.answer) {
+              $('.pressed').removeClass('pressed');
             }
 
             updateStats(response.stats);
@@ -117,7 +111,6 @@ window.onload = function() {
   function clearState() {
     hasQuestion = false;
     $('.pressed').removeClass('pressed');
-    $('#name').html(Cookies.get('name'));
   }
 
   function updateStats(stats) {
@@ -137,18 +130,15 @@ window.onload = function() {
   var connection = io(window.location.hostname + ':3232');
 
   connection.emit('subscribe', 'clear_question');
-  connection.emit('subscribe', 'show_question');
   connection.emit('subscribe', 'show_answers');
   connection.emit('subscribe', 'show_correct_answers');
 
   connection.on('clear_question', clearState);
-  connection.on('show_question', function (showQuestion) {
-    $('#name').html(showQuestion.text);
-  });
   connection.on('show_answers', function () {
     hasQuestion = true;
   });
   connection.on('show_correct_answers', function(showCorrectAnswers) {
+    hasQuestion = false;
     updateStats(showCorrectAnswers.stats[Cookies.get('token')]);
   });
 }
