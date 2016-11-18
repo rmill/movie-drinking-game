@@ -47,7 +47,7 @@ function DiscoveryServer (port) {
 }
 
 function GameServer (game) {
-  var NAME_MAX_LENGTH = 12;
+  var NAME_MAX_LENGTH = 16;
 
   var app = express();
   app.use(cookieParser());
@@ -89,8 +89,13 @@ function GameServer (game) {
       return;
     }
 
-    if (name.length > 12) {
-      res.render('signin.html', { error: 'Name must be 12 characters or less' });
+    if (name.length > NAME_MAX_LENGTH) {
+      res.render('signin.html', { error: `Name must be ${ NAME_MAX_LENGTH } characters or less` });
+      return;
+    }
+
+    if (self.game.isNameTaken(name)) {
+      res.render('signin.html', { error: `The name '${ name }' already taken` });
       return;
     }
 

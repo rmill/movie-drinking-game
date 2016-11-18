@@ -236,6 +236,19 @@ Game.prototype.getCurrentStats = function(playerToken) {
 };
 
 /**
+ * Is the player name already in use?
+ */
+Game.prototype.isNameTaken = function(name) {
+  for(var token in this.players) {
+      if (this.players[token] == name) {
+        return true;
+      }
+  }
+
+  return false;
+};
+
+/**
  * Create or update a player
  */
 Game.prototype.player = function(token, name) {
