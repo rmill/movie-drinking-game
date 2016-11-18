@@ -112,7 +112,7 @@ Game.prototype.showAnswers = function(time, question) {
     question.start_time = new Date().getTime();
     this.win.webContents.send('show-answers', question.answers, question.duration);
     this.currentState = this.WAITING_FOR_ANSWERS;
-    this.websockets.emit('new_question');
+    this.websockets.emit('show_answers');
 };
 
 /**
