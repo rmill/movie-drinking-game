@@ -317,3 +317,9 @@ input {
 .content-score .content-score-icon i {
   margin-right: 5px;
 }
+
+.content-error {
+  padding-top: 10px;
+  font-size: 2vh;
+  color: red;
+}

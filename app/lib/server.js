@@ -1,4 +1,5 @@
 const express = require('express');
+const mustacheExpress = require('mustache-express');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
 const randomstring = require("randomstring");
@@ -46,6 +47,8 @@ function DiscoveryServer (port) {
 }
 
 function GameServer (game) {
+  var NAME_MAX_LENGTH = 12;
+
   var app = express();
   app.use(cookieParser());
   app.use(bodyParser.json());
@@ -54,6 +57,10 @@ function GameServer (game) {
   app.use('/img', express.static(path.join(appDir, 'img')));
   app.use('/js', express.static(path.join(appDir, 'js')));
   app.use('/lib', express.static(path.join(appDir, '../node_modules')));
+
+  app.engine('html', mustacheExpress());
+  app.set('view engine', 'mustache');
+  app.set('views', path.join(appDir, 'view'));
 
   let self = this;
   this.game = game;
@@ -70,15 +77,20 @@ function GameServer (game) {
       return;
     }
 
-    res.sendFile(path.join(appDir, 'view/signin.html'));
+    res.render('signin.html');
   });
 
   app.post('/', function (req, res) {
     var token = randomstring.generate();
-    var name = req.body['user_name'];
+    var name = req.body['user_name'].trim();
 
     if (!name) {
       res.redirect('/');
+      return;
+    }
+
+    if (name.length > 12) {
+      res.render('signin.html', { error: 'Name must be 12 characters or less' });
       return;
     }
 
