@@ -20,10 +20,15 @@
 
 	<div class="content">
 		<div class="content-text">SIGN IN</div>
-
 		<form method="POST">
-    	<input id="name" name="user_name" type="text" placeholder="USER NAME" maxlength="12">
+    	<input id="name" name="user_name" type="text" placeholder="USER NAME">
+
+			{{#error}}
+				<div class="content-error">{{ error }}</div>
+			{{/error}}
+
 			<br />
+
   		<button type="submit" class="submit">SUBMIT</button>
 		</form>
 	</div>

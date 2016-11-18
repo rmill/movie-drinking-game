@@ -11,6 +11,8 @@
     "express": "^4.13.4",
     "jquery": "^2.2.4",
     "js-cookie": "^2.1.1",
+    "mustache": "^2.3.0",
+    "mustache-express": "^1.2.2",
     "network": "^0.3.0",
     "randomstring": "^1.1.4",
     "request": "^2.78.0",
