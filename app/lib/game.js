@@ -169,7 +169,7 @@ Game.prototype.hideQuestion = function(time, question) {
   this.currentQuestion = null;
   this.currentState = this.IDLE;
   this.currentAnswers = {};
-  this.websockets.emit('clear_question');
+  this.websockets.emit('hide_question');
 };
 
 /**
@@ -220,6 +220,13 @@ Game.prototype.getCurrentState = function() {
 Game.prototype.getCurrentAnswer = function(playerToken) {
   return this.currentAnswers[playerToken];
 };
+
+/**
+ * Get the current question
+ */
+Game.prototype.getCurrentQuestion = function() {
+  return this.currentQuestion;
+}
 
 /**
  * Get the current stats for a player

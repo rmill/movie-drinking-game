@@ -135,6 +135,7 @@ function GameServer (game) {
     var json = {
       state: self.game.getCurrentState(req.cookies) || null,
       answer: self.game.getCurrentAnswer(req.cookies.token) || null,
+      question: self.game.getCurrentQuestion() || null,
       stats: self.game.getCurrentStats(req.cookies.token) || null
     };
 

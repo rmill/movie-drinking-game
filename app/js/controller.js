@@ -33,7 +33,16 @@ window.onload = function() {
       $.ajax({
           'url': '/state',
           'success': function (response) {
-            hasQuestion = ['show_answers', 'waiting_for_answers'].indexOf(response.state) >= 0;
+            const hasQuestionStates = ['show_answers', 'waiting_for_answers'];
+            const showQuestionStates = ['show_question', 'waiting_for_question', 'show_answers', 'waiting_for_answers', 'show_correct_answer', 'waiting_for_correct_answer', 'show_drinks', 'waiting_for_drinks'];
+
+            hasQuestion = hasQuestionStates.indexOf(response.state) >= 0;
+
+            if (showQuestionStates.indexOf(response.state) >= 0) {
+              $('#name').html(response.question.text);
+            } else {
+              $('#name').html(Cookies.get('name'));
+            }
 
             if (!response.answer) {
               $('.pressed').removeClass('pressed');
@@ -111,6 +120,7 @@ window.onload = function() {
   function clearState() {
     hasQuestion = false;
     $('.pressed').removeClass('pressed');
+    $('#name').html(Cookies.get('name'));
   }
 
   function updateStats(stats) {
@@ -129,11 +139,15 @@ window.onload = function() {
    */
   var connection = io(window.location.hostname + ':3232');
 
-  connection.emit('subscribe', 'clear_question');
+  connection.emit('subscribe', 'hide_question');
+  connection.emit('subscribe', 'show_question');
   connection.emit('subscribe', 'show_answers');
   connection.emit('subscribe', 'show_correct_answers');
 
-  connection.on('clear_question', clearState);
+  connection.on('hide_question ', clearState);
+  connection.on('show_question', function (showQuestion) {
+    $('#name').html(showQuestion.text);
+  });
   connection.on('show_answers', function () {
     hasQuestion = true;
   });
