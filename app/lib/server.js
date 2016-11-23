@@ -28,10 +28,17 @@ function DiscoveryServer (port) {
   // Setup websockets
   var io = socketio(server);
   io.on('connection', (socket) => {
-    console.log('Client connected');
-    console.log(socket.handshake);
-    socket.on('disconnect', () => console.log('Client disconnected'));
-    socket.on('register', (data) => console.log(data));
+    const requestingIp = socket.handshake.headers['x-forwarded-for'];
+
+    socket.on('disconnect', () => {
+        console.log(`Removing Game: ${ requestingIp }`);
+        delete games[requestingIp];
+    });
+
+    socket.on('register', (data) => {
+      games[requestingIp] = data['private_ip'];
+      console.log(`New Game: ${ requestingIp } -> ${ data['private_ip'] }`);
+    });
   });
 
   console.log(`running on port ${port}`);
@@ -53,23 +60,10 @@ function DiscoveryServer (port) {
     res.redirect(redirect);
   });
 
-  // Regiester a game's private IP
-  // app.post('/register', function (req, res) {
-  //   const requestingIp = req.get('x-forwarded-for');
-  //
-  //   console.log(`New Game: ${ requestingIp } -> ${ req.body['private_ip'] }`);
-  //
-  //   games[requestingIp] = req.body['private_ip'];
-  //   res.end();
-  // });
-
   server.listen(port);
 }
 
 function GameServer (game) {
-  const socket = require('socket.io-client')('http://192.168.0.116:6768');
-  socket.emit('register', {'test': 'testerssss'});
-
   var NAME_MAX_LENGTH = 16;
 
   var app = express();

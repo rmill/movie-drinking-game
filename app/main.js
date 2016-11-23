@@ -11,6 +11,8 @@ const APP_PATH = `file://${__dirname}`;
 const {GameServer} = require('./lib/server');
 // The websocket server
 const io = require('socket.io')(3232);
+// The websocket client
+const socket = require('socket.io-client')('http://www.drinkupcinema.com');
 // The gane object
 const Game = require('./lib/game');
 // The request library
@@ -81,18 +83,7 @@ function createGame() {
     }
 
     var privateIp = networkInterface.ip_address;
-
-    request.post(
-      {
-        url: 'http://www.drinkupcinema.com/register',
-        form: { private_ip: `${ privateIp }:3001` }
-      },
-      function(err, httpResponse, body) {
-        if (err) {
-          console.log(err);
-        }
-      }
-    );
+    socket.emit('register', {'private_ip': privateIp});
 
     console.log(`IP: ${ privateIp }`)
   });
