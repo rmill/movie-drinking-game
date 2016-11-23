@@ -2,11 +2,16 @@ const express = require('express');
 const mustacheExpress = require('mustache-express');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser');
-const randomstring = require("randomstring");
-const path = require("path");
+const randomstring = require('randomstring');
+const path = require('path');
+const socketio = require('socket.io');
+const http = require('http');
 
 const appDir = path.dirname(require.main.filename);
 
+/**
+ * The server used to discover local games
+ */
 function DiscoveryServer (port) {
   var app = express();
   var port = port || 6768;
@@ -16,9 +21,22 @@ function DiscoveryServer (port) {
   app.use('/lib', express.static(path.join(appDir, '../node_modules')));
   app.use('/css', express.static(path.join(appDir, 'css')));
   app.use('/img', express.static(path.join(appDir, 'img')));
+  // app.listen(port);
+
+  var server = http.createServer(app);
+
+  // Setup websockets
+  var io = socketio(server);
+  io.on('connection', (socket) => {
+    console.log('Client connected');
+    console.log(socket.handshake);
+    socket.on('disconnect', () => console.log('Client disconnected'));
+    socket.on('register', (data) => console.log(data));
+  });
 
   console.log(`running on port ${port}`);
 
+  // Redirect to a local game
   app.get('/', function (req, res) {
     const requestingIp = req.get('x-forwarded-for');
 
@@ -35,18 +53,23 @@ function DiscoveryServer (port) {
     res.redirect(redirect);
   });
 
-  app.post('/register', function (req, res) {
-    const requestingIp = req.get('x-forwarded-for');
+  // Regiester a game's private IP
+  // app.post('/register', function (req, res) {
+  //   const requestingIp = req.get('x-forwarded-for');
+  //
+  //   console.log(`New Game: ${ requestingIp } -> ${ req.body['private_ip'] }`);
+  //
+  //   games[requestingIp] = req.body['private_ip'];
+  //   res.end();
+  // });
 
-    console.log(`New Game: ${ requestingIp } -> ${ req.body['private_ip'] }`);
-    games[requestingIp] = req.body['private_ip'];
-    res.end();
-  });
-
-  app.listen(port);
+  server.listen(port);
 }
 
 function GameServer (game) {
+  const socket = require('socket.io-client')('http://192.168.0.116:6768');
+  socket.emit('register', {'test': 'testerssss'});
+
   var NAME_MAX_LENGTH = 16;
 
   var app = express();
