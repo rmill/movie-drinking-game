@@ -83,7 +83,7 @@ function createGame() {
     }
 
     var privateIp = networkInterface.ip_address;
-    socket.emit('register', {'private_ip': privateIp});
+    socket.emit('register', {'private_ip': `${ privateIp }:3001`});
 
     console.log(`IP: ${ privateIp }`)
   });
