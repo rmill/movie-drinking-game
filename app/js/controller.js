@@ -49,6 +49,9 @@ window.onload = function() {
             }
 
             updateStats(response.stats);
+          },
+          'error': function () {
+            window.location.replace("http://www.drinkupcinema.com");
           }
       });
     }
