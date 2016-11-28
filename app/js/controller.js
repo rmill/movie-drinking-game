@@ -78,6 +78,9 @@ function initWebsockets(controller) {
   connection.on('show_correct_answers', function(showCorrectAnswers) {
     controller.updateStats(showCorrectAnswers.stats[Cookies.get('token')]);
   });
+  connection.on('disconnect', function() {
+    window.location.replace("http://www.drinkupcinema.com");
+  });
 }
 
 function initStats(controller) {
