@@ -15,6 +15,7 @@ function init() {
   initLockScreen(controller);
   initClickEvents(controller);
   initWebsockets(controller);
+  initStats(controller);
 }
 
 function initVibrator(controller) {
@@ -77,6 +78,10 @@ function initWebsockets(controller) {
   connection.on('show_correct_answers', function(showCorrectAnswers) {
     controller.updateStats(showCorrectAnswers.stats[Cookies.get('token')]);
   });
+}
+
+function initStats(controller) {
+  controller.refreshState();
 }
 
 window.onload = init;

@@ -258,6 +258,7 @@ Game.prototype.player = function(token, name) {
   }
 
   this.players[token] = name;
+  this.statistics.newPlayer(token);
 };
 
 function Statistics () {
@@ -282,7 +283,7 @@ Statistics.prototype.process = function (question, answers, players) {
 
   for (var playerToken in players) {
     if (!this.players[playerToken]) {
-      this.players[playerToken] = this.newPlayer(playerToken);
+      this.newPlayer(playerToken);
     }
 
     var player = this.players[playerToken];
@@ -424,7 +425,11 @@ Statistics.prototype.compile = function (gamePlayers) {
 };
 
 Statistics.prototype.newPlayer = function (playerToken) {
-  return {
+  if (this.players[playerToken]) {
+    return;
+  }
+
+  this.players[playerToken] =  {
     id: playerToken,
     correctAnswers: 0,
     wrongAnswers: 0,
