@@ -106,7 +106,9 @@ class Controller {
             self.nameEl.html(self.name);
           }
 
-          if (!response.answer) {
+          if (response.answer) {
+            $(`.controller-button[data-answer-id=${ response.answer.answer }]`).addClass('pressed');
+          } else {
             $('.pressed').removeClass('pressed');
           }
 

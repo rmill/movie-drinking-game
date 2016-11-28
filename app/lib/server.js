@@ -133,12 +133,7 @@ function GameServer (game) {
       return;
     }
 
-    const templateVars = {
-      rules: self.game.rules,
-      stats: self.game.getCurrentStats(req.cookies.token)
-    };
-
-    res.render('controller.html', templateVars);
+    res.render('controller.html', { rules: self.game.rules });
   });
 
   app.get('/state', function(req, res) {
