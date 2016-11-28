@@ -280,7 +280,7 @@ Statistics.prototype.process = function (question, answers, players) {
   this.currentWrongPlayers = [];
   this.currentDrinks = [];
 
-  for (playerToken in players) {
+  for (var playerToken in players) {
     if (!this.players[playerToken]) {
       this.players[playerToken] = this.newPlayer(playerToken);
     }
@@ -350,7 +350,7 @@ Statistics.prototype.updateDrinks = function (question, allPlayers, wrongPlayers
     drinks = Math.ceil(allPlayerIds.length * question.drink_multiplyer / wrongPlayers.length);
   }
 
-  for (index in drinkingPlayers) {
+  for (var index in drinkingPlayers) {
     var playerToken = drinkingPlayers[index];
     this.players[playerToken].drinks += drinks;
     this.currentDrinks.push({
@@ -361,7 +361,7 @@ Statistics.prototype.updateDrinks = function (question, allPlayers, wrongPlayers
 };
 
 Statistics.prototype.compile = function (gamePlayers) {
-  for (playerId in this.players) {
+  for (var playerId in this.players) {
     var player = this.players[playerId];
     player.name = gamePlayers[playerId]
 

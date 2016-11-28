@@ -133,17 +133,7 @@ function GameServer (game) {
       return;
     }
 
-    res.sendFile(path.join(appDir, 'view/controller.html'));
-  });
-
-  app.get('/game', function(req, res) {
-    var json = {
-      rules: self.game.rules,
-      name: self.game.name
-    };
-
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify(json));
+    res.render('controller.html', { rules: self.game.rules });
   });
 
   app.get('/state', function(req, res) {

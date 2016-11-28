@@ -25,7 +25,8 @@
   "scripts": {
     "start": "electron app/main.js --enable-logging",
     "build": "babel app -d build --copy-files",
-    "serve.prod": "node ./build/index.js"
+    "serve.discovery": "node ./build/index.js",
+    "serve.game": "electron ./build/main.js --enable-logging"
   },
   "repository": {
     "type": "git",
