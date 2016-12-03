@@ -23,7 +23,7 @@
     "electron-prebuilt": "^1.2.2"
   },
   "scripts": {
-    "start": "electron app/main.js --enable-logging",
+    "start": "npm run serve.game",
     "build": "babel app -d build --copy-files",
     "serve.discovery": "node ./build/index.js",
     "serve.game": "electron ./build/main.js --enable-logging"
