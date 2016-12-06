@@ -25,22 +25,28 @@
 	</div>
 
 	<div class="content">
-		<div class="content-buttons">
-			<div class="content-name">
-				<span id="name"></span>
+		<div class="content-controller content-main">
+			<div class="content-waiting">
+				<div class="content-waitiing-header">Next question in:</div>
+				<div class="content-wait-time"></div>
 			</div>
-			<table>
-				<tr>
-					<td><button data-answer-id=0 class="controller-button">A</button></td>
-					<td style="width: 2%"></td>
-					<td><button data-answer-id=1 class="controller-button">B</button></td>
-				</tr>
-				<tr>
-					<td><button data-answer-id=2 class="controller-button">C</button></td>
-					<td style="width: 2%"></td>
-					<td><button data-answer-id=3 class="controller-button">D</button></td>
-				</tr>
-			</table>
+			<div class="content-buttons" style="display: none;">
+				<div class="content-name">
+					<span id="name"></span>
+				</div>
+				<table>
+					<tr>
+						<td><button data-answer-id=0 class="controller-button">A</button></td>
+						<td style="width: 2%"></td>
+						<td><button data-answer-id=1 class="controller-button">B</button></td>
+					</tr>
+					<tr>
+						<td><button data-answer-id=2 class="controller-button">C</button></td>
+						<td style="width: 2%"></td>
+						<td><button data-answer-id=3 class="controller-button">D</button></td>
+					</tr>
+				</table>
+			</div>
 			<table class="content-score">
 				<tr>
 					<td class="content-score-icon score-correct">
@@ -58,8 +64,7 @@
 				</tr>
 			</table>
 		</div>
-
-		<div class="rules" style="display: none;">
+		<div class="content-rules content-main" style="display: none;">
 			<div class="content-text">RULES</div>
 			<ul>
 				{{#rules}}

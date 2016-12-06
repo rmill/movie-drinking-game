@@ -1,12 +1,12 @@
 {
   "file_path": "",
   "name": "Scream",
-  "end_time": 60,
+  "end_time": 600,
   "questions":[
     {
       "id":1,
       "text":"Welcome to the drinkinf game! Who is the best?",
-      "movie_time":1,
+      "movie_time":1000,
       "duration":10,
       "answers":["Arnie","Stallone","Van DAmme","Care Bears"],
       "correct_answers":[0]
@@ -14,7 +14,7 @@
     {
       "id":2,
       "text":"Name the killer in Halloween?",
-      "movie_time":20,
+      "movie_time":20000,
       "duration":18,
       "answers":["Freddie Krueger","Jason Voorhees","Bryce Julian","Michael Myers"],
       "correct_answers":[3]
@@ -22,7 +22,7 @@
     {
       "id":3,
       "text":"Name the killer in Friday the 13th?",
-      "movie_time":40,
+      "movie_time":400000,
       "duration":10,
       "answers":["Freddie Krueger","Jason Voorhees","Mrs. Voorhees","Michael Myers"],
       "correct_answers":[2]

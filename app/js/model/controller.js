@@ -13,6 +13,7 @@ class Controller {
     this.scoreWrongEl = options.scoreWrongEl;
     this.scoreMissedEl = options.scoreMissedEl;
     this.scoreDrinksEl = options.scoreDrinksEl;
+    this.waitTimeEl = options.waitTimeEl;
 
     this.setName(options.name);
   }
@@ -113,6 +114,7 @@ class Controller {
           }
 
           self.updateStats(response.stats);
+          self.updateWaitTime(response.wait_time);
         },
         error: function () {
           window.location.replace("http://www.drinkupcinema.com");
@@ -129,5 +131,10 @@ class Controller {
     this.scoreWrongEl.html(stats.wrongAnswers);
     this.scoreMissedEl.html(stats.missedAnswers);
     this.scoreDrinksEl.html(stats.drinks);
+  }
+
+  updateWaitTime(waitTime) {
+    const denomination = (waitTime % 60 === 0) ? 'Minute' : 'Minutes';
+    this.waitTimeEl.html(`${ Math.ceil(waitTime / 60) } ${ denomination }`);
   }
 }

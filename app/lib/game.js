@@ -17,11 +17,13 @@ function Game(win, websockets, questions, endTime, rules, name) {
   this.id = randomstring.generate();
   this.win = win;
   this.name = name;
+  this.time = 0;
   this.rules = rules;
   this.websockets = websockets;
   this.questions = questions;
   this.players = {};
   this.currentQuestion = null;
+  this.nextQuestion = null;
   this.currentAnswers = {};
   this.endTime = endTime;
   this.currentState = this.NEW_GAME;
@@ -30,6 +32,7 @@ function Game(win, websockets, questions, endTime, rules, name) {
 
 Game.prototype.processState = function(time) {
     var seconds = Math.floor(time);
+    this.time = seconds;
 
     switch(this.currentState) {
       case this.NEW_GAME:
@@ -65,7 +68,25 @@ Game.prototype.processState = function(time) {
  * Start the game
  */
 Game.prototype.start = function() {
+  this.clearQuestion();
   this.currentState = this.IDLE;
+}
+
+Game.prototype.clearQuestion = function () {
+  let questionIndex = null;
+  const keys = [];
+  for(var i in this.questions) keys.push(i);
+
+  if (this.currentQuestion) {
+    questionIndex = keys.indexOf(this.currentQuestion.movie_time) + 1;
+  } else {
+    questionIndex = 0;
+  }
+
+  this.nextQuestion = (questionIndex <= keys.length) ? this.questions[keys[questionIndex]] : null;
+  this.currentQuestion = null;
+  this.currentAnswers = {};
+  this.websockets.emit('waiting', this.getWaitTime());
 }
 
 /**
@@ -82,6 +103,10 @@ Game.prototype.idle = function(time) {
     console.log('ending game');
     this.currentState = this.END_GAME;
     this.endGame();
+  }
+
+  if (time % 60 === 0) {
+    this.websockets.emit('waiting', this.getWaitTime());
   }
 };
 
@@ -166,10 +191,9 @@ Game.prototype.hideQuestion = function(time, question) {
   console.log('hide question');
 
   this.win.webContents.send('hide-question');
-  this.currentQuestion = null;
   this.currentState = this.IDLE;
-  this.currentAnswers = {};
   this.websockets.emit('hide_question');
+  this.clearQuestion();
 };
 
 /**
@@ -213,6 +237,17 @@ Game.prototype.answer = function(playerToken, answer) {
 Game.prototype.getCurrentState = function() {
   return this.currentState;
 };
+
+/**
+ * Get the number of secondes until the next question
+ */
+Game.prototype.getWaitTime = function () {
+  if (!this.nextQuestion) {
+    return null;
+  }
+
+  return this.nextQuestion.movie_time - this.time;
+}
 
 /**
  * Get the current answer for a player

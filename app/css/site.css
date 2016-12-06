@@ -111,9 +111,22 @@
     overflow-x: hidden;
   }
 
+  .content-waiting, .content-buttons {
+    height: 85%;
+  }
+
+  .content-waiting {
+    padding-top: 10vh;
+    text-align: center;
+    display: table;
+    width: 100%;
+    color: #065d7b;
+    font-size: 9vw;
+    font-weight: 700;
+  }
+
   .controller-button {
     width: 100%;
-    height: 100%;
   	display: inline-block;
   	font-size: 12vw;
   	text-decoration:none;

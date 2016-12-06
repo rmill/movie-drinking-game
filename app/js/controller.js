@@ -2,13 +2,14 @@ function init() {
   const controller = new Controller({
     name: Cookies.get('name'),
     nameEl: $('#name'),
-    rulesViewEl: $('.rules'),
+    rulesViewEl: $('.content-rules'),
     buttonsViewEl: $('.content-buttons'),
     viewToggleEl: $('.switch'),
     scoreCorretEl: $('.score-correct span'),
     scoreWrongEl: $('.score-incorrect span'),
     scoreMissedEl: $('.score-missed span'),
-    scoreDrinksEl: $('.score-drinks span')
+    scoreDrinksEl: $('.score-drinks span'),
+    waitTimeEl: $('.content-wait-time')
   });
 
   initVibrator(controller);
@@ -67,11 +68,7 @@ function initClickEvents(controller) {
 function initWebsockets(controller) {
   var connection = io(window.location.hostname + ':3232');
 
-  connection.emit('subscribe', 'hide_question');
-  connection.emit('subscribe', 'show_question');
-  connection.emit('subscribe', 'show_answers');
-  connection.emit('subscribe', 'show_correct_answers');
-
+  connection.on('waiting', $.proxy(controller.updateWaitTime, controller));
   connection.on('hide_question', $.proxy(controller.clearQuestion, controller));
   connection.on('show_question', $.proxy(controller.showQuestion, controller));
   connection.on('show_answers', $.proxy(controller.unlockAnswers, controller));
