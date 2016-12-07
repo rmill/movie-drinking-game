@@ -6,7 +6,7 @@
     {
       "id":1,
       "text":"Welcome to the drinkinf game! Who is the best?",
-      "movie_time":1000,
+      "movie_time":130,
       "duration":10,
       "answers":["Arnie","Stallone","Van DAmme","Care Bears"],
       "correct_answers":[0]
@@ -14,7 +14,7 @@
     {
       "id":2,
       "text":"Name the killer in Halloween?",
-      "movie_time":20000,
+      "movie_time":260,
       "duration":18,
       "answers":["Freddie Krueger","Jason Voorhees","Bryce Julian","Michael Myers"],
       "correct_answers":[3]

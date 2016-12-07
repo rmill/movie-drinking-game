@@ -75,7 +75,7 @@ Game.prototype.start = function() {
 Game.prototype.clearQuestion = function () {
   let questionIndex = null;
   const keys = [];
-  for(var i in this.questions) keys.push(i);
+  for(var i in this.questions) keys.push(Number(i));
 
   if (this.currentQuestion) {
     questionIndex = keys.indexOf(this.currentQuestion.movie_time) + 1;

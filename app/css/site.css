@@ -127,6 +127,7 @@
 
   .controller-button {
     width: 100%;
+    height: 100%;
   	display: inline-block;
   	font-size: 12vw;
   	text-decoration:none;
@@ -161,7 +162,7 @@ body {
 }
 
 table {
-  height: 35%;
+  height: 40%;
   width: 100%;
   margin: auto;
 }
@@ -173,7 +174,6 @@ td {
 tr, td {
   padding: 0;
   margin: 0;
-//  border: 1px solid black;
 }
 
 form {
@@ -232,21 +232,21 @@ input {
   color: #065d7b;
 }
 
-.rules {
+.content-rules {
   font-family: Raleway;
   color: #065d7b;
 }
 
-.rules ul {
+.content-rules ul {
   margin: 0;
 }
 
-.rules li {
+.content-rules li {
   padding-bottom: 4vh;
   font-size: 6vw;
 }
 
-.controller .content .rules .content-text {
+.controller .content .content-rules .content-text {
   padding: 32px 0px;
 }
 
@@ -287,7 +287,7 @@ input {
 .controller .content .content-name {
   text-align: center;
   display: table;
-  height: 50%;
+  height: 60%;
   width: 100%;
   color: #065d7b;
   font-size: 11vw;

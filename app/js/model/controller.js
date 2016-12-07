@@ -7,7 +7,9 @@ class Controller {
 
     this.nameEl = options.nameEl;
     this.rulesViewEl = options.rulesViewEl;
+    this.controllerViewEl = options.controllerViewEl;
     this.buttonsViewEl = options.buttonsViewEl;
+    this.waitingViewEl = options.waitingViewEl;
     this.viewToggleEl = options.viewToggleEl;
     this.scoreCorretEl = options.scoreCorretEl;
     this.scoreWrongEl = options.scoreWrongEl;
@@ -39,16 +41,27 @@ class Controller {
 
   showQuestion (question) {
     this.nameEl.html(question.text);
+    this.buttonsViewEl.show();
+    this.waitingViewEl.hide();
+  }
+
+  clearQuestion () {
+    this.hasQuestion = false;
+    this.hasAnswer = false;
+    $('.pressed').removeClass('pressed');
+    this.showName();
+    this.waitingViewEl.show();
+    this.buttonsViewEl.hide();
   }
 
   toggleView () {
     if (this.rulesViewEl.is(':visible')) {
       this.rulesViewEl.hide();
-      this.buttonsViewEl.show();
+      this.controllerViewEl.show();
       this.viewToggleEl.removeClass('fa-close').addClass('fa-question-circle');
     } else {
       this.rulesViewEl.show();
-      this.buttonsViewEl.hide();
+      this.controllerViewEl.hide();
       this.viewToggleEl.removeClass('fa-question-circle').addClass('fa-close');
     }
   }
@@ -83,13 +96,6 @@ class Controller {
     this.hasQuestion = true;
   }
 
-  clearQuestion () {
-    this.hasQuestion = false;
-    this.hasAnswer = false;
-    $('.pressed').removeClass('pressed');
-    this.showName();
-  }
-
   refreshState () {
     var self = this;
 
@@ -99,22 +105,21 @@ class Controller {
           const hasQuestionStates = ['show_answers', 'waiting_for_answers'];
           const showQuestionStates = ['show_question', 'waiting_for_question', 'show_answers', 'waiting_for_answers', 'show_correct_answer', 'waiting_for_correct_answer', 'show_drinks', 'waiting_for_drinks'];
 
-          self.hasQuestion = hasQuestionStates.indexOf(response.state) >= 0;
-
-          if (showQuestionStates.indexOf(response.state) >= 0) {
-            self.nameEl.html(response.question.text);
-          } else {
-            self.nameEl.html(self.name);
-          }
-
-          if (response.answer) {
-            $(`.controller-button[data-answer-id=${ response.answer.answer }]`).addClass('pressed');
-          } else {
-            $('.pressed').removeClass('pressed');
-          }
-
           self.updateStats(response.stats);
           self.updateWaitTime(response.wait_time);
+
+          if (showQuestionStates.indexOf(response.state) >= 0) {
+            self.hasQuestion = hasQuestionStates.indexOf(response.state) >= 0;
+            self.showQuestion(response.question);
+
+            if (response.answer) {
+              $(`.controller-button[data-answer-id=${ response.answer.answer }]`).addClass('pressed');
+            } else {
+              $('.pressed').removeClass('pressed');
+            }
+          } else {
+            self.clearQuestion();
+          }
         },
         error: function () {
           window.location.replace("http://www.drinkupcinema.com");
@@ -134,7 +139,7 @@ class Controller {
   }
 
   updateWaitTime(waitTime) {
-    const denomination = (waitTime % 60 === 0) ? 'Minute' : 'Minutes';
+    const denomination = (waitTime <= 60) ? 'Minute' : 'Minutes';
     this.waitTimeEl.html(`${ Math.ceil(waitTime / 60) } ${ denomination }`);
   }
 }
