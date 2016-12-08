@@ -14,6 +14,8 @@ function init() {
     waitTimeEl: $('.content-wait-time')
   });
 
+  $('body').css('height', $(window).height());
+
   initVibrator(controller);
   initLockScreen(controller);
   initClickEvents(controller);

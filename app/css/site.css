@@ -185,13 +185,13 @@ input {
   font-family: Raleway;
   border: none;
   background: #FFF;
-  height: 194px;
+  height: 12vh;
   width: 100%;
-  -moz-border-radius: 30px;
-  -webkit-border-radius: 30px;
-  border-radius: 30px;
-  font-size: 56px;
-  padding: 64px;
+  -moz-border-radius: 3vh;
+  -webkit-border-radius: 3vh;
+  border-radius: 3vh;
+  font-size: 5vh;
+  padding: 4vh;
   color: #065d7b;
 }
 
@@ -214,14 +214,14 @@ input {
 .submit {
   font-family: Raleway;
   width: 100%;
-  height: 194px;
+  height: 12vh;
   border: none;
-  font-size: 56px;
-  margin-top: 55px;
-  border-radius: 19px;
+  font-size: 5vh;
+  margin-top: 8vh;
+  border-radius: 3vh;
   background-color: #065d7b;
   color: #f5f8fe;
-  border-bottom: 17px solid #04495e;
+  border-bottom: 1vh solid #04495e;
 }
 
 .header-container .switch {
@@ -247,7 +247,7 @@ input {
 }
 
 .controller .content .content-rules .content-text {
-  padding: 32px 0px;
+  padding: 12vh 0px;
 }
 
 .controller .content .content-text.content-notfound {
@@ -280,7 +280,7 @@ input {
 
 .controller .content .content-text {
   text-align: center;
-  padding: 90px 0px;
+  padding: 10vh 0px;
   color: #065d7b;
   font-size: 18vw;
   font-weight: 700;
