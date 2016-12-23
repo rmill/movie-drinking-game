@@ -106,8 +106,7 @@
   .content {
     height: 90%;
     font-family: Raleway;
-    margin: auto;
-    width: 80%;
+    padding: 0 4vw;
     overflow-x: hidden;
   }
 
@@ -263,12 +262,12 @@ input {
 .controller .header-container {
   display: table;
   height: 100%;
-  width: 80%;
+  width: 91vw;
   margin: auto;
 }
 
 .controller .header-logo {
-  width: 50%;
+  width: 26vh;
   height: 100%;
 }
 
