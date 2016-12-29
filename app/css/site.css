@@ -133,20 +133,24 @@
     font-weight: 700;
     font-family: Raleway;
     outline: none;
-    border-radius: 19px;
+    border-radius: 2vh;
     background-color: #065d7b;
     color: #f5f8fe;
     border: 0;
     border-bottom: 0.5vh solid #04495e;
   }
 
-.pressed {
-  top: 3px;
-  background-color: #f25424;
-  border-color: #f25424;
-}
+  .disabled {
+    opacity: 0.5;
+  }
 
-.controller-button:active:not(.pressed) {
+  .pressed {
+    top: 3px;
+    background-color: #f25424;
+    border-color: #f25424;
+  }
+
+.controller-button:active:not(.pressed):not(.disabled) {
 	position:relative;
 	top: 3px;
   background-color: #04495e;

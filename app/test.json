@@ -14,7 +14,7 @@
     {
       "id":2,
       "text":"Name the killer in Halloween?",
-      "movie_time":260,
+      "movie_time":30,
       "duration":18,
       "answers":["Freddie Krueger","Jason Voorhees","Bryce Julian","Michael Myers"],
       "correct_answers":[3]

@@ -2,7 +2,6 @@ class Controller {
 
   constructor(options) {
     this.hasAnswer = false;
-    this.hasQuesetion = false;
     this.vibrater = null;
 
     this.nameEl = options.nameEl;
@@ -16,34 +15,16 @@ class Controller {
     this.scoreMissedEl = options.scoreMissedEl;
     this.scoreDrinksEl = options.scoreDrinksEl;
     this.waitTimeEl = options.waitTimeEl;
-
-    this.setName(options.name);
-  }
-
-  setName (name) {
-    this.name = name;
-    this.showName();
-
-    // Fit the name into the screen width
-    while ($('.content-name').innerWidth() > $('.content-buttons').innerWidth()) {
-      const fontSize = parseFloat(this.nameEl.css('font-size'));
-      this.nameEl.css('font-size', fontSize - 1);
-    }
   }
 
   setVibrator (vibrator) {
     this.vibrator = vibrator;
   }
 
-  showName () {
-    this.nameEl.html(this.name);
-  }
-
   showQuestion (question) {
     this.nameEl.html(question.text);
     this.buttonsViewEl.show();
     this.waitingViewEl.hide();
-
 
     $('[data-answer-id=0]').html(question.answers[0]);
     $('[data-answer-id=1]').html(question.answers[1]);
@@ -52,12 +33,12 @@ class Controller {
   }
 
   clearQuestion () {
-    this.hasQuestion = false;
     this.hasAnswer = false;
     $('.pressed').removeClass('pressed');
-    this.showName();
+    $('.disabled').removeClass('disabled');
     this.waitingViewEl.show();
     this.buttonsViewEl.hide();
+    $('.content-buttons table').hide();
   }
 
   toggleView () {
@@ -76,12 +57,12 @@ class Controller {
     this.vibrate(50);
 
     // Only allow one answer per question
-    if (!this.hasQuestion || this.hasAnswer) {
+    if (this.hasAnswer) {
       return;
     }
 
-    this.hasAnswer = true;
     buttonEl.addClass('pressed');
+    this.disableButtons();
 
     // Send the answer to the server
     $.ajax({
@@ -91,15 +72,24 @@ class Controller {
     });
   }
 
+  disableButtons() {
+    this.hasAnswer = true;
+    $('.controller-button:not(.pressed)').addClass('disabled');
+  }
+
   vibrate (duration) {
     if (this.vibrater) {
       this.vibrater.vibrate(duration);
     }
   }
 
-  unlockAnswers () {
+  showAnswers (fadeIn=true) {
+    if (fadeIn) {
+      $('.content-buttons table').fadeIn();
+    } else {
+      $('.content-buttons table').show();
+    }
     this.hasAnswer = false;
-    this.hasQuestion = true;
   }
 
   refreshState () {
@@ -108,20 +98,26 @@ class Controller {
     $.ajax({
         url: '/state',
         success: function (response) {
-          const hasQuestionStates = ['show_answers', 'waiting_for_answers'];
+          const showAnswersStates = ['show_answers', 'waiting_for_answers', 'show_correct_answer', 'waiting_for_correct_answer', 'show_drinks', 'waiting_for_drinks'];
+          const disableAnswerStates = ['show_correct_answer', 'waiting_for_correct_answer', 'show_drinks', 'waiting_for_drinks'];
           const showQuestionStates = ['show_question', 'waiting_for_question', 'show_answers', 'waiting_for_answers', 'show_correct_answer', 'waiting_for_correct_answer', 'show_drinks', 'waiting_for_drinks'];
 
           self.updateStats(response.stats);
           self.updateWaitTime(response.wait_time);
 
+          if (showAnswersStates.indexOf(response.state) >= 0) {
+            self.showAnswers(false);
+          }
+
+          if (disableAnswerStates.indexOf(response.state) >= 0) {
+            self.disableButtons();
+          }
+
           if (showQuestionStates.indexOf(response.state) >= 0) {
-            self.hasQuestion = hasQuestionStates.indexOf(response.state) >= 0;
             self.showQuestion(response.question);
 
             if (response.answer) {
-              $(`.controller-button[data-answer-id=${ response.answer.answer }]`).addClass('pressed');
-            } else {
-              $('.pressed').removeClass('pressed');
+              self.submitAnswer($(`.controller-button[data-answer-id=${ response.answer.answer }]`));
             }
           } else {
             self.clearQuestion();
