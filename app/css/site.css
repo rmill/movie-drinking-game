@@ -114,6 +114,11 @@
     height: 85%;
   }
 
+  .content-waiting .icon {
+    margin-top: 4vh;
+    font-size: 19vh;
+  }
+
   .content-waiting {
     padding-top: 10vh;
     text-align: center;
