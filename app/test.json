@@ -6,7 +6,7 @@
     {
       "id":1,
       "text":"Welcome to the drinkinf game! Who is the best?",
-      "movie_time":130,
+      "movie_time":5,
       "duration":10,
       "answers":["Arnie","Stallone","Van DAmme","Care Bears"],
       "correct_answers":[0]

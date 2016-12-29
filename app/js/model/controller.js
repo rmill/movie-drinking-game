@@ -43,6 +43,12 @@ class Controller {
     this.nameEl.html(question.text);
     this.buttonsViewEl.show();
     this.waitingViewEl.hide();
+
+
+    $('[data-answer-id=0]').html(question.answers[0]);
+    $('[data-answer-id=1]').html(question.answers[1]);
+    $('[data-answer-id=2]').html(question.answers[2]);
+    $('[data-answer-id=3]').html(question.answers[3]);
   }
 
   clearQuestion () {

@@ -128,7 +128,7 @@
     width: 100%;
     height: 100%;
   	display: inline-block;
-  	font-size: 12vw;
+  	font-size: 4vh;
   	text-decoration:none;
     font-weight: 700;
     font-family: Raleway;
@@ -137,7 +137,7 @@
     background-color: #065d7b;
     color: #f5f8fe;
     border: 0;
-    border-bottom: 5px solid #04495e;
+    border-bottom: 0.5vh solid #04495e;
   }
 
 .pressed {
@@ -161,7 +161,7 @@ body {
 }
 
 table {
-  height: 40%;
+  height: 55%;
   width: 100%;
   margin: auto;
 }
@@ -288,10 +288,10 @@ input {
 .controller .content .content-name {
   text-align: center;
   display: table;
-  height: 60%;
+  height: 45%;
   width: 100%;
   color: #065d7b;
-  font-size: 11vw;
+  font-size: 5vh;
   font-weight: 700;
 }
 
