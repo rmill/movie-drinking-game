@@ -72,8 +72,8 @@
       "text": "What message does John send to Hans?",
       "movie_time":2407,
       "duration":10,
-      "answers":["Ode to Joy - Beethoven", "Christmas In Hollis - Run DMC", "Sleigh Ride - TLC", "Jingle Bells - Frank Sinatra"],
-      "correct_answers":[1]
+      "answers":["Do not open till Christmas", "Looks like I'm eating Kraut tonite", "F*** you Hans Gruber", "Now I have a Machine gun"],
+      "correct_answers":[3]
     },
     {
       "id": 10,
@@ -88,7 +88,7 @@
       "text": "Killer one liner coming up",
       "movie_time":3054,
       "duration":10,
-      "answers":["I always hated sardines", "I'm gettig too old for this sh*t", "Now I what a TV dinner feels like", "I knew I shouldn't of had chili for lunch"],
+      "answers":["I always hated sardines", "I'm getting too old for this sh*t", "Now I know what a TV dinner feels like", "I knew I shouldn't of had chili for lunch"],
       "correct_answers":[2]
     },
     {
@@ -102,8 +102,8 @@
     {
       "id": 13,
       "text": "What is the famous quote coming up?",
-      "movie_time":3625,
-      "duration":10,
+      "movie_time":3620,
+      "duration":15,
       "answers":["Yuppe ci yay mother fucker", "Yippee ki yay mother f*cker", "Yippee sorbet ducker trucker", "Sippy chai tea huffer snuffer"],
       "correct_answers":[1]
     },
@@ -134,8 +134,8 @@
     {
       "id": 17,
       "text": "What is the name of the News guest's book?",
-      "movie_time":5313,
-      "duration":10,
+      "movie_time":5308,
+      "duration":15,
       "answers":["10 tips when taken hostage", "So, you have a gun in your face", "Hostage Terrorist, Terrorist Hostage", "I love you Helsinki Syndrome"],
       "correct_answers":[2]
     },
@@ -151,13 +151,13 @@
       "id": 19,
       "text": "What famous painting was just shown?",
       "movie_time":6250,
-      "duration":10,
+      "duration":15,
       "answers":["Ecole de dance", "Ode di ehard", "A Cotton Office in New Orleans", "The Kramer"],
       "correct_answers":[0]
     },
     {
       "id": 20,
-      "text": "Which of these movies was Mongolian henchmen not in?",
+      "text": "Which of these movies was the Mongolian henchmen not in?",
       "movie_time":6737,
       "duration":10,
       "answers":["Bill and Ted's Excellent Adventure", "Lethal Weapon", "Escape from LA", "Commando"],
