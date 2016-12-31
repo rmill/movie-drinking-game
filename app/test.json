@@ -1,122 +1,195 @@
 {
   "file_path": "",
-  "name": "Scream",
-  "end_time": 600,
+  "name": "Die Hard",
+  "end_time": 7637,
   "questions":[
     {
-      "id":1,
-      "text":"Welcome to the drinkinf game! Who is the best?",
-      "movie_time":5,
+      "id": 1,
+      "text": "What is the secret to surviving air travel?",
+      "movie_time":52,
       "duration":10,
-      "answers":["Arnie","Stallone","Van DAmme","Care Bears"],
+      "answers":["Walk around bare foot", "A stiff German drink", "Have a soft easy evening", "Kill a ton of terrorists"],
       "correct_answers":[0]
     },
     {
-      "id":2,
-      "text":"Name the killer in Halloween?",
-      "movie_time":30,
-      "duration":18,
-      "answers":["Freddie Krueger","Jason Voorhees","Bryce Julian","Michael Myers"],
+      "id": 2,
+      "text": "Who rides in the back seat of the limo?",
+      "movie_time": 363,
+      "duration":10,
+      "answers":["John McClane", "Mrs. McClane", "Nobody (SYKE!)", "Stuffy Snug Bear Bear"],
       "correct_answers":[3]
     },
     {
-      "id":3,
-      "text":"Name the killer in Friday the 13th?",
-      "movie_time":400000,
+      "id": 3,
+      "text": "What amazing Christmas song is coming up?",
+      "movie_time":446,
       "duration":10,
-      "answers":["Freddie Krueger","Jason Voorhees","Mrs. Voorhees","Michael Myers"],
-      "correct_answers":[2]
+      "answers":["Ode to Joy - Beethoven", "Christmas In Hollis - Run DMC", "Sleigh Ride - TLC", "Jingle Bells - Frank Sinatra"],
+      "correct_answers":[1]
     },
     {
-      "id":4,
-      "text":"What cover is playing in the background?",
-      "movie_time":941,
+      "id": 17,
+      "text": "Nakatomi Tower is the real life head quaters of?",
+      "movie_time":757,
       "duration":10,
-      "answers":["My Guitar Gently Weeps","Purple Rain","Hello Darkness","Don't Fear the Reaper"],
-      "correct_answers":[3]
-    },
-    {
-      "id":5,
-      "text":"How many gallons of blood were used in this move?",
-      "movie_time":1698,
-      "duration":10,
-      "answers":["50","A months worth","30","5"],
+      "answers":["20th Century Fox", "Hostess", "Toys 'R Us'", "Budweiser"],
       "correct_answers":[0]
     },
     {
-      "id":6,
-      "text":"What is the name of the killer's costume?",
-      "movie_time":2099,
+      "id": 4,
+      "text": "How do German terrorists go down stairs?",
+      "movie_time":1222,
       "duration":10,
-      "answers":["Stabbie Stab Man","Father of Death","The Ghost","Scream"],
+      "answers":["Backwards", "They take elevators", "Rail slides", "One step at a time"],
+      "correct_answers":[2]
+    },
+    {
+      "id": 5,
+      "text": "What floor is the party on?",
+      "movie_time":1352,
+      "duration":10,
+      "answers":["30", "120", "69 DUDES!", "PH"],
+      "correct_answers":[0, 2]
+    },
+    {
+      "id": 6,
+      "text": "What is Hans Gruber after?",
+      "movie_time":1761,
+      "duration":10,
+      "answers":["A role in Harry Potter", "Money ...classic villain", "New weapons technology", "Rosebud, his childhood sled"],
       "correct_answers":[1]
     },
     {
-      "id":7,
-      "text":"What is the original name of the movie?",
-      "movie_time":2563,
+      "id": 7,
+      "text": "What is Fritz wearing in the next scene?",
+      "movie_time":2059,
       "duration":10,
-      "answers":["Slasher High","Bad Decisions","Cliffhanger","Scary Movie"],
+      "answers":["German officer's uniform", "A sassy Christmas sweater", "A fake mustache", "Single mom sweatsuit and nerd glasses"],
       "correct_answers":[3]
     },
     {
-      "id":8,
-      "text":"SICK STUNT COMING UP",
-      "movie_time":2875,
+      "id": 8,
+      "text": "What message does John send to Hans?",
+      "movie_time":2407,
       "duration":10,
-      "answers":["Power Slide","Groin Kick","Front Flip","Superman Dive"],
+      "answers":["Ode to Joy - Beethoven", "Christmas In Hollis - Run DMC", "Sleigh Ride - TLC", "Jingle Bells - Frank Sinatra"],
+      "correct_answers":[1]
+    },
+    {
+      "id": 10,
+      "text": "What cop from a famous tv show is getting snacks?",
+      "movie_time":2705,
+      "duration":10,
+      "answers":["Magnum PI", "Turner and Hooch", "Family Matters", "Robocop"],
+      "correct_answers":[2]
+    },
+    {
+      "id": 11,
+      "text": "Killer one liner coming up",
+      "movie_time":3054,
+      "duration":10,
+      "answers":["I always hated sardines", "I'm gettig too old for this sh*t", "Now I what a TV dinner feels like", "I knew I shouldn't of had chili for lunch"],
+      "correct_answers":[2]
+    },
+    {
+      "id": 12,
+      "text": "How does John get the attention of the police?",
+      "movie_time":3407,
+      "duration":10,
+      "answers":["Shoots at his car", "Yells racials slurs out the window", "Turns on the buildings Christmas lights", "Drops a German on his car"],
+      "correct_answers":[3]
+    },
+    {
+      "id": 13,
+      "text": "What is the famous quote coming up?",
+      "movie_time":3625,
+      "duration":10,
+      "answers":["Yuppe ci yay mother fucker", "Yippee ki yay mother f*cker", "Yippee sorbet ducker trucker", "Sippy chai tea huffer snuffer"],
+      "correct_answers":[1]
+    },
+    {
+      "id": 14,
+      "text": "What famous movie is Deputy Police Chief Dwayne T. Robinson from?",
+      "movie_time":3851,
+      "duration":10,
+      "answers":["The Breakfast Club", "Lethal Weapon", "The Terminator", "Pretty in Pink"],
       "correct_answers":[0]
     },
     {
-      "id":9,
-      "text":"How many people are wearing purple in the next scene?",
-      "movie_time":3009,
+      "id": 15,
+      "text": "How does the badass SWAT dude hurt himself?",
+      "movie_time":4201,
       "duration":10,
-      "answers":["0","10","6","2"],
-      "correct_answers":[2]
-    },
-    {
-      "id":10,
-      "text":"Hot cameo coming in, who is it?",
-      "movie_time":3120,
-      "duration":10,
-      "answers":["Corey Feldman as a vampire","A metal broom","John Carpenter as a ghost","Wes Craven as Freddy"],
+      "answers":["Hits his head on a lamp post", "Chokes on a fly", "Trips on his shoe lace", "Pricks his finger on a rose bush"],
       "correct_answers":[3]
     },
     {
-      "id":10,
-      "text":"What will Dewy be holding?",
-      "movie_time":3561,
+      "id": 16,
+      "text": "What INSANE term does the Coke jerk use in the next scene?",
+      "movie_time":4783,
       "duration":10,
-      "answers":["A mask","An ice cream cone","A knife","A telephone"],
-      "correct_answers":[1]
+      "answers":["Schmuck", "Boobie", "Camel Jockey", "White Knight"],
+      "correct_answers":[0,1,2,3]
     },
     {
-      "id":11,
-      "text":"How does Riley die?",
-      "movie_time":4009,
-      "duration":20,
-      "answers":["Slips on oil","Crushed by door","Stabbed from behind","Of old age"],
-      "correct_answers":[1]
-    },
-    {
-      "id":12,
-      "text":"Which of these is not a rule of horror movies?",
-      "movie_time":4377,
-      "duration":20,
-      "answers":["Say I'll be right back","You cannot drink","Run up the stairs","You cannot have sex"],
+      "id": 17,
+      "text": "What is the name of the News guest's book?",
+      "movie_time":5313,
+      "duration":10,
+      "answers":["10 tips when taken hostage", "So, you have a gun in your face", "Hostage Terrorist, Terrorist Hostage", "I love you Helsinki Syndrome"],
       "correct_answers":[2]
+    },
+    {
+      "id": 18,
+      "text": "Who was actually born in Germany?",
+      "movie_time":5629,
+      "duration":10,
+      "answers":["Alan Rickman", "Bruce Willis", "Alan Rickman", "Bruce Willis"],
+      "correct_answers":[1,3]
+    },
+    {
+      "id": 19,
+      "text": "What famous painting was just shown?",
+      "movie_time":6250,
+      "duration":10,
+      "answers":["Ecole de dance", "Ode di ehard", "A Cotton Office in New Orleans", "The Kramer"],
+      "correct_answers":[0]
+    },
+    {
+      "id": 20,
+      "text": "Which of these movies was Mongolian henchmen not in?",
+      "movie_time":6737,
+      "duration":10,
+      "answers":["Bill and Ted's Excellent Adventure", "Lethal Weapon", "Escape from LA", "Commando"],
+      "correct_answers":[3]
+    },
+    {
+      "id": 21,
+      "text": "Who has the best mullet?",
+      "movie_time":7111,
+      "duration":10,
+      "answers":["Ryan Mueller", "Mel Gibson", "Bon Jovi", "Patrick Swayze"],
+      "correct_answers":[1]
+    },
+    {
+      "id": 22,
+      "text": "Who comes back for vengence?",
+      "movie_time":7507,
+      "duration":10,
+      "answers":["Karl, the German badass", "Hans Gruber", "Jesus", "That dude who landed on the car"],
+      "correct_answers":[0]
     }
   ],
   "rules": [
     "Every death",
-    "State a horror movie rule",
-    "Break a horror movie rule",
-    "Knife miss",
-    "They dicuss the killings",
-    "Ghost Face is sneakily in the background",
-    "Horror movie reference",
-    "Ghost Face gets nailed",
-    "Someone talks on a phone"
+    "Every time somebody is smoking",
+    "Gennaro is said",
+    "John talks to himself",
+    "German is spoken",
+    "Elevator doors open",
+    "A tacky computer interface is shown",
+    "Somebody is humming",
+    "Glass is broken",
+    "Lens flair"
   ]
 }

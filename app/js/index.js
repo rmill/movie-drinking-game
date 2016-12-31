@@ -13,6 +13,8 @@ window.onload = function() {
 
   movie.addEventListener('timeupdate', function () {
     ipcRenderer.send('movie-time', movie.currentTime);
+    const time = Math.floor(movie.currentTime);
+    $('.time-display').html(`${time} (${time - 17})`);
   })
 
   ipcRenderer.on('new-player', function(event, name, state) {
