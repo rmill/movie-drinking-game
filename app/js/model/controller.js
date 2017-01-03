@@ -142,6 +142,7 @@ class Controller {
 
   updateWaitTime(waitTime) {
     const denomination = (waitTime <= 60) ? 'Minute' : 'Minutes';
-    this.waitTimeEl.html(`${ Math.ceil(waitTime / 60) } ${ denomination }`);
+    this.waitTimeEl.html(Math.ceil(waitTime / 60));
+    $('.content-waiting-denomination').html(denomination);
   }
 }

@@ -120,13 +120,24 @@
   }
 
   .content-waiting {
-    padding-top: 10vh;
     text-align: center;
     display: table;
     width: 100%;
     color: #065d7b;
-    font-size: 9vw;
-    font-weight: 700;
+    font-size: 7vw;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .content-waiting-container {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .content-waiting-minutes {
+    font-weight: 900;
+    font-size: 56vw;
+    margin-top: -7vw;
   }
 
   .controller-button {

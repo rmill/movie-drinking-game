@@ -11,7 +11,7 @@ function init() {
     scoreWrongEl: $('.score-incorrect span'),
     scoreMissedEl: $('.score-missed span'),
     scoreDrinksEl: $('.score-drinks span'),
-    waitTimeEl: $('.content-wait-time')
+    waitTimeEl: $('.content-waiting-minutes')
   });
 
   $('body').css('height', $(window).height());
