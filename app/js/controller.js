@@ -72,6 +72,7 @@ function initClickEvents(controller) {
 function initWebsockets(controller) {
   var connection = io(window.location.hostname + ':3232');
 
+  connection.on('start_game', $.proxy(controller.startGame, controller));
   connection.on('waiting', $.proxy(controller.updateWaitTime, controller));
   connection.on('hide_question', $.proxy(controller.clearQuestion, controller));
   connection.on('show_question', $.proxy(controller.showQuestion, controller));

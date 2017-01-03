@@ -140,6 +140,27 @@
     margin-top: -7vw;
   }
 
+  .content-start-game {
+    width: 100%;
+    height: 85%;
+    display: table;
+  }
+
+  .content-start-game-container {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    text-transform: uppercase;
+    color: #065d7b;
+  }
+
+  .logo-medium {
+    content: url(../img/logo-medium.png);
+    height: auto;
+    width: 74vw;
+    margin-bottom: 24vh;
+  }
+
   .controller-button {
     width: 100%;
     height: 100%;

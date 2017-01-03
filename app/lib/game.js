@@ -69,6 +69,7 @@ Game.prototype.processState = function(time) {
  */
 Game.prototype.start = function() {
   this.clearQuestion();
+  this.websockets.emit('start_game');
   this.currentState = this.IDLE;
 }
 
