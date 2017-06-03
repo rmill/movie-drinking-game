@@ -131,6 +131,13 @@ window.onload = function() {
 
       $('.credits').addClass('animate');
     });
+
+    console.log('Most correct: ' + ending.stats.mostCorrectAnswers.name);
+    console.log('Most wrong: ' +  ending.stats.mostWrongAnswers.name);
+    console.log('Most missed: ' +  ending.stats.mostMissedAnswers.name);
+    console.log('Best streak: ' +  ending.stats.bestStreak.name);
+    console.log('Most drinks: ' +  ending.stats.mostDrinks.name);
+    console.log('Quickest answers: ' +  ending.stats.bestAnswerSpeed.name);    
   });
 
   let interval;

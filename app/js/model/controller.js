@@ -107,6 +107,8 @@ class Controller {
             return;
           }
 
+          $('.content-start-game').hide();
+
           const showAnswersStates = ['show_answers', 'waiting_for_answers', 'show_correct_answer', 'waiting_for_correct_answer', 'show_drinks', 'waiting_for_drinks'];
           const disableAnswerStates = ['show_correct_answer', 'waiting_for_correct_answer', 'show_drinks', 'waiting_for_drinks'];
           const showQuestionStates = ['show_question', 'waiting_for_question', 'show_answers', 'waiting_for_answers', 'show_correct_answer', 'waiting_for_correct_answer', 'show_drinks', 'waiting_for_drinks'];
