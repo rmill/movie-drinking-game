@@ -1,195 +1,189 @@
 {
   "file_path": "",
-  "name": "Die Hard",
-  "end_time": 7637,
+  "name": "Face/Off",
+  "end_time": 8038,
   "questions":[
     {
       "id": 1,
-      "text": "What is the secret to surviving air travel?",
-      "movie_time":52,
+      "text": "What item is NOT featured in the opening scene?",
+      "movie_time":29,
       "duration":10,
-      "answers":["Walk around bare foot", "A stiff German drink", "Have a soft easy evening", "Kill a ton of terrorists"],
-      "correct_answers":[0]
-    },
-    {
-      "id": 2,
-      "text": "Who rides in the back seat of the limo?",
-      "movie_time": 363,
-      "duration":10,
-      "answers":["John McClane", "Mrs. McClane", "Nobody (SYKE!)", "Stuffy Snug Bear Bear"],
-      "correct_answers":[3]
-    },
-    {
-      "id": 3,
-      "text": "What amazing Christmas song is coming up?",
-      "movie_time":446,
-      "duration":10,
-      "answers":["Ode to Joy - Beethoven", "Christmas In Hollis - Run DMC", "Sleigh Ride - TLC", "Jingle Bells - Frank Sinatra"],
+      "answers":["A thick, black mustache", "A walkman", "A carousel", "Nic Cage drinking a slurpee"],
       "correct_answers":[1]
     },
     {
-      "id": 17,
-      "text": "Nakatomi Tower is the real life head quaters of?",
-      "movie_time":757,
+      "id": 2,
+      "text": "Castor doesn't enjoy the Messiah, What does he enjoy?",
+      "movie_time":362,
       "duration":10,
-      "answers":["20th Century Fox", "Hostess", "Toys 'R Us'", "Budweiser"],
+      "answers":["A big ol' hand of chior butt", "Peaches", "Saved By the Bell Reruns", "The Lord's prayer"],
       "correct_answers":[0]
     },
     {
-      "id": 4,
-      "text": "How do German terrorists go down stairs?",
-      "movie_time":1222,
+      "id": 3,
+      "text": "The CIA sends champagne for Sean's success. How does he respond?",
+      "movie_time":1221,
       "duration":10,
-      "answers":["Backwards", "They take elevators", "Rail slides", "One step at a time"],
+      "answers":["Sends it back", "Honors the death of Pinkus", "Smashes it", "ITS POSION, NOooooo"],
+      "correct_answers":[1]
+    },
+    {
+      "id": 4,
+      "text": "Castor's alias, Robert Mathews, is a reference to what?",
+      "movie_time":1294,
+      "duration":10,
+      "answers":["Anagram for 'The Truth Matters'", "The brother from Boy Meets World", "Leader of a Neo-Nazi terror group", "John Woo's film teacher"],
       "correct_answers":[2]
     },
     {
       "id": 5,
-      "text": "What floor is the party on?",
-      "movie_time":1352,
+      "text": "What are on Sean's daughters bedsheets?",
+      "movie_time":1925,
       "duration":10,
-      "answers":["30", "120", "69 DUDES!", "PH"],
-      "correct_answers":[0, 2]
+      "answers":["Nic Cage's face winking", "The Grim Reaper", "Guns n' Roses", "Leapoard print and flowers"],
+      "correct_answers":[3]
     },
     {
       "id": 6,
-      "text": "What is Hans Gruber after?",
-      "movie_time":1761,
+      "text": "What color are the hospital gowns?",
+      "movie_time":1940,
       "duration":10,
-      "answers":["A role in Harry Potter", "Money ...classic villain", "New weapons technology", "Rosebud, his childhood sled"],
+      "answers":["Green", "Purple", "White", "Black"],
       "correct_answers":[1]
     },
     {
       "id": 7,
-      "text": "What is Fritz wearing in the next scene?",
-      "movie_time":2059,
+      "text": "The first real-life face transplant was accomplished in what year?",
+      "movie_time":2100,
       "duration":10,
-      "answers":["German officer's uniform", "A sassy Christmas sweater", "A fake mustache", "Single mom sweatsuit and nerd glasses"],
-      "correct_answers":[3]
+      "answers":["1974", "1997", "2012", "Are you kidding? Never been done"],
+      "correct_answers":[2]
     },
     {
       "id": 8,
-      "text": "What message does John send to Hans?",
-      "movie_time":2407,
+      "text": "What films do they show to the prisoners?",
+      "movie_time":2480,
       "duration":10,
-      "answers":["Do not open till Christmas", "Looks like I'm eating Kraut tonite", "F*** you Hans Gruber", "Now I have a Machine gun"],
+      "answers":["Soothing nature shots", "Titanic", "Old military clips", "Medical documentaries"],
+      "correct_answers":[0]
+    },
+    {
+      "id": 9,
+      "text": "Castor wakes up like the killer from what franchise?",
+      "movie_time":2732,
+      "duration":10,
+      "answers":["Halloween", "Dracula", "Lizzy Mcguire", "Friday the 13th"],
       "correct_answers":[3]
     },
     {
       "id": 10,
-      "text": "What cop from a famous tv show is getting snacks?",
-      "movie_time":2705,
+      "text": "What medication does Polox Troy need to take?",
+      "movie_time":2959,
       "duration":10,
-      "answers":["Magnum PI", "Turner and Hooch", "Family Matters", "Robocop"],
-      "correct_answers":[2]
+      "answers":["Vivex", "Ritalin", "Corazon", "Travolage"],
+      "correct_answers":[0]
     },
     {
       "id": 11,
-      "text": "Killer one liner coming up",
-      "movie_time":3054,
+      "text": "How did Travolta and Cage prepare for their roles?",
+      "movie_time":3275,
       "duration":10,
-      "answers":["I always hated sardines", "I'm getting too old for this sh*t", "Now I know what a TV dinner feels like", "I knew I shouldn't of had chili for lunch"],
-      "correct_answers":[2]
+      "answers":["Watched all of each other's movies", "Booked a hotel together for a week","Stared lovingly into each other's eyes", "Lived each other's lives"],
+      "correct_answers":[1]
     },
     {
       "id": 12,
-      "text": "How does John get the attention of the police?",
-      "movie_time":3407,
+      "text": "What message does Castor send to Sean after disarming the bomb?",
+      "movie_time":3762,
       "duration":10,
-      "answers":["Shoots at his car", "Yells racials slurs out the window", "Turns on the buildings Christmas lights", "Drops a German on his car"],
-      "correct_answers":[3]
+      "answers":["Awkward sports analogy", "Tells him they will meet 'face to face'", "That he will be relaxing at home tonite", "screams like Daniel Shabalin"],
+      "correct_answers":[0]
     },
     {
       "id": 13,
-      "text": "What is the famous quote coming up?",
-      "movie_time":3620,
-      "duration":15,
-      "answers":["Yuppe ci yay mother fucker", "Yippee ki yay mother f*cker", "Yippee sorbet ducker trucker", "Sippy chai tea huffer snuffer"],
+      "text": "What toy is NOT put on the grave?",
+      "movie_time":4484,
+      "duration":10,
+      "answers":["Digger truck", "Teddy bear", "Shark", "Robot"],
       "correct_answers":[1]
     },
     {
       "id": 14,
-      "text": "What famous movie is Deputy Police Chief Dwayne T. Robinson from?",
-      "movie_time":3851,
+      "text": "What are Castor's favorite candy?",
+      "movie_time":4776,
       "duration":10,
-      "answers":["The Breakfast Club", "Lethal Weapon", "The Terminator", "Pretty in Pink"],
-      "correct_answers":[0]
+      "answers":["Fuzzy Peaches", "Maltesers", "Chiclets", "Cocaine"],
+      "correct_answers":[2]
     },
     {
       "id": 15,
-      "text": "How does the badass SWAT dude hurt himself?",
-      "movie_time":4201,
+      "text": "What kind of protection does Castor provide?",
+      "movie_time":5162,
       "duration":10,
-      "answers":["Hits his head on a lamp post", "Chokes on a fly", "Trips on his shoe lace", "Pricks his finger on a rose bush"],
+      "answers":["Sunscreen", "Golden pistol", "Condoms", "Butterfly knife"],
       "correct_answers":[3]
     },
     {
       "id": 16,
-      "text": "What INSANE term does the Coke jerk use in the next scene?",
-      "movie_time":4783,
+      "text": "How does Castor handle the death of his brother?",
+      "movie_time":5999,
       "duration":10,
-      "answers":["Schmuck", "Boobie", "Camel Jockey", "White Knight"],
-      "correct_answers":[0,1,2,3]
+      "answers":["Goes all CRaZy EyEs", "Ties his shoe", "Caps an ass", "Shed a single tear"],
+      "correct_answers":[1, 2]
     },
     {
       "id": 17,
-      "text": "What is the name of the News guest's book?",
-      "movie_time":5308,
-      "duration":15,
-      "answers":["10 tips when taken hostage", "So, you have a gun in your face", "Hostage Terrorist, Terrorist Hostage", "I love you Helsinki Syndrome"],
+      "text": "How does Castor dispense of the police chief?",
+      "movie_time":6106,
+      "duration":10,
+      "answers":["Karate related heart attack", "Shanked like fish", "Syringe of insolin", "Suffocation by kissing"],
+      "correct_answers":[0]
+    },
+    {
+      "id": 17,
+      "text": "Which of my favorite things is NOT in the next shot?",
+      "movie_time":6732,
+      "duration":10,
+      "answers":["Goats", "El Camino", "One liner", "Black tuxedo and shades"],
       "correct_answers":[2]
     },
     {
       "id": 18,
-      "text": "Who was actually born in Germany?",
-      "movie_time":5629,
+      "text": "What did the doves in this scene represent?",
+      "movie_time":6860,
       "duration":10,
-      "answers":["Alan Rickman", "Bruce Willis", "Alan Rickman", "Bruce Willis"],
-      "correct_answers":[1,3]
-    },
-    {
-      "id": 19,
-      "text": "What famous painting was just shown?",
-      "movie_time":6250,
-      "duration":15,
-      "answers":["Ecole de dance", "Ode di ehard", "A Cotton Office in New Orleans", "The Kramer"],
-      "correct_answers":[0]
-    },
-    {
-      "id": 20,
-      "text": "Which of these movies was the Mongolian henchmen not in?",
-      "movie_time":6737,
-      "duration":10,
-      "answers":["Bill and Ted's Excellent Adventure", "Lethal Weapon", "Escape from LA", "Commando"],
+      "answers":["The church's purity", "A single moment of peace", "Sean's redeption", "...those were seaguls"],
       "correct_answers":[3]
     },
     {
-      "id": 21,
-      "text": "Who has the best mullet?",
-      "movie_time":7111,
+      "id": 19,
+      "text": "Who does Jamie shoot? (read CAREFULLY hehehe)",
+      "movie_time":7306,
       "duration":10,
-      "answers":["Ryan Mueller", "Mel Gibson", "Bon Jovi", "Patrick Swayze"],
-      "correct_answers":[1]
+      "answers":["Castor as Sean", "Castor as himself", "Sean as Castor", "Sean as himself"],
+      "correct_answers":[2]
     },
     {
-      "id": 22,
-      "text": "Who comes back for vengence?",
-      "movie_time":7507,
+      "id": 20,
+      "text": "What delivers the final blow?",
+      "movie_time":7731,
       "duration":10,
-      "answers":["Karl, the German badass", "Hans Gruber", "Jesus", "That dude who landed on the car"],
+      "answers":["Harpoon gun", "Boat anchor", "Afgani blow dart", "Throat chop"],
       "correct_answers":[0]
-    }
+    },
   ],
   "rules": [
     "Every death",
     "Every time somebody is smoking",
-    "Gennaro is said",
-    "John talks to himself",
-    "German is spoken",
-    "Elevator doors open",
-    "A tacky computer interface is shown",
-    "Somebody is humming",
-    "Glass is broken",
-    "Lens flair"
+    "Face touch",
+    "Gina Geershon is CUTE",
+    "Cage-isms",
+    "Holster/unholster",
+    "Glass shatters",
+    "Sean or Castor is said",
+    "American flag is shown",
+    "Gratuitous Slowmo",
+    "Dual weild",
+    "Dive/Roll/Slide"
   ]
 }
