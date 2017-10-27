@@ -72,15 +72,30 @@ function initClickEvents(controller) {
 function initWebsockets(controller) {
   var connection = io(window.location.hostname + ':3232');
 
-  connection.on('start_game', $.proxy(controller.startGame, controller));
-  connection.on('waiting', $.proxy(controller.updateWaitTime, controller));
-  connection.on('hide_question', $.proxy(controller.clearQuestion, controller));
-  connection.on('show_question', $.proxy(controller.showQuestion, controller));
-  connection.on('show_answers', $.proxy(controller.showAnswers, controller));
-  connection.on('show_correct_answers', function(showCorrectAnswers) {
-    controller.disableButtons();
-    controller.updateStats(showCorrectAnswers.stats[Cookies.get('token')]);
+  connection.on('connect', function() {
+    connection.on('start_game', $.proxy(controller.startGame, controller));
+    connection.on('waiting', $.proxy(controller.updateWaitTime, controller));
+    connection.on('hide_question', $.proxy(controller.clearQuestion, controller));
+    connection.on('show_question', $.proxy(controller.showQuestion, controller));
+    connection.on('show_answers', $.proxy(controller.showAnswers, controller));
+    connection.on('show_correct_answers', function(showCorrectAnswers) {
+      controller.disableButtons();
+      controller.updateStats(showCorrectAnswers.stats[Cookies.get('token')]);
+    });
   });
+
+  connection.on('reconnect', function() {
+    connection.on('start_game', $.proxy(controller.startGame, controller));
+    connection.on('waiting', $.proxy(controller.updateWaitTime, controller));
+    connection.on('hide_question', $.proxy(controller.clearQuestion, controller));
+    connection.on('show_question', $.proxy(controller.showQuestion, controller));
+    connection.on('show_answers', $.proxy(controller.showAnswers, controller));
+    connection.on('show_correct_answers', function(showCorrectAnswers) {
+      controller.disableButtons();
+      controller.updateStats(showCorrectAnswers.stats[Cookies.get('token')]);
+    });
+  });
+
   connection.on('disconnect', function() {
     window.location.replace("http://www.drinkupcinema.com");
   });

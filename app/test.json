@@ -1,195 +1,230 @@
 {
   "file_path": "",
-  "name": "Die Hard",
-  "end_time": 7637,
-  "questions":[
+  "name": "Clue (1985)",
+  "end_time": 5595,
+  "questions": [
     {
       "id": 1,
-      "text": "What is the secret to surviving air travel?",
-      "movie_time":52,
-      "duration":10,
-      "answers":["Walk around bare foot", "A stiff German drink", "Have a soft easy evening", "Kill a ton of terrorists"],
-      "correct_answers":[0]
+      "text": "What was the original name of the Clue® boardgame?",
+      "movie_time": 42,
+      "duration": 10,
+      "answers": [
+        "Clueo",
+        "Who Done It?",
+        "Mystery!",
+        "Stabby McCandlestick"
+      ],
+      "correct_answers": [
+        0
+      ]
     },
     {
       "id": 2,
-      "text": "Who rides in the back seat of the limo?",
-      "movie_time": 363,
-      "duration":10,
-      "answers":["John McClane", "Mrs. McClane", "Nobody (SYKE!)", "Stuffy Snug Bear Bear"],
-      "correct_answers":[3]
+      "text": "What is the name of the cook?",
+      "movie_time": 261,
+      "duration": 10,
+      "answers": [
+        "Ms. Sharp",
+        "Mrs. Combo#3",
+        "Ms. Ho",
+        "Chop Suzy"
+      ],
+      "correct_answers": [
+        2
+      ]
     },
     {
       "id": 3,
-      "text": "What amazing Christmas song is coming up?",
-      "movie_time":446,
-      "duration":10,
-      "answers":["Ode to Joy - Beethoven", "Christmas In Hollis - Run DMC", "Sleigh Ride - TLC", "Jingle Bells - Frank Sinatra"],
-      "correct_answers":[1]
-    },
-    {
-      "id": 17,
-      "text": "Nakatomi Tower is the real life head quaters of?",
-      "movie_time":757,
-      "duration":10,
-      "answers":["20th Century Fox", "Hostess", "Toys 'R Us'", "Budweiser"],
-      "correct_answers":[0]
+      "text": "What item for each character is the same color as their game piece?",
+      "movie_time": 601,
+      "duration": 10,
+      "answers": [
+        "Their eyes",
+        "Their clothing",
+        "Their cars",
+        "Their G-strings"
+      ],
+      "correct_answers": [
+        2
+      ]
     },
     {
       "id": 4,
-      "text": "How do German terrorists go down stairs?",
-      "movie_time":1222,
-      "duration":10,
-      "answers":["Backwards", "They take elevators", "Rail slides", "One step at a time"],
-      "correct_answers":[2]
+      "text": "Why is professor Plum UNO WHO?",
+      "movie_time": 918,
+      "duration": 10,
+      "answers": [
+        "Them boy loving eyes",
+        "He works for U.N. World Health Org.",
+        "Once made out with Voldemort",
+        "Plums cause flatulence"
+      ],
+      "correct_answers": [
+        1
+      ]
     },
     {
       "id": 5,
-      "text": "What floor is the party on?",
-      "movie_time":1352,
-      "duration":10,
-      "answers":["30", "120", "69 DUDES!", "PH"],
-      "correct_answers":[0, 2]
+      "text": "Which of these has never been a Clue® weapon?",
+      "movie_time": 1597,
+      "duration": 10,
+      "answers": [
+        "A bent dildo",
+        "A shattered bong",
+        "A garden Hoe",
+        "A Jaguar Tooth"
+      ],
+      "correct_answers": [
+        2
+      ]
     },
     {
       "id": 6,
-      "text": "What is Hans Gruber after?",
-      "movie_time":1761,
-      "duration":10,
-      "answers":["A role in Harry Potter", "Money ...classic villain", "New weapons technology", "Rosebud, his childhood sled"],
-      "correct_answers":[1]
+      "text": "What was the tag line for the Clue movie poster?",
+      "movie_time": 1832,
+      "duration": 10,
+      "answers": [
+        "They'll never have a Clue",
+        "It's not a game anymore",
+        "No more fun and games",
+        "Knives, pipes and guns, Ow my!"
+      ],
+      "correct_answers": [
+        1
+      ]
     },
     {
       "id": 7,
-      "text": "What is Fritz wearing in the next scene?",
-      "movie_time":2059,
-      "duration":10,
-      "answers":["German officer's uniform", "A sassy Christmas sweater", "A fake mustache", "Single mom sweatsuit and nerd glasses"],
-      "correct_answers":[3]
+      "text": "Mrs White believe a husband should be like...",
+      "movie_time": 2114,
+      "duration": 10,
+      "answers": [
+        "Chicken: Tender and Juciy",
+        "The 80s: Mullets and Leather",
+        "Kleenex: Soft, Strong, and Disposable",
+        "Tyler's Truck: Fast and hits hard"
+      ],
+      "correct_answers": [
+        2
+      ]
     },
     {
       "id": 8,
-      "text": "What message does John send to Hans?",
-      "movie_time":2407,
-      "duration":10,
-      "answers":["Do not open till Christmas", "Looks like I'm eating Kraut tonite", "F*** you Hans Gruber", "Now I have a Machine gun"],
-      "correct_answers":[3]
+      "text": "What classic detail is missing from one of the weapons?",
+      "movie_time": 2433,
+      "duration": 10,
+      "answers": [
+        "The wrench isn't bent",
+        "The rope is made of silk",
+        "The gun isn't a revolver",
+        "They aren't made of plastic"
+      ],
+      "correct_answers": [
+        2
+      ]
+    },
+    {
+      "id": 9,
+      "text": "What got Collen Camp (The Maid) her role?",
+      "movie_time": 2851,
+      "duration": 10,
+      "answers": [
+        "Her 'heaving' personality",
+        "Her 'voluptuous' french accent",
+        "Her 'ample' connections",
+        "She has large breasts"
+      ],
+      "correct_answers": [
+        3
+      ]
     },
     {
       "id": 10,
-      "text": "What cop from a famous tv show is getting snacks?",
-      "movie_time":2705,
-      "duration":10,
-      "answers":["Magnum PI", "Turner and Hooch", "Family Matters", "Robocop"],
-      "correct_answers":[2]
+      "text": "Who gets killed by the chandelier?",
+      "movie_time": 3310,
+      "duration": 10,
+      "answers": [
+        "noBODY",
+        "Prof. Plum",
+        "The maid (RIP)",
+        "Col. Mustard"
+      ],
+      "correct_answers": [
+        0
+      ]
     },
     {
       "id": 11,
-      "text": "Killer one liner coming up",
-      "movie_time":3054,
-      "duration":10,
-      "answers":["I always hated sardines", "I'm getting too old for this sh*t", "Now I know what a TV dinner feels like", "I knew I shouldn't of had chili for lunch"],
-      "correct_answers":[2]
+      "text": "The telegram girl is MUCH more famous for...",
+      "movie_time": 3945,
+      "duration": 10,
+      "answers": [
+        "The Princess Diaries",
+        "'Bye Bye Bye' music video",
+        "Ryan's wet dreams",
+        "Bill and Ted's Excellent Adventure"
+      ],
+      "correct_answers": [
+        2,
+        3
+      ]
     },
     {
       "id": 12,
-      "text": "How does John get the attention of the police?",
-      "movie_time":3407,
-      "duration":10,
-      "answers":["Shoots at his car", "Yells racials slurs out the window", "Turns on the buildings Christmas lights", "Drops a German on his car"],
-      "correct_answers":[3]
+      "text": "<i>'In flagrante delicto'</i> is Latin for 'to be caught...'",
+      "movie_time": 4400,
+      "duration": 10,
+      "answers": [
+        "Doing a delicous flamingo dance",
+        "Red handed",
+        "With your pants down",
+        "Desecrating a grave"
+      ],
+      "correct_answers": [
+        1
+      ]
     },
     {
       "id": 13,
-      "text": "What is the famous quote coming up?",
-      "movie_time":3620,
-      "duration":15,
-      "answers":["Yuppe ci yay mother fucker", "Yippee ki yay mother f*cker", "Yippee sorbet ducker trucker", "Sippy chai tea huffer snuffer"],
-      "correct_answers":[1]
+      "text": "Who was the <b>REAL<b> Murderer?",
+      "movie_time": 4857,
+      "duration": 10,
+      "answers": [
+        "Mrs. White, the jealous wife",
+        "Col. Mustartd, the war profiteer",
+        "Ms. Scarlet, the pimp",
+        "I hate this game"
+      ],
+      "correct_answers": [
+        2
+      ]
     },
     {
       "id": 14,
-      "text": "What famous movie is Deputy Police Chief Dwayne T. Robinson from?",
-      "movie_time":3851,
-      "duration":10,
-      "answers":["The Breakfast Club", "Lethal Weapon", "The Terminator", "Pretty in Pink"],
-      "correct_answers":[0]
-    },
-    {
-      "id": 15,
-      "text": "How does the badass SWAT dude hurt himself?",
-      "movie_time":4201,
-      "duration":10,
-      "answers":["Hits his head on a lamp post", "Chokes on a fly", "Trips on his shoe lace", "Pricks his finger on a rose bush"],
-      "correct_answers":[3]
-    },
-    {
-      "id": 16,
-      "text": "What INSANE term does the Coke jerk use in the next scene?",
-      "movie_time":4783,
-      "duration":10,
-      "answers":["Schmuck", "Boobie", "Camel Jockey", "White Knight"],
-      "correct_answers":[0,1,2,3]
-    },
-    {
-      "id": 17,
-      "text": "What is the name of the News guest's book?",
-      "movie_time":5308,
-      "duration":15,
-      "answers":["10 tips when taken hostage", "So, you have a gun in your face", "Hostage Terrorist, Terrorist Hostage", "I love you Helsinki Syndrome"],
-      "correct_answers":[2]
-    },
-    {
-      "id": 18,
-      "text": "Who was actually born in Germany?",
-      "movie_time":5629,
-      "duration":10,
-      "answers":["Alan Rickman", "Bruce Willis", "Alan Rickman", "Bruce Willis"],
-      "correct_answers":[1,3]
-    },
-    {
-      "id": 19,
-      "text": "What famous painting was just shown?",
-      "movie_time":6250,
-      "duration":15,
-      "answers":["Ecole de dance", "Ode di ehard", "A Cotton Office in New Orleans", "The Kramer"],
-      "correct_answers":[0]
-    },
-    {
-      "id": 20,
-      "text": "Which of these movies was the Mongolian henchmen not in?",
-      "movie_time":6737,
-      "duration":10,
-      "answers":["Bill and Ted's Excellent Adventure", "Lethal Weapon", "Escape from LA", "Commando"],
-      "correct_answers":[3]
-    },
-    {
-      "id": 21,
-      "text": "Who has the best mullet?",
-      "movie_time":7111,
-      "duration":10,
-      "answers":["Ryan Mueller", "Mel Gibson", "Bon Jovi", "Patrick Swayze"],
-      "correct_answers":[1]
-    },
-    {
-      "id": 22,
-      "text": "Who comes back for vengence?",
-      "movie_time":7507,
-      "duration":10,
-      "answers":["Karl, the German badass", "Hans Gruber", "Jesus", "That dude who landed on the car"],
-      "correct_answers":[0]
+      "text": "Is it over??????",
+      "movie_time": 5269,
+      "duration": 10,
+      "answers": [
+        "Here we go again! (on my own)",
+        "...I can't drink anymore",
+        "Three endings WTF?!?!",
+        "Didn't we solve the mystery already?"
+      ],
+      "correct_answers": [
+        0
+      ]
     }
   ],
   "rules": [
-    "Every death",
-    "Every time somebody is smoking",
-    "Gennaro is said",
-    "John talks to himself",
-    "German is spoken",
-    "Elevator doors open",
-    "A tacky computer interface is shown",
-    "Somebody is humming",
-    "Glass is broken",
-    "Lens flair"
+    "A Character name is said",
+    "Inappropriate eyes or touching",
+    "Secret doors",
+    "A Clue® murder weapon or room",
+    "Somebody denies an accusation",
+    "Clumsy acts",
+    "Thunder and/or lightening",
+    "A body is moved",
+    "F*cking Mustard (Col. Mustard is an idiot)",
+    "<b>CHALLENGE:</b> Drink while any character is running"
   ]
 }
