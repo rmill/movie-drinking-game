@@ -184,7 +184,7 @@ window.onload = function() {
       'rotateOut', 'rotateOutDownLeft', 'rotateOutDownRight', 'rotateOutUpLeft', 'rotateOutUpRight',
       'rollOut',
       'zoomOut', 'zoomOutDown', 'zoomOutLeft', 'zoomOutRight', 'zoomOutUp',
-      'slideOutDown', 'slideOutLeft', 'slideOutRight', 'slideOutUp'
+      'slideOutDown', 'slideOutLeft', 'slideOutUp'
     ];
 
     var index = Math.round(Math.random() * (renderFunctions.length - 1));
