@@ -28,7 +28,7 @@ let server;
 
 function createWindow() {
   // Create the browser window.
-  win = new BrowserWindow();
+  win = new BrowserWindow({ webPreferences: { nodeIntegration: true, contextIsolation: false }});
   win.setFullScreen(true);
   // win.setMenu(null);
 
