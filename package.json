@@ -8,6 +8,7 @@
     "babel-preset-es2015": "^6.18.0",
     "body-parser": "^1.15.0",
     "cookie-parser": "^1.4.1",
+    "electron": "^20.1.0",
     "express": "^4.13.4",
     "jquery": "^2.2.4",
     "js-cookie": "^2.1.1",
@@ -19,9 +20,7 @@
     "socket.io": "^1.4.6",
     "socket.io-client": "^1.6.0"
   },
-  "devDependencies": {
-    "electron-prebuilt": "^1.2.2"
-  },
+  "devDependencies": {},
   "scripts": {
     "start": "npm run serve.game",
     "build": "babel app -d build --copy-files",
