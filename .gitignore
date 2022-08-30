@@ -49,3 +49,6 @@ Temporary Items
 node_modules
 npm-debug.log
 build
+
+# Custom
+.idea/
